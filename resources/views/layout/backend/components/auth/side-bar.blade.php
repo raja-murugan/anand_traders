@@ -17,26 +17,6 @@
                 <li>
                     <a class="active" href="#"><i class="fe fe-home"></i><span>Dashboard</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-pocket"></i> <span>Bank</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fe fe-package"></i> <span>Product</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fe fe-book-open"></i> <span>Addon</span></a>
-                </li>
-            </ul>
-
-
-            <ul>
-                <li class="menu-title"><span>User Management</span></li>
-                <li>
-                    <a href="#"><i class="fe fe-users"></i> <span>Customers</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fe fe-user"></i> <span>Vendor</span></a>
-                </li>
             </ul>
 
             <ul>
@@ -62,6 +42,30 @@
                 </li>
                 <li>
                     <a href="#"><i class="fe fe-dollar-sign"></i> <span>Customer Payment</span></a>
+                </li>
+            </ul>
+
+            <ul>
+                <li class="menu-title"><span>General</span></li>
+                <li>
+                    <a href="#"><i class="fe fe-pocket"></i> <span>Bank</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fe fe-package"></i> <span>Product</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fe fe-book-open"></i> <span>Addon</span></a>
+                </li>
+            </ul>
+
+
+            <ul>
+                <li class="menu-title"><span>User Management</span></li>
+                <li>
+                    <a href="#"><i class="fe fe-users"></i> <span>Customers</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fe fe-user"></i> <span>Vendor</span></a>
                 </li>
             </ul>
 
