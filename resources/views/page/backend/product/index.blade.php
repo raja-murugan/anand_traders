@@ -7,7 +7,7 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6>Bank</h6>
+            <h6>Product</h6>
             
          </div>
       </div>
@@ -21,44 +21,44 @@
                         <table class="table table-center table-hover datatable">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:20%">S.No</th>
-                                 <th style="width:20%">Bank</th>
-                                 <th style="width:35%">Note</th>
+                                 <th style="width:15%">S.No</th>
+                                 <th style="width:20%">Product</th>
+                                 <th style="width:40%">Description</th>
                                  <th style="width:25%">Action</th>
                               </tr>
                            </thead>
                            <tbody>
-                           @foreach ($data as $keydata => $bankdata)
+                           @foreach ($Productdata as $keydata => $Product_data)
                               <tr>
                                  <td>{{ ++$keydata }}</td>
-                                 <td>{{ $bankdata->name }}</td>
-                                 <td>{{ $bankdata->note }}</td>
+                                 <td>{{ $Product_data->name }}</td>
+                                 <td>{{ $Product_data->description }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                          <a class="badge bg-warning-light" href="#edit{{ $bankdata->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".bankedit-modal-xl{{ $bankdata->unique_key }}" style="color: #28084b;">Edit</a>
+                                          <a class="badge bg-warning-light" href="#productedit{{ $Product_data->unique_key }}" data-bs-toggle="modal"
+                                          data-bs-target=".productedit-modal-xl{{ $Product_data->unique_key }}" style="color: #28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          <a href="#delete{{ $bankdata->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".bankdelete-modal-xl{{ $bankdata->unique_key }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a href="#productdelete{{ $Product_data->unique_key }}" data-bs-toggle="modal"
+                                          data-bs-target=".productdelete-modal-xl{{ $Product_data->unique_key }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
 
-                              <div class="modal fade bankedit-modal-xl{{ $bankdata->unique_key }}"
+                              <div class="modal fade productedit-modal-xl{{ $Product_data->unique_key }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="bankeditLargeModalLabel{{ $bankdata->unique_key }}"
+                                    aria-labelledby="producteditLargeModalLabel{{ $Product_data->unique_key }}"
                                     aria-hidden="true">
-                                    @include('page.backend.bank.edit')
+                                    @include('page.backend.product.edit')
                               </div>
-                              <div class="modal fade bankdelete-modal-xl{{ $bankdata->unique_key }}"
+                              <div class="modal fade productdelete-modal-xl{{ $Product_data->unique_key }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="bankdeleteLargeModalLabel{{ $bankdata->unique_key }}"
+                                    aria-labelledby="productdeleteLargeModalLabel{{ $Product_data->unique_key }}"
                                     aria-hidden="true">
-                                    @include('page.backend.bank.delete')
+                                    @include('page.backend.product.delete')
                               </div>
                            @endforeach
                            </tbody>
@@ -69,7 +69,7 @@
             </div>
          </div>
          <div class="col-sm-3">
-            <form autocomplete="off" method="POST" action="{{ route('bank.store') }}">
+            <form autocomplete="off" method="POST" action="{{ route('product.store') }}">
             @csrf
                <div class="card">
                   <div class="card-body">
@@ -78,16 +78,16 @@
                            <div class="row">
                               <div class="col-lg-12 col-md-12 col-sm-12">
                                  <div class="form-group">
-                                    <label>Bank<span class="text-danger">*</span></label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Bank Name">
+                                    <label>Product<span class="text-danger">*</span></label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Product Name">
                                  </div>
                               </div>
                            </div>
                            <div class="row">
                               <div class="col-lg-12 col-md-12 col-sm-12">
                                  <div class="form-group">
-                                    <label>Note</label>
-                                    <textarea name="note" id="note" class="form-control" placeholder="Enter Note"></textarea>
+                                    <label>Description</label>
+                                    <textarea name="description" id="description" class="form-control" placeholder="Enter Description"></textarea>
                                  </div>
                               </div>
                            </div>

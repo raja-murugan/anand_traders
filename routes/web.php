@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // DASHBOARD
+    Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home');
+
+});
 
 
 
@@ -35,4 +41,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/bank/edit/{unique_key}', [BankController::class, 'edit'])->name('bank.edit');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/bank/delete/{unique_key}', [BankController::class, 'delete'])->name('bank.delete');
+});
+
+
+// PRODUCT CONTROLLER
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // INDEX
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/product', [ProductController::class, 'index'])->name('product.index');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/product/store', [ProductController::class, 'store'])->name('product.store');
+    // EDIT
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/product/edit/{unique_key}', [ProductController::class, 'edit'])->name('product.edit');
+    // DELETE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/product/delete/{unique_key}', [ProductController::class, 'delete'])->name('product.delete');
 });

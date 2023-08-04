@@ -8877,7 +8877,7 @@ body[data-layout-mode=dark] .alertify .ajs-header {
 }
 
 .bg-warning-light {
-  background: #FFF6DC;
+  background: #efc871;
 }
 
 .bg-blue-light {
@@ -9317,8 +9317,7 @@ label {
 }
 
 .bg-danger-light {
-  background-color: rgba(255, 218, 218, 0.49) !important;
-  color: #FF0000 !important;
+  background-color: #dc3545;
 }
 
 .bg-purple-light {

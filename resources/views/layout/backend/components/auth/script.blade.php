@@ -8,6 +8,7 @@
 
 <script src="{{ asset('assets/backend/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/backend/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/datatables/datatables.min.js') }}"></script>
 
 <script src="{{ asset('assets/backend/js/bootstrap.bundle.min.js') }}"></script>
 

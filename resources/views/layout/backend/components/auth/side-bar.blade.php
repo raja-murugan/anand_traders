@@ -50,8 +50,8 @@
                 <li class="{{ Route::is('bank.index', 'bank.store', 'bank.edit') ? 'active' : '' }}">
                     <a href="{{ route('bank.index') }}"><i class="fe fe-pocket"></i> <span>Bank</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-package"></i> <span>Product</span></a>
+                <li class="{{ Route::is('product.index', 'product.store', 'product.edit' ) ? 'active' : '' }}">
+                    <a href="{{ route('product.index') }}"><i class="fe fe-package"></i> <span>Product</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fe fe-book-open"></i> <span>Addon</span></a>
