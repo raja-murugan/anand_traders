@@ -47,8 +47,8 @@
 
             <ul>
                 <li class="menu-title"><span>General</span></li>
-                <li>
-                    <a href="#"><i class="fe fe-pocket"></i> <span>Bank</span></a>
+                <li class="{{ Route::is('bank.index', 'bank.store', 'bank.edit') ? 'active' : '' }}">
+                    <a href="{{ route('bank.index') }}"><i class="fe fe-pocket"></i> <span>Bank</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fe fe-package"></i> <span>Product</span></a>
