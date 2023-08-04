@@ -4,7 +4,7 @@
 
 <script src="{{ asset('assets/backend/js/feather.min.js') }}"></script>
 
-<script src="{{ asset('assets/backend/js/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
 <script src="{{ asset('assets/backend/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/backend/js/dataTables.bootstrap4.min.js') }}"></script>
