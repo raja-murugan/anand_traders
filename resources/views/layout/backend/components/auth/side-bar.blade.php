@@ -14,8 +14,8 @@
 
             <ul>
                 <li class="menu-title"><span>Main</span></li>
-                <li>
-                    <a class="active" href="#"><i class="fe fe-home"></i><span>Dashboard</span></a>
+                <li class="{{ Route::is('home') ? 'active' : '' }}">
+                    <a class="active" href="{{ route('home') }}"><i class="fe fe-home"></i><span>Dashboard</span></a>
                 </li>
             </ul>
 
