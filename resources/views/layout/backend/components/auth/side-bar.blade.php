@@ -21,8 +21,8 @@
 
             <ul>
                 <li class="menu-title"><span>Bill Management</span></li>
-                <li>
-                    <a href="#"><i class="fe fe-file-text"></i> <span>Quatation</span></a>
+                <li class="{{ Route::is('quotation.index', 'quotation.store', 'quotation.edit' ) ? 'active' : '' }}">
+                    <a href="{{ route('quotation.index') }}"><i class="fe fe-file-text"></i> <span>Quotation</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fe fe-database"></i> <span>Bill</span></a>
@@ -53,19 +53,19 @@
                 <li class="{{ Route::is('product.index', 'product.store', 'product.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('product.index') }}"><i class="fe fe-package"></i> <span>Product</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-book-open"></i> <span>Addon</span></a>
+                <li class="{{ Route::is('addon.index', 'addon.store', 'addon.edit' ) ? 'active' : '' }}">
+                    <a href="{{ route('addon.index') }}"><i class="fe fe-book-open"></i> <span>Addon</span></a>
                 </li>
             </ul>
 
 
             <ul>
                 <li class="menu-title"><span>User Management</span></li>
-                <li>
-                    <a href="#"><i class="fe fe-users"></i> <span>Customers</span></a>
+                <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit' ) ? 'active' : '' }}">
+                    <a href="{{ route('customer.index') }}"><i class="fe fe-book-open"></i> <span>Customer</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-user"></i> <span>Vendor</span></a>
+                <li class="{{ Route::is('vendor.index', 'vendor.store', 'vendor.edit' ) ? 'active' : '' }}">
+                    <a href="{{ route('vendor.index') }}"><i class="fe fe-user"></i> <span>Vendor</span></a>
                 </li>
             </ul>
 

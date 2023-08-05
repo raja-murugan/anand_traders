@@ -31,7 +31,9 @@
             </div>
 
             <div class="modal-footer">
-               <button type="submit" class="btn btn-primary">Update</button>
+               <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+               <button type="button" class="btn btn-cancel btn-danger" data-bs-dismiss="modal"
+                                 aria-label="Close">Cancel</button>
             </div>
          </form>
    </div>

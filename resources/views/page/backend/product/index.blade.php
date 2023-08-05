@@ -18,7 +18,7 @@
                
                   <div class="card-body">
                      <div class="table-responsive">
-                        <table class="table table-center table-hover datatable">
+                        <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
                                  <th style="width:15%">S.No</th>

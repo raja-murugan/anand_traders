@@ -9,6 +9,8 @@
 <script src="{{ asset('assets/backend/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/backend/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/backend/plugins/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/select2/js/select2.min.js') }}"></script>
+
 
 <script src="{{ asset('assets/backend/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -21,5 +23,58 @@
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
+
+
+            $(".vendor_phoneno").keyup(function() {
+                var query = $(this).val();
+
+                if (query != '') {
+
+                    $.ajax({
+                        url: "{{ route('vendor.checkduplicate') }}",
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            query: query
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response['data']);
+                            if(response['data'] != null){
+                                alert('Vendor Already Existed');
+                                $('.vendor_phoneno').val('');
+                            }
+                        }
+                    });
+                }
+
+            });
+
+
+
+            $(".customer_phoneno").keyup(function() {
+                var query = $(this).val();
+
+                if (query != '') {
+
+                    $.ajax({
+                        url: "{{ route('customer.checkduplicate') }}",
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            query: query
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response['data']);
+                            if(response['data'] != null){
+                                alert('Customer Already Existed');
+                                $('.customer_phoneno').val('');
+                            }
+                        }
+                    });
+                }
+
+            });
     });
 </script>

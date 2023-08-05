@@ -7,7 +7,7 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6>Bank</h6>
+            <h6>Addon</h6>
             
          </div>
       </div>
@@ -21,44 +21,42 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:20%">S.No</th>
-                                 <th style="width:20%">Bank</th>
-                                 <th style="width:35%">Note</th>
-                                 <th style="width:25%">Action</th>
+                                 <th style="width:30%">S.No</th>
+                                 <th style="width:40%">Addon</th>
+                                 <th style="width:30%">Action</th>
                               </tr>
                            </thead>
                            <tbody>
-                           @foreach ($data as $keydata => $bankdata)
+                           @foreach ($data as $keydata => $addon_data)
                               <tr>
                                  <td>{{ ++$keydata }}</td>
-                                 <td>{{ $bankdata->name }}</td>
-                                 <td>{{ $bankdata->note }}</td>
+                                 <td>{{ $addon_data->name }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                          <a class="badge bg-warning-light" href="#edit{{ $bankdata->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".bankedit-modal-xl{{ $bankdata->unique_key }}" style="color: #28084b;">Edit</a>
+                                          <a class="badge bg-warning-light" href="#addonedit{{ $addon_data->unique_key }}" data-bs-toggle="modal"
+                                          data-bs-target=".addonedit-modal-xl{{ $addon_data->unique_key }}" style="color: #28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          <a href="#delete{{ $bankdata->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".bankdelete-modal-xl{{ $bankdata->unique_key }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a href="#delete{{ $addon_data->unique_key }}" data-bs-toggle="modal"
+                                          data-bs-target=".addondelete-modal-xl{{ $addon_data->unique_key }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
 
-                              <div class="modal fade bankedit-modal-xl{{ $bankdata->unique_key }}"
+                              <div class="modal fade addonedit-modal-xl{{ $addon_data->unique_key }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="bankeditLargeModalLabel{{ $bankdata->unique_key }}"
+                                    aria-labelledby="addoneditLargeModalLabel{{ $addon_data->unique_key }}"
                                     aria-hidden="true">
-                                    @include('page.backend.bank.edit')
+                                    @include('page.backend.addon.edit')
                               </div>
-                              <div class="modal fade bankdelete-modal-xl{{ $bankdata->unique_key }}"
+                              <div class="modal fade addondelete-modal-xl{{ $addon_data->unique_key }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="bankdeleteLargeModalLabel{{ $bankdata->unique_key }}"
+                                    aria-labelledby="addondeleteLargeModalLabel{{ $addon_data->unique_key }}"
                                     aria-hidden="true">
-                                    @include('page.backend.bank.delete')
+                                    @include('page.backend.addon.delete')
                               </div>
                            @endforeach
                            </tbody>
@@ -69,7 +67,7 @@
             </div>
          </div>
          <div class="col-sm-3">
-            <form autocomplete="off" method="POST" action="{{ route('bank.store') }}">
+            <form autocomplete="off" method="POST" action="{{ route('addon.store') }}">
             @csrf
                <div class="card">
                   <div class="card-body">
@@ -78,16 +76,8 @@
                            <div class="row">
                               <div class="col-lg-12 col-md-12 col-sm-12">
                                  <div class="form-group">
-                                    <label>Bank<span class="text-danger">*</span></label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Bank Name">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12">
-                                 <div class="form-group">
-                                    <label>Note</label>
-                                    <textarea name="note" id="note" class="form-control" placeholder="Enter Note"></textarea>
+                                    <label>Name<span class="text-danger">*</span></label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name">
                                  </div>
                               </div>
                            </div>
