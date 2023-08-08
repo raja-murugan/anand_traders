@@ -116,7 +116,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // STORE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/quotation/store', [QuotationController::class, 'store'])->name('quotation.store');
     // EDIT
-    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/quotation/edit/{unique_key}', [QuotationController::class, 'edit'])->name('quotation.edit');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/quotation/edit/{unique_key}', [QuotationController::class, 'edit'])->name('quotation.edit');
+    // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/update/{unique_key}', [QuotationController::class, 'update'])->name('quotation.update');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/delete/{unique_key}', [QuotationController::class, 'delete'])->name('quotation.delete');
 });

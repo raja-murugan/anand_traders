@@ -144,44 +144,6 @@
             }
 
 
-
-            $(document).on("blur", "input[name*=rateper_quantity]", function() {
-                var rateper_quantity = $(this).val();
-                var quantity = $(this).parents('tr').find('.quantity').val();
-                var total = quantity * rateper_quantity;
-                $(this).parents('tr').find('.product_total').val(total);
-
-                var totalAmount = 0;
-                $("input[name='product_total[]']").each(
-                                    function() {
-                                        //alert($(this).val());
-                                        totalAmount = Number(totalAmount) +
-                                            Number($(this).val());
-                                        $('.sub_total').val(
-                                            totalAmount);
-                                    });
-            });
-
-            $(document).on("blur", "input[name*=quantity]", function() {
-                var quantity = $(this).val();
-                var rateper_quantity = $(this).parents('tr').find('.rateper_quantity').val();
-                var total = quantity * rateper_quantity;
-                $(this).parents('tr').find('.product_total').val(total);
-
-                var totalAmount = 0;
-                $("input[name='product_total[]']").each(
-                                    function() {
-                                        //alert($(this).val());
-                                        totalAmount = Number(totalAmount) +
-                                            Number($(this).val());
-                                        $('.sub_total').val(
-                                            totalAmount);
-                                    });
-            });
-
-
-
-
             $(document).on('click', '.addextranotefields', function() {
                 $(".extracost_tr").append(
                     '<tr>' +
@@ -198,4 +160,187 @@
 
     });
 
+    $(document).on("blur", "input[name*=quantity]", function() {
+        var quantity = $(this).val();
+        var rateper_quantity = $(this).parents('tr').find('.rateper_quantity').val();
+        var total = quantity * rateper_quantity;
+        $(this).parents('tr').find('.product_total').val(total);
+
+                var totalAmount = 0;
+                $("input[name='product_total[]']").each(
+                                    function() {
+                                        totalAmount = Number(totalAmount) + Number($(this).val());
+                                        $('.sub_total').val(totalAmount);
+                                    });
+        var discount_price = $(".discount_price").val();
+        var sub_total = $(".sub_total").val();
+        var overallamount = Number(sub_total) - Number(discount_price);
+        $('.overallamount').val(overallamount.toFixed(2));
+
+
+        var tax_percentage = $(".tax_percentage").val();
+        var overallamount = $(".overallamount").val();
+        var tax_amount = (tax_percentage / 100) * overallamount;
+        $('.tax_amount').val(tax_amount);
+        var tax_added_amunt = Number(overallamount) + Number(tax_amount);
+        $('.tax_added_amunt').val(tax_added_amunt);
+
+
+        var extracost_amount = $(".extracost_amount").val();
+        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        $('.grand_total').val(grand_total);
+
+
+        var paid_amount = $(".paid_amount").val();
+        var balance_amount = Number(grand_total) - Number(paid_amount);
+        $('.balance_amount').val(balance_amount.toFixed(2));
+    });
+
+
+
+    $(document).on("keyup", 'input.discount_price', function() {
+        var discount_price = $(this).val();
+        var sub_total = $(".sub_total").val();
+        var overallamount = Number(sub_total) - Number(discount_price);
+        $('.overallamount').val(overallamount);
+
+        var tax_percentage = $(".tax_percentage").val();
+        var overallamount = $(".overallamount").val();
+        var tax_amount = (tax_percentage / 100) * overallamount;
+        $('.tax_amount').val(tax_amount);
+        var tax_added_amunt = Number(overallamount) + Number(tax_amount);
+        $('.tax_added_amunt').val(tax_added_amunt);
+
+        var extracost_amount = $(".extracost_amount").val();
+        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        $('.grand_total').val(grand_total);
+
+        var paid_amount = $(".paid_amount").val();
+        var balance_amount = Number(grand_total) - Number(paid_amount);
+        $('.balance_amount').val(balance_amount.toFixed(2));
+    });
+
+
+
+
+    $(document).on("keyup", 'input.tax_percentage', function() {
+        var tax_percentage = $(this).val();
+        var overallamount = $(".overallamount").val();
+        var tax_amount = (tax_percentage / 100) * overallamount;
+        $('.tax_amount').val(tax_amount);
+
+        var tax_added_amunt = Number(overallamount) + Number(tax_amount);
+        $('.tax_added_amunt').val(tax_added_amunt);
+
+        var extracost_amount = $(".extracost_amount").val();
+        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        $('.grand_total').val(grand_total);
+
+        var paid_amount = $(".paid_amount").val();
+        var balance_amount = Number(grand_total) - Number(paid_amount);
+        $('.balance_amount').val(balance_amount.toFixed(2));
+    });
+
+
+
+    $(document).on("keyup", 'input.tax_amount', function() {
+        var tax_amount = $(this).val();
+        var overallamount = $(".overallamount").val();
+        var taxpercentage = (tax_amount * 100) / overallamount;
+        $('.tax_percentage').val(taxpercentage.toFixed(2));
+
+        var tax_added_amunt = Number(overallamount) + Number(tax_amount);
+        $('.tax_added_amunt').val(tax_added_amunt);
+
+        var extracost_amount = $(".extracost_amount").val();
+        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        $('.grand_total').val(grand_total);
+
+        var paid_amount = $(".paid_amount").val();
+        var balance_amount = Number(grand_total) - Number(paid_amount);
+        $('.balance_amount').val(balance_amount.toFixed(2));
+    });
+
+
+
+
+    $(document).on("blur", "input[name*=rateper_quantity]", function() {
+        var rateper_quantity = $(this).val();
+        var quantity = $(this).parents('tr').find('.quantity').val();
+        var total = quantity * rateper_quantity;
+        $(this).parents('tr').find('.product_total').val(total);
+
+        var totalAmount = 0;
+        $("input[name='product_total[]']").each(
+                            function() {
+                                //alert($(this).val());
+                                totalAmount = Number(totalAmount) +
+                                    Number($(this).val());
+                                    $('.sub_total').val(
+                                        totalAmount);
+                            });
+
+        var discount_price = $(".discount_price").val();
+        var sub_total = $(".sub_total").val();
+        var overallamount = Number(sub_total) - Number(discount_price);
+        $('.overallamount').val(overallamount.toFixed(2));
+
+        var tax_percentage = $(".tax_percentage").val();
+        var overallamount = $(".overallamount").val();
+        var tax_amount = (tax_percentage / 100) * overallamount;
+        $('.tax_amount').val(tax_amount);
+        var tax_added_amunt = Number(overallamount) + Number(tax_amount);
+        $('.tax_added_amunt').val(tax_added_amunt);
+
+
+        var extracost_amount = $(".extracost_amount").val();
+        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        $('.grand_total').val(grand_total);
+
+        var paid_amount = $(".paid_amount").val();
+        var balance_amount = Number(grand_total) - Number(paid_amount);
+        $('.balance_amount').val(balance_amount.toFixed(2));
+    });
+
+
+
+
+    $(document).on("blur", "input[name*=extracost]", function() {
+        var extracost = $(this).val();
+        var totalExtraAmount = 0;
+        $("input[name='extracost[]']").each(
+                                    function() {
+                                        //alert($(this).val());
+                                        totalExtraAmount = Number(totalExtraAmount) +
+                                            Number($(this).val());
+                                        $('.extracost_amount').val(
+                                            totalExtraAmount);
+                                    });
+        var tax_added_amunt = $(".tax_added_amunt").val();
+        var extracost_amount = $(".extracost_amount").val();
+        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        $('.grand_total').val(grand_total);
+
+        var paid_amount = $(".paid_amount").val();
+        var balance_amount = Number(grand_total) - Number(paid_amount);
+        $('.balance_amount').val(balance_amount.toFixed(2));
+    });
+
+
+    $(document).on("keyup", 'input.paid_amount', function() {
+        var paid_amount = $(this).val();
+        var grand_total = $(".grand_total").val();
+        var balance_amount = Number(grand_total) - Number(paid_amount);
+        $('.balance_amount').val(balance_amount.toFixed(2));
+    });
+
+
+    function quotationubmitForm(btn) {
+        // disable the button
+        btn.disabled = true;
+        // submit the form
+        btn.form.submit();
+    }
+
+            
 </script>

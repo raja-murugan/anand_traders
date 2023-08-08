@@ -21,7 +21,9 @@
             <div class="quotation-card">
                <div class="card-body">
 
-                     
+                  <form autocomplete="off" method="POST" action="{{ route('quotation.store') }}"
+                                    enctype="multipart/form-data">
+                     @csrf
 
 
                      <div class="form-group-item border-0 mb-0">
@@ -37,7 +39,7 @@
                            <div class="col-lg-3 col-md-6 col-sm-12">
                               <div class="form-group">
                                  <label>Select Customer <span class="text-danger">*</span></label>
-                                       <select class="form-control select customer_id js-example-basic-single" name="customer_id" id="customer_id">
+                                       <select class="form-control select customer_id js-example-basic-single" name="customer_id" id="customer_id" required>
                                           <option value="" disabled selected hiddden>Select Customer</option>
                                              @foreach ($customer as $customers)
                                                 <option value="{{ $customers->id }}">{{ $customers->name }}</option>
@@ -50,19 +52,19 @@
                            <div class="col-lg-3 col-md-6 col-sm-12">
                               <div class="form-group">
                                  <label> Date <span class="text-danger">*</span></label>
-                                 <input type="date" class="datetimepicker form-control" placeholder="Select Date" value="{{$today}}" name="date" id="date">
+                                 <input type="date" class="datetimepicker form-control" placeholder="Select Date" value="{{$today}}" name="date" id="date" required>
                               </div>
                            </div>
                            <div class="col-lg-3 col-md-6 col-sm-12">
                               <div class="form-group">
                                  <label>Time <span class="text-danger">*</span></label>
-                                 <input type="time" class="datetimepicker form-control" placeholder="Select Date" value="{{$timenow}}" name="time" id="time">
+                                 <input type="time" class="datetimepicker form-control" placeholder="Select Date" value="{{$timenow}}" name="time" id="time" required>
                               </div>
                            </div>
                            <div class="col-lg-12 col-md-12 col-sm-12">
                               <div class="form-group">
                                  <label>Note <span class="text-danger">*</span></label>
-                                 <input type="text" class=" form-control" placeholder="Enter Notes"  name="add_on_note" id="add_on_note">
+                                 <input type="text" class=" form-control" placeholder="Enter Notes"  name="add_on_note" id="add_on_note" required>
                               </div>
                            </div>
                         </div>
@@ -72,7 +74,7 @@
 
 
 
-                     <div class="form-group-item">
+                     
                         <div class="card-body">
                            <div class="card-table">
                               <div class="table-responsive no-pagination">
@@ -132,7 +134,6 @@
                            </div>
 
                         </div>
-                     </div>
 
 
 
@@ -154,8 +155,8 @@
                                  </div>
                                  <div class="col-lg-3 col-md-3 col-sm-3">
                                     <div class="form-group">
-                                       <label>Final Amount</label>
-                                       <input type="text" class="form-control tax_productamount" name="tax_disproductamount"   id="tax_disproductamount" readonly style="background-color: #e9ecef;">
+                                       <label>Tax Added Amount</label>
+                                       <input type="text" class="form-control tax_added_amunt" name="tax_added_amunt"   id="tax_added_amunt" readonly style="background-color: #e9ecef;">
                                     </div>
                                  </div>
                               </div>
@@ -190,7 +191,7 @@
                                                    </tbody>
                                                    <tbody>
                                                       <tr>
-                                                         <td class="text-end" style="font-size:15px;color:black">Total</td>
+                                                         <td class="text-end" style="font-size:15px;color:black">Total Extracost Amount</td>
                                                          <td><input type="text" class="form-control extracost_amount" name="extracost_amount" id="extracost_amount" readonly style="background-color: #e9ecef;"></td>
                                                       </tr>
                                                    </tbody>
@@ -204,7 +205,7 @@
                                                    <tbody>
                                                       <tr>
                                                          <td class="text-end" style="font-size:15px;color:black">Paid Amount <span class="text-danger">*</span></td>
-                                                         <td><input type="text" class="form-control paid_amount" name="paid_amount"   id="paid_amount"></td>
+                                                         <td><input type="text" class="form-control paid_amount" name="paid_amount" required  id="paid_amount"></td>
                                                       </tr>
                                                    </tbody>
                                                    <tbody>
@@ -223,9 +224,11 @@
                                              
                      
                      <div class="text-end" style="margin-right:10%">
-                        <a href="quotations.html" class="btn btn-primary">Save</a>
-                        <a href="quotations.html" class="btn btn-primary cancel me-2">Cancel</a>
+                        <input type="submit" class="btn btn-primary" onclick="quotationubmitForm(this);" />
+                        <a href="{{ route('quotation.index') }}" class="btn btn-primary cancel me-2">Cancel</a>
                      </div>
+
+                  </form>
 
                </div>
             </div>

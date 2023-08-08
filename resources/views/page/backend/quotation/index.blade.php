@@ -37,27 +37,34 @@
                               </tr>
                            </thead>
                            <tbody>
-                           @foreach ($data as $keydata => $Quotationdata)
+                           @foreach ($quotation_data as $keydata => $Quotationdata)
                               <tr>
                                  <td>{{ ++$keydata }}</td>
-                                 <td>{{ $Quotationdata->quotation_number }}</td>
-                                 <td>{{ $Quotationdata->date }}</td>
-                                 <td>{{ $Quotationdata->customer_id }}</td>
-                                 <td>{{ $Quotationdata->grand_total }}</td>
-                                 <td>{{ $Quotationdata->paid_amount }}</td>
+                                 <td>#{{ $Quotationdata['quotation_number'] }}</td>
+                                 <td>{{ date('d-m-Y', strtotime($Quotationdata['date'])) }}</td>
+                                 <td>{{ $Quotationdata['customer'] }}</td>
+                                 <td>{{$Quotationdata['grand_total'] }}</td>
+                                 <td>{{ $Quotationdata['paid_amount']}}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                          
+                                             <a href="{{ route('quotation.edit', ['unique_key' => $Quotationdata['unique_key']]) }}"
+                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          
+                                             <a href="#quotationdelete{{ $Quotationdata['unique_key'] }}" data-bs-toggle="modal"
+                                             data-bs-target=".quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
-
+                              <div class="modal fade quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}"
+                                    tabindex="-1" role="dialog"data-bs-backdrop="static"
+                                    aria-labelledby="quotationdeleteLargeModalLabel{{$Quotationdata['unique_key'] }}"
+                                    aria-hidden="true">
+                                    @include('page.backend.quotation.delete')
+                              </div>
                              
                            @endforeach
                            </tbody>
