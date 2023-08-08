@@ -50,4 +50,14 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('soft_destroy', 'Successfully deleted the product !');
     }
+
+
+
+
+    public function getProducts()
+    {
+        $GetProduct = Product::orderBy('name', 'ASC')->where('soft_delete', '!=', 1)->get();
+        $userData['data'] = $GetProduct;
+        echo json_encode($userData);
+    }
 }

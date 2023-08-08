@@ -28,6 +28,9 @@ return new class extends Migration
             $table->string('discount_price')->nullable();
             $table->string('final_amount')->nullable();
             $table->string('extracost_amount')->nullable();
+            $table->string('total_amount')->nullable();
+            $table->string('tax_percentage')->nullable();
+            $table->string('tax_amount')->nullable();
             $table->string('grand_total')->nullable();
 
             $table->string('paid_amount')->nullable();

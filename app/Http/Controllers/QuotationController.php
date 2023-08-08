@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Quotation;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -21,12 +22,20 @@ class QuotationController extends Controller
     public function create()
     {
         $customer = Customer::where('soft_delete', '!=', 1)->get();
+        $product = Product::where('soft_delete', '!=', 1)->get();
         $today = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
 
 
+        $Latest_quotaion = Quotation::where('soft_delete', '!=', 1)->latest('id')->first();
+        if($Latest_quotaion != ''){
+            $quotation_no = $Latest_quotaion->quotation_number + 1;
+        }else {
+            $quotation_no = 1;
+        }
 
-        return view('page.backend.quotation.create', compact('customer', 'today', 'timenow'));
+
+        return view('page.backend.quotation.create', compact('customer', 'today', 'timenow', 'quotation_no', 'product'));
     }
 
 
@@ -45,6 +54,9 @@ class QuotationController extends Controller
         $data->discount_price = $request->get('discount_price');
         $data->final_amount = $request->get('final_amount');
         $data->extracost_amount = $request->get('extracost_amount');
+        $data->total_amount = $request->get('total_amount');
+        $data->tax_percentage = $request->get('tax_percentage');
+        $data->tax_amount = $request->get('tax_amount');
         $data->grand_total = $request->get('grand_total');
         $data->paid_amount = $request->get('paid_amount');
         $data->balance_amount = $request->get('balance_amount');
@@ -69,6 +81,9 @@ class QuotationController extends Controller
         $QuotationData->discount_price = $request->get('discount_price');
         $QuotationData->final_amount = $request->get('final_amount');
         $QuotationData->extracost_amount = $request->get('extracost_amount');
+        $QuotationData->total_amount = $request->get('total_amount');
+        $QuotationData->tax_percentage = $request->get('tax_percentage');
+        $QuotationData->tax_amount = $request->get('tax_amount');
         $QuotationData->grand_total = $request->get('grand_total');
         $QuotationData->paid_amount = $request->get('paid_amount');
         $QuotationData->balance_amount = $request->get('balance_amount');

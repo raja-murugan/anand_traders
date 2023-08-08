@@ -120,3 +120,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/delete/{unique_key}', [QuotationController::class, 'delete'])->name('quotation.delete');
 });
+
+
+
+
+
+Route::get('getProducts/', [ProductController::class, 'getProducts']);
