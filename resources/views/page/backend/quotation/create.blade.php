@@ -154,7 +154,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td colspan="3" class="text-end"
-                                                        style="font-size:15px;color:black">Tax Costing</td>
+                                                            style="font-size:15px;color:black">Tax Costing</td>
                                                         <td>
                                                             <input type="text"
                                                                 class="form-control tax_percentage"name="tax_percentage"
@@ -171,14 +171,13 @@
                                                 <tbody class="extracost_tr">
                                                     <tr>
                                                         <td colspan="2" class="text-end"
-                                                        style="font-size:15px;color:black">Extra Costing</td>
+                                                            style="font-size:15px;color:black">Extra Costing</td>
                                                         <td colspan="3"><input type="text"
                                                                 class="form-control"id="extracost_note"
                                                                 placeholder="Note"
                                                                 value=""name="extracost_note[]" />
                                                         </td>
-                                                        <td><input type="hidden"
-                                                                name="extracost_id[]" />
+                                                        <td><input type="hidden" name="extracost_id[]" />
                                                             <input type="text" class="form-control extracost"
                                                                 id="extracost"placeholder="Extra Cost"
                                                                 name="extracost[]"value="" />
@@ -195,10 +194,8 @@
                                                             style="font-size:15px;color:black">
                                                             Total
                                                             Extracost Amount</td>
-                                                        <td><input type="text"
-                                                                class="form-control extracost_amount"
-                                                                name="extracost_amount"
-                                                                id="extracost_amount" readonly
+                                                        <td><input type="text" class="form-control extracost_amount"
+                                                                name="extracost_amount" id="extracost_amount" readonly
                                                                 style="background-color: #e9ecef;"></td>
                                                     </tr>
                                                     <tr>
@@ -206,10 +203,8 @@
                                                             style="font-size:15px;color:black">
                                                             Grand Total
                                                         </td>
-                                                        <td><input type="text"
-                                                                class="form-control grand_total"
-                                                                name="grand_total" readonly
-                                                                id="grand_total"
+                                                        <td><input type="text" class="form-control grand_total"
+                                                                name="grand_total" readonly id="grand_total"
                                                                 style="background-color: #e9ecef;"></td>
                                                     </tr>
                                                     {{-- <tr>
@@ -237,8 +232,6 @@
                                             </table>
                                         </div>
 
-
-
                                         <div class="text-end" style="margin-top:3%">
                                             <input type="submit" class="btn btn-primary"
                                                 onclick="quotationubmitForm(this);" />
@@ -247,16 +240,12 @@
                                         </div>
 
                                     </form>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 @endsection
