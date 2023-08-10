@@ -69,7 +69,7 @@
             </div>
          </div>
          <div class="col-sm-3">
-            @include('page.backend.product.create')
+            @include('page.backend.bank.create')
          </div>
 
 
