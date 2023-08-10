@@ -21,7 +21,7 @@
       <div class="row">
          <div class="col-sm-12">
             <div class="card">
-               
+
                   <div class="card-body">
                      <div class="table-responsive">
                         <table class="table table-center table-hover datatable table-striped">
@@ -32,7 +32,6 @@
                                  <th>Date</th>
                                  <th>Customer</th>
                                  <th>Total</th>
-                                 <th>Paid</th>
                                  <th>Action</th>
                               </tr>
                            </thead>
@@ -44,7 +43,6 @@
                                  <td>{{ date('d-m-Y', strtotime($Quotationdata['date'])) }}</td>
                                  <td>{{ $Quotationdata['customer'] }}</td>
                                  <td>{{$Quotationdata['grand_total'] }}</td>
-                                 <td>{{ $Quotationdata['paid_amount']}}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
@@ -56,7 +54,7 @@
                                              data-bs-target=".quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
-                                 
+
                                  </td>
                               </tr>
                               <div class="modal fade quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}"
@@ -65,16 +63,16 @@
                                     aria-hidden="true">
                                     @include('page.backend.quotation.delete')
                               </div>
-                             
+
                            @endforeach
                            </tbody>
                         </table>
                      </div>
                   </div>
-               
+
             </div>
          </div>
-         
+
 
 
       </div>

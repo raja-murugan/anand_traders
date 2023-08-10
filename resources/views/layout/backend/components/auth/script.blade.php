@@ -91,7 +91,7 @@
                 $(".product_fields").append(
                     '<tr>' +
                     '<td><input class="auto_num form-control"  type="text" readonly value="'+rowIndexx+'"/></td>' +
-                    '<td class=""><input type="hidden" id="quotation_detail_id" name="quotation_detail_id[]" />' +
+                    '<td colspan="2" class=""><input type="hidden" id="quotation_detail_id" name="quotation_detail_id[]" />' +
                     '<select class="form-control js-example-basic-single product_id select"name="product_id[]" id="product_id' + i + '"required>' +
                     '<option value="" selected hidden class="text-muted">Select Product</option></select>' +
                     '</td>' +
@@ -147,7 +147,8 @@
             $(document).on('click', '.addextranotefields', function() {
                 $(".extracost_tr").append(
                     '<tr>' +
-                    '<td><input type="text" class="form-control"id="extracost_note" placeholder="Note" value=""name="extracost_note[]" /></td>' +
+                    '<td colspan="2"></td>' +
+                    '<td colspan="3"><input type="text" class="form-control"id="extracost_note" placeholder="Note" value=""name="extracost_note[]" /></td>' +
                     '<td><input type="hidden" name="extracost_id[]"/><input type="text" class="form-control extracost" id="extracost"placeholder="Extra Cost"  name="extracost[]"value="" /></td>' +
                     '<td><button style="width: 40px;"class="py-1 text-white remove-extratr font-medium rounded-lg text-sm  text-center btn btn-danger" type="button" id="" value="Add">-</button></td>' +
                     '</tr>'
@@ -342,5 +343,5 @@
         btn.form.submit();
     }
 
-            
+
 </script>
