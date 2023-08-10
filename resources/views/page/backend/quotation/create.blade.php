@@ -62,14 +62,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Note <span class="text-danger">*</span></label>
-                                                        <input type="text" class=" form-control"
-                                                            placeholder="Enter Notes" name="add_on_note" id="add_on_note"
-                                                            required>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
 
@@ -79,9 +71,10 @@
                                                     <tr>
                                                         <th style="width:8%">S.No</th>
                                                         <th style="width:23%">Product</th>
+                                                        <th style="width:14%"></th>
                                                         <th style="width:14%">Quantity</th>
                                                         <th style="width:14%">Cost Per Quantity</th>
-                                                        <th style="width:14%"></th>
+
                                                         <th style="width:20%">Cost</th>
                                                         <th style="width:5%">Action</th>
                                                     </tr>
@@ -117,55 +110,10 @@
                                                         <td><input type="text" class="form-control product_total"
                                                                 readonly id="product_total"
                                                                 style="background-color: #e9ecef;" name="product_total[]"
-                                                                placeholder="0.00" /></td>
-                                                        <td><button
-                                                                style="width: 40px;"class="py-1 text-white font-medium rounded-lg text-sm  text-center btn btn-primary addproductfields"
-                                                                type="button" id="" value="Add">+</button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                                <tbody>
-                                                    <tr>
-                                                        <td colspan="5" class="text-end"
-                                                            style="font-size:15px;color:black">
-                                                            Total</td>
-                                                        <td><input type="text" class="form-control sub_total"
-                                                                style="background-color: #e9ecef;" name="sub_total"
-                                                                required id="sub_total" readonly>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="5" class="text-end"
-                                                            style="font-size:15px;color:black">
-                                                            Discount Price</td>
-                                                        <td><input type="text"
-                                                                class="form-control discount_price"name="discount_price"
-                                                                id="discount_price" placeholder="Discount Price">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="5" class="text-end"
-                                                            style="font-size:15px;color:black">
-                                                            Overall Amount</td>
-                                                        <td><input type="text"
-                                                                class="form-control overallamount"name="overallamount"
-                                                                style="background-color: #e9ecef;" id="overallamount"
-                                                                readonly></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3" class="text-end"
-                                                            style="font-size:15px;color:black">Tax Costing</td>
+                                                                placeholder="Total" /></td>
                                                         <td>
-                                                            <input type="text"
-                                                                class="form-control tax_percentage"name="tax_percentage"
-                                                                id="tax_percentage" placeholder="Tax Per %">
+                                                            <button class="btn btn-primary form-plus-btn addproductfields" type="button" id="" value="Add"><i class="fe fe-plus-circle"></i></button>
                                                         </td>
-                                                        <td><input type="text" class="form-control tax_amount"
-                                                                name="tax_amount" id="tax_amount"
-                                                                placeholder="Tax Amount"></td>
-                                                        <td><input type="text" class="form-control tax_added_amunt"
-                                                                name="tax_added_amunt" id="tax_added_amunt" readonly
-                                                                style="background-color: #e9ecef;"></td>
                                                     </tr>
                                                 </tbody>
                                                 <tbody class="extracost_tr">
@@ -182,54 +130,75 @@
                                                                 id="extracost"placeholder="Extra Cost"
                                                                 name="extracost[]"value="" />
                                                         </td>
-                                                        <td><button
-                                                                style="width: 40px;"class="py-1 addextranotefields text-white font-medium rounded-lg text-sm text-center btn btn-primary"
-                                                                type="button" id="" value="Add">+</button>
+                                                        <td>
+                                                            <button class="btn btn-primary form-plus-btn addextranotefields" type="button" id="" value="Add"><i class="fe fe-plus-circle"></i></button>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                                <tbody>
-                                                    <tr>
-                                                        <td colspan="5" class="text-end"
-                                                            style="font-size:15px;color:black">
-                                                            Total
-                                                            Extracost Amount</td>
-                                                        <td><input type="text" class="form-control extracost_amount"
-                                                                name="extracost_amount" id="extracost_amount" readonly
-                                                                style="background-color: #e9ecef;"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="5" class="text-end"
-                                                            style="font-size:15px;color:black">
-                                                            Grand Total
-                                                        </td>
-                                                        <td><input type="text" class="form-control grand_total"
-                                                                name="grand_total" readonly id="grand_total"
-                                                                style="background-color: #e9ecef;"></td>
-                                                    </tr>
-                                                    {{-- <tr>
-                                                        <td colspan="5" class="text-end"
-                                                            style="font-size:15px;color:black">
-                                                            Paid Amount
-                                                            <span class="text-danger">*</span>
-                                                        </td>
-                                                        <td><input type="text"
-                                                                class="form-control paid_amount"
-                                                                name="paid_amount" required
-                                                                id="paid_amount"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="5" class="text-end"
-                                                            style="font-size:15px;color:black">
-                                                            Balance</td>
-                                                        <td> <input type="text"
-                                                                class="form-control balance_amount"
-                                                                name="balance_amount"
-                                                                style="background-color: #e9ecef;"
-                                                                id="balance_amount" readonly></td>
-                                                    </tr> --}}
                                                 </tbody>
                                             </table>
+                                        </div>
+                                        <hr>
+                                        <div class="row" style="margin-top:3%">
+                                            <div class="col-md-8">
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <div class="form-group">
+                                                            <label>Discount Type</label>
+                                                            <select class="select">
+                                                                <option>Percentage(%)</option>
+                                                                <option>Fixed</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5">
+                                                        <div class="form-group">
+                                                            <label>Discount</label>
+                                                            <input type="text" class="form-control" placeholder="0">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Tax</label>
+                                                    <select class="select">
+                                                        <option>No Tax</option>
+                                                        <option>GST - (3%)</option>
+                                                        <option>GST - (8%)</option>
+                                                        <option>GST - (12%)</option>
+                                                        <option>GST - (18%)</option>
+                                                        <option>GST - (28%)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                        </div>
+                                        <div class="form-group-item border-0 p-0">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-lg-12">
+                                                    <div class="form-group-bank">
+                                                        <div class="form-group notes-form-group-info">
+                                                            <label>Notes <span class="text-danger">*</span></label>
+                                                            <textarea class="form-control" placeholder="Enter Notes" name="add_on_note" id="add_on_note" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-12">
+                                                    <div class="form-group-bank">
+                                                        <div class="invoice-total-box">
+                                                            <div class="invoice-total-inner">
+                                                                <p>Gross Amount <span>$120.00</span></p>
+                                                                <p>Discount <span>$13.20</span></p>
+                                                                <p>Tax Amount <span>$120.00</span></p>
+                                                                <p>Extra Cost <span>$0.00</span></p>
+                                                            </div>
+                                                            <div class="invoice-total-footer">
+                                                                <h4>Total Amount <span>$107.80</span></h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="text-end" style="margin-top:3%">
@@ -247,5 +216,4 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

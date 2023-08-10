@@ -98,7 +98,7 @@
                     '<td><input type="text" class="form-control quantity" id="quantity" name="quantity[]"  value="" required /></td>' +
                     '<td><input type="text" class="form-control rateper_quantity" id="rateper_quantity" name="rateper_quantity[]"  value="" required /></td>' +
                     '<td><input type="text" class="form-control product_total" readonly id="product_total"style="background-color: #e9ecef;" name="product_total[]" placeholder="Total" /></td>' +
-                    '<td><button style="width: 40px;" class="text-white py-1 font-medium rounded-lg text-sm  text-center btn btn-danger remove-tr" type="button" >-</button></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn remove-tr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
                     '</tr>'
                 );
 
@@ -150,7 +150,7 @@
                     '<td colspan="2"></td>' +
                     '<td colspan="3"><input type="text" class="form-control"id="extracost_note" placeholder="Note" value=""name="extracost_note[]" /></td>' +
                     '<td><input type="hidden" name="extracost_id[]"/><input type="text" class="form-control extracost" id="extracost"placeholder="Extra Cost"  name="extracost[]"value="" /></td>' +
-                    '<td><button style="width: 40px;"class="py-1 text-white remove-extratr font-medium rounded-lg text-sm  text-center btn btn-danger" type="button" id="" value="Add">-</button></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn remove-extratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
                     '</tr>'
                 );
             });
