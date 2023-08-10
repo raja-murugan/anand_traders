@@ -33,7 +33,7 @@ class VendorController extends Controller
         $data->save();
 
 
-        return redirect()->route('vendor.index')->with('add', 'Vendor Data added successfully!');
+        return redirect()->route('vendor.index')->with('message', 'Added !');
     }
 
 
@@ -49,7 +49,7 @@ class VendorController extends Controller
 
         $VendorData->update();
 
-        return redirect()->route('vendor.index')->with('update', 'Vendor Data updated successfully!');
+        return redirect()->route('vendor.index')->with('info', 'Updated !');
     }
 
 
@@ -61,7 +61,7 @@ class VendorController extends Controller
 
         $data->update();
 
-        return redirect()->route('vendor.index')->with('soft_destroy', 'Successfully deleted the Vendor !');
+        return redirect()->route('vendor.index')->with('warning', 'Deleted !');
     }
 
 
@@ -71,7 +71,7 @@ class VendorController extends Controller
         {
             $query = request()->get('query');
             $supplierdata = Vendor::where('phone_number', '=', $query)->first();
-            
+
             $userData['data'] = $supplierdata;
             echo json_encode($userData);
         }

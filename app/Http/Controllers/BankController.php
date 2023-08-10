@@ -25,11 +25,11 @@ class BankController extends Controller
         $data->unique_key = $randomkey;
         $data->name = $request->get('name');
         $data->note = $request->get('note');
-        
+
         $data->save();
 
 
-        return redirect()->route('bank.index')->with('add', 'bank added successfully!');
+        return redirect()->route('bank.index')->with('message', 'Added !');
     }
 
 
@@ -38,10 +38,10 @@ class BankController extends Controller
         $BankData = Bank::where('unique_key', '=', $unique_key)->first();
         $BankData->name = $request->get('name');
         $BankData->note = $request->get('note');
-        
+
         $BankData->update();
 
-        return redirect()->route('bank.index')->with('update', 'bank updated successfully!');
+        return redirect()->route('bank.index')->with('info', 'Updated !');
     }
 
     public function delete($unique_key)
@@ -52,7 +52,7 @@ class BankController extends Controller
 
         $data->update();
 
-        return redirect()->route('bank.index')->with('soft_destroy', 'Successfully deleted the bank !');
+        return redirect()->route('bank.index')->with('warning', 'Deleted !');
     }
 
 }

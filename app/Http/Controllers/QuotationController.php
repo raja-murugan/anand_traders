@@ -35,8 +35,6 @@ class QuotationController extends Controller
 
                 );
             }
-
-
                 $quotation_data[] = array(
                     'unique_key' => $datas->unique_key,
                     'quotation_number' => $datas->quotation_number,
@@ -56,7 +54,7 @@ class QuotationController extends Controller
                     'products_data' => $products,
                 );
 
-            
+
         }
         return view('page.backend.quotation.index', compact('quotation_data'));
     }
@@ -135,7 +133,7 @@ class QuotationController extends Controller
         }
 
 
-        return redirect()->route('quotation.index')->with('add', 'Quotation Data added successfully!');
+        return redirect()->route('quotation.index')->with('message', 'Added !');
     }
 
 
@@ -212,7 +210,7 @@ class QuotationController extends Controller
                 ]);
 
             } else if ($quotation_detail_id == '') {
-                
+
                 $QuotationProduct = new QuotationProduct;
                 $QuotationProduct->quotation_id = $quotation_id;
                 $QuotationProduct->product_id = $request->product_id[$key];
@@ -239,7 +237,7 @@ class QuotationController extends Controller
         }else {
             foreach ($request->get('extracost_note') as $key => $extracost_note) {
                 if ($extracost_note != "") {
-    
+
                     $QuotationExtracost = new QuotationExtracost;
                     $QuotationExtracost->quotation_id = $quotation_id;
                     $QuotationExtracost->extracost_note = $extracost_note;
@@ -250,7 +248,7 @@ class QuotationController extends Controller
         }
 
 
-        return redirect()->route('quotation.index')->with('update', 'Quotation Data updated successfully!');
+        return redirect()->route('quotation.index')->with('info', 'Updated !');
     }
 
 
@@ -263,6 +261,6 @@ class QuotationController extends Controller
 
         $data->update();
 
-        return redirect()->route('quotation.index')->with('soft_destroy', 'Successfully deleted the Quotation !');
+        return redirect()->route('quotation.index')->with('warning', 'Deleted !');
     }
 }

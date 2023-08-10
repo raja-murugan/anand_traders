@@ -27,6 +27,8 @@
 
     @include('layout.backend.components.auth.script')
 
+    @include('layout.backend.components.auth.addon.toastr')
+
 </body>
 
 </html>
