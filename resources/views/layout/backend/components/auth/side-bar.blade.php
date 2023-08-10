@@ -15,13 +15,13 @@
             <ul>
                 <li class="menu-title"><span>Main</span></li>
                 <li class="{{ Route::is('home') ? 'active' : '' }}">
-                    <a class="active" href="{{ route('home') }}"><i class="fe fe-home"></i><span>Dashboard</span></a>
+                    <a href="{{ route('home') }}"><i class="fe fe-home"></i><span>Dashboard</span></a>
                 </li>
             </ul>
 
             <ul>
                 <li class="menu-title"><span>Bill Management</span></li>
-                <li class="{{ Route::is('quotation.index', 'quotation.store', 'quotation.edit' ) ? 'active' : '' }}">
+                <li class="{{ Route::is('quotation.index', 'quotation.create', 'quotation.store', 'quotation.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('quotation.index') }}"><i class="fe fe-file-text"></i> <span>Quotation</span></a>
                 </li>
                 <li>
@@ -30,8 +30,8 @@
                 <li>
                     <a href="#"><i class="fe fe-shopping-cart"></i> <span>Purchase</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-credit-card"></i> <span>Expence</span></a>
+                <li class="{{ Route::is('expense.index', 'expense.create', 'expense.store', 'expense.edit') ? 'active' : '' }}">
+                    <a href="{{ route('expense.index') }}"><i class="fe fe-credit-card"></i> <span>Expense</span></a>
                 </li>
             </ul>
 
@@ -47,13 +47,13 @@
 
             <ul>
                 <li class="menu-title"><span>General</span></li>
-                <li class="{{ Route::is('bank.index', 'bank.store', 'bank.edit') ? 'active' : '' }}">
+                <li class="{{ Route::is('bank.index', 'bank.create', 'bank.store', 'bank.edit') ? 'active' : '' }}">
                     <a href="{{ route('bank.index') }}"><i class="fe fe-pocket"></i> <span>Bank</span></a>
                 </li>
-                <li class="{{ Route::is('product.index', 'product.store', 'product.edit' ) ? 'active' : '' }}">
+                <li class="{{ Route::is('product.index', 'product.create', 'product.store', 'product.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('product.index') }}"><i class="fe fe-package"></i> <span>Product</span></a>
                 </li>
-                <li class="{{ Route::is('addon.index', 'addon.store', 'addon.edit' ) ? 'active' : '' }}">
+                <li class="{{ Route::is('addon.index', 'addon.create', 'addon.store', 'addon.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('addon.index') }}"><i class="fe fe-book-open"></i> <span>Addon</span></a>
                 </li>
             </ul>
@@ -61,10 +61,10 @@
 
             <ul>
                 <li class="menu-title"><span>User Management</span></li>
-                <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit' ) ? 'active' : '' }}">
+                <li class="{{ Route::is('customer.index', 'customer.create', 'customer.store', 'customer.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('customer.index') }}"><i class="fe fe-book-open"></i> <span>Customer</span></a>
                 </li>
-                <li class="{{ Route::is('vendor.index', 'vendor.store', 'vendor.edit' ) ? 'active' : '' }}">
+                <li class="{{ Route::is('vendor.index', 'vendor.create', 'vendor.store', 'vendor.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('vendor.index') }}"><i class="fe fe-user"></i> <span>Vendor</span></a>
                 </li>
             </ul>

@@ -68,7 +68,7 @@ class QuotationController extends Controller
         $timenow = Carbon::now()->format('H:i');
 
 
-        $Latest_quotaion = Quotation::where('soft_delete', '!=', 1)->latest('id')->first();
+        $Latest_quotaion = Quotation::latest('id')->first();
         if($Latest_quotaion != ''){
             $quotation_no = $Latest_quotaion->quotation_number + 1;
         }else {
@@ -106,8 +106,8 @@ class QuotationController extends Controller
         $data->add_on_note = $request->get('add_on_note');
 
         $data->save();
-        $quotation_id = $data->id;
 
+        $quotation_id = $data->id;
 
         foreach ($request->get('product_id') as $key => $product_id) {
 

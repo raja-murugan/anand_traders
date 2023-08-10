@@ -58,7 +58,7 @@
                                                             </option>
                                                             @foreach ($customer as $customers)
                                                                 <option
-                                                                    value="{{ $customers->id }}"@if ($customers->id === $QuotationData->customer_id) selected='selected' @endif>
+                                                                    value="{{ $customers->id }}" @if ($customers->id === $QuotationData->customer_id) selected='selected' @endif>
                                                                     {{ $customers->name }}</option>
                                                             @endforeach
                                                         </select>

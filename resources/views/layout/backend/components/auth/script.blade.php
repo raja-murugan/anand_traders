@@ -158,6 +158,19 @@
                 $(this).parents('tr').remove();
             });
 
+            $(document).on('click', '.addexpensenote', function() {
+                $(".expensenote_tr").append(
+                    '<tr>' +
+                    '<td><input type="text" class="form-control" id="note" placeholder="Note" value="" name="note[]"/></td>' +
+                    '<td><input type="hidden" name="expenses_id[]"/><input type="text" class="form-control price" id="price" placeholder="Extra Cost" name="price[]" value=""/></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn remove-expensenote" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
+                    '</tr>'
+                );
+            });
+            $(document).on('click', '.remove-expensenote', function() {
+                $(this).parents('tr').remove();
+            });
+
 
     });
 

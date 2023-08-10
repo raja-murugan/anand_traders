@@ -54,7 +54,6 @@
                                              data-bs-target=".quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
-
                                  </td>
                               </tr>
                               <div class="modal fade quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}"
