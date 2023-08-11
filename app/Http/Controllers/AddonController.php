@@ -24,11 +24,11 @@ class AddonController extends Controller
 
         $data->unique_key = $randomkey;
         $data->name = $request->get('name');
-        
+
         $data->save();
 
 
-        return redirect()->route('addon.index')->with('add', 'Addon added successfully!');
+        return redirect()->route('addon.index')->with('message', 'Added !');
     }
 
 
@@ -36,10 +36,10 @@ class AddonController extends Controller
     {
         $Data = Addon::where('unique_key', '=', $unique_key)->first();
         $Data->name = $request->get('name');
-        
+
         $Data->update();
 
-        return redirect()->route('addon.index')->with('update', 'Addon updated successfully!');
+        return redirect()->route('addon.index')->with('info', 'Updated !');
     }
 
     public function delete($unique_key)
@@ -50,6 +50,6 @@ class AddonController extends Controller
 
         $data->update();
 
-        return redirect()->route('addon.index')->with('soft_destroy', 'Successfully deleted the Addon !');
+        return redirect()->route('addon.index')->with('warning', 'Deleted !');
     }
 }

@@ -32,7 +32,7 @@ class CustomerController extends Controller
         $data->save();
 
 
-        return redirect()->route('customer.index')->with('add', 'Customer Data added successfully!');
+        return redirect()->route('customer.index')->with('message', 'Added !');
     }
 
 
@@ -47,7 +47,7 @@ class CustomerController extends Controller
 
         $CustomerData->update();
 
-        return redirect()->route('customer.index')->with('update', 'Customer Data updated successfully!');
+        return redirect()->route('customer.index')->with('info', 'Updated !');
     }
 
 
@@ -59,7 +59,7 @@ class CustomerController extends Controller
 
         $data->update();
 
-        return redirect()->route('customer.index')->with('soft_destroy', 'Successfully deleted the customer !');
+        return redirect()->with('warning', 'Deleted !');
     }
 
     public function checkduplicate(Request $request)
@@ -68,7 +68,7 @@ class CustomerController extends Controller
         {
             $query = request()->get('query');
             $customerdata = Customer::where('phone_number', '=', $query)->first();
-            
+
             $userData['data'] = $customerdata;
             echo json_encode($userData);
         }

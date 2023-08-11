@@ -25,7 +25,7 @@ class ProductController extends Controller
         $data->description = $request->get('description');
 
         $data->save();
-        return redirect()->route('product.index')->with('add', 'Product Data added successfully!');
+        return redirect()->route('product.index')->with('message', 'Added !');
     }
 
     public function edit(Request $request, $unique_key)
@@ -37,7 +37,7 @@ class ProductController extends Controller
 
         $ProductData->update();
 
-        return redirect()->route('product.index')->with('update', 'Product Data updated successfully!');
+        return redirect()->route('product.index')->with('info', 'Updated !');
     }
 
     public function delete($unique_key)
@@ -48,7 +48,7 @@ class ProductController extends Controller
 
         $data->update();
 
-        return redirect()->route('product.index')->with('soft_destroy', 'Successfully deleted the product !');
+        return redirect()->route('product.index')->with('warning', 'Deleted !');
     }
 
 

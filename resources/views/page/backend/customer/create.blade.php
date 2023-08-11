@@ -21,14 +21,14 @@
                </div>
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
-                     <label>Address</label>
-                     <input type="text" class="form-control" placeholder="Enter Customer Address" name="address" id="address">
+                     <label>Phone Number<span class="text-danger">*</span></label>
+                     <input type="text" class="form-control customer_phoneno" placeholder="Enter Customer Contact No" name="phone_number" id="phone_number" required>
                   </div>
                </div>
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
-                     <label>Phone Number<span class="text-danger">*</span></label>
-                     <input type="text" class="form-control customer_phoneno" placeholder="Enter Customer Contact No" name="phone_number" id="phone_number" required>
+                     <label>Address</label>
+                     <input type="text" class="form-control" placeholder="Enter Customer Address" name="address" id="address">
                   </div>
                </div>
                <div class="col-lg-12 col-md-12">
