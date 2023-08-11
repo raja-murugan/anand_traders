@@ -24,20 +24,21 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
+
+            $table->string('discount_type')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('tax_percentage')->nullable();
+            $table->string('add_on_note')->nullable();
+
+
+
             $table->string('sub_total')->nullable();
             $table->string('discount_price')->nullable();
-            $table->string('overallamount')->nullable();
-            
-            $table->string('tax_percentage')->nullable();
+            $table->string('total_amount')->nullable();
             $table->string('tax_amount')->nullable();
-            $table->string('tax_added_amunt')->nullable();
-            
             $table->string('extracost_amount')->nullable();
             $table->string('grand_total')->nullable();
-
-            $table->string('paid_amount')->nullable();
-            $table->string('balance_amount')->nullable();
-            $table->string('add_on_note')->nullable();
+            
 
             $table->boolean('soft_delete')->default(0);
             $table->timestamps();

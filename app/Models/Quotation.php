@@ -16,17 +16,16 @@ class Quotation extends Model
         'date',
         'time',
         'customer_id',
+        'discount_type',
+        'discount',
+        'tax_percentage',
+        'add_on_note',
         'sub_total',
         'discount_price',
-        'overallamount',
-        'tax_percentage',
+        'total_amount',
         'tax_amount',
-        'tax_added_amunt',
         'extracost_amount',
         'grand_total',
-        'paid_amount',
-        'balance_amount',
-        'add_on_note',
         'soft_delete'
     ];
 }

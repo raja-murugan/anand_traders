@@ -91,19 +91,18 @@ class QuotationController extends Controller
         $data->date = $request->get('date');
         $data->time = $request->get('time');
         $data->customer_id = $request->get('customer_id');
+        $data->discount_type = $request->get('discount_type');
+        $data->discount = $request->get('discount');
+        $data->tax_percentage = $request->get('tax_percentage');
+        $data->add_on_note = $request->get('add_on_note');
+
+
         $data->sub_total = $request->get('sub_total');
         $data->discount_price = $request->get('discount_price');
-        $data->overallamount = $request->get('overallamount');
-
-        $data->tax_percentage = $request->get('tax_percentage');
+        $data->total_amount = $request->get('total_amount');
         $data->tax_amount = $request->get('tax_amount');
-        $data->tax_added_amunt = $request->get('tax_added_amunt');
-
         $data->extracost_amount = $request->get('extracost_amount');
         $data->grand_total = $request->get('grand_total');
-        $data->paid_amount = $request->get('paid_amount');
-        $data->balance_amount = $request->get('balance_amount');
-        $data->add_on_note = $request->get('add_on_note');
 
         $data->save();
 
@@ -159,17 +158,19 @@ class QuotationController extends Controller
         $QuotationData->date = $request->get('date');
         $QuotationData->time = $request->get('time');
         $QuotationData->customer_id = $request->get('customer_id');
+        $QuotationData->discount_type = $request->get('discount_type');
+        $QuotationData->discount = $request->get('discount');
+        $QuotationData->tax_percentage = $request->get('tax_percentage');
+        $QuotationData->add_on_note = $request->get('add_on_note');
+
+
         $QuotationData->sub_total = $request->get('sub_total');
         $QuotationData->discount_price = $request->get('discount_price');
-        $QuotationData->overallamount = $request->get('overallamount');
-        $QuotationData->tax_percentage = $request->get('tax_percentage');
+        $QuotationData->total_amount = $request->get('total_amount');
         $QuotationData->tax_amount = $request->get('tax_amount');
-        $QuotationData->tax_added_amunt = $request->get('tax_added_amunt');
         $QuotationData->extracost_amount = $request->get('extracost_amount');
         $QuotationData->grand_total = $request->get('grand_total');
-        $QuotationData->paid_amount = $request->get('paid_amount');
-        $QuotationData->balance_amount = $request->get('balance_amount');
-        $QuotationData->add_on_note = $request->get('add_on_note');
+        
         $QuotationData->update();
 
         $quotation_id = $QuotationData->id;

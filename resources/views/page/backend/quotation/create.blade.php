@@ -144,16 +144,17 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
-                                                            <select class="select">
-                                                                <option>Percentage(%)</option>
-                                                                <option>Fixed</option>
+                                                            <select class="select" name="discount_type" id="discount_type" required>
+                                                                <option value="">Select</option>
+                                                                <option value="percentage">Percentage(%)</option>
+                                                                <option value="fixed">Fixed</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-5">
                                                         <div class="form-group">
                                                             <label>Discount</label>
-                                                            <input type="text" class="form-control" placeholder="0">
+                                                            <input type="text" class="form-control discount" name="discount" id="discount" placeholder="0">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -161,13 +162,13 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax</label>
-                                                    <select class="select">
+                                                    <select class="select tax_percentage" name="tax_percentage" id="tax_percentage">
                                                         <option>No Tax</option>
-                                                        <option>GST - (3%)</option>
-                                                        <option>GST - (8%)</option>
-                                                        <option>GST - (12%)</option>
-                                                        <option>GST - (18%)</option>
-                                                        <option>GST - (28%)</option>
+                                                        <option value="3">GST - (3%)</option>
+                                                        <option value="8">GST - (8%)</option>
+                                                        <option value="12">GST - (12%)</option>
+                                                        <option value="18">GST - (18%)</option>
+                                                        <option value="28">GST - (28%)</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -187,13 +188,26 @@
                                                     <div class="form-group-bank">
                                                         <div class="invoice-total-box">
                                                             <div class="invoice-total-inner">
-                                                                <p>Gross Amount <span>$120.00</span></p>
-                                                                <p>Discount <span>$13.20</span></p>
-                                                                <p>Tax Amount <span>$120.00</span></p>
-                                                                <p>Extra Cost <span>$0.00</span></p>
+
+                                                                <p>Gross Amount <span class="sub_total">  </span></p>
+                                                                <input type="hidden" class="form-control sub_total" name="sub_total" id="sub_total">
+
+                                                                <p>Discount <span class="discount_price">  </span></p>
+                                                                <input type="hidden" class="form-control discount_price"name="discount_price"id="discount_price">
+
+                                                                <p>Total <span class="total_amount">  </span></p>
+                                                                <input type="hidden" class="form-control total_amount"name="total_amount"id="total_amount">
+
+                                                                <p>Tax Amount <span class="tax_amount">  </span></p>
+                                                                <input type="hidden" class="form-control tax_amount"name="tax_amount"id="tax_amount">
+                                                                
+                                                                <p>Extra Cost <span class="extracost_amount">  </span></p>
+                                                                <input type="hidden" class="form-control extracost_amount" name="extracost_amount" id="extracost_amount">
+
                                                             </div>
                                                             <div class="invoice-total-footer">
-                                                                <h4>Total Amount <span>$107.80</span></h4>
+                                                                <h4>Grand Total <span class="grand_total">  </span></h4>
+                                                                <input type="hidden" class="form-control grand_total" name="grand_total" id="grand_total">
                                                             </div>
                                                         </div>
                                                     </div>
