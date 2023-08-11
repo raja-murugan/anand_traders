@@ -187,7 +187,7 @@
 
 
         var extracost_amount = $(".extracost_amount").val();
-        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        var grand_total = Number(tax_added_amunt) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
 
 
@@ -212,7 +212,7 @@
         $('.tax_added_amunt').val(tax_added_amunt);
 
         var extracost_amount = $(".extracost_amount").val();
-        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        var grand_total = Number(tax_added_amunt) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
 
         var paid_amount = $(".paid_amount").val();
@@ -233,7 +233,7 @@
         $('.tax_added_amunt').val(tax_added_amunt);
 
         var extracost_amount = $(".extracost_amount").val();
-        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        var grand_total = Number(tax_added_amunt) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
 
         var paid_amount = $(".paid_amount").val();
@@ -253,7 +253,7 @@
         $('.tax_added_amunt').val(tax_added_amunt);
 
         var extracost_amount = $(".extracost_amount").val();
-        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        var grand_total = Number(tax_added_amunt) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
 
         var paid_amount = $(".paid_amount").val();
@@ -294,7 +294,7 @@
 
 
         var extracost_amount = $(".extracost_amount").val();
-        var grand_total = Number(tax_added_amunt) - Number(extracost_amount);
+        var grand_total = Number(tax_added_amunt) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
 
         var paid_amount = $(".paid_amount").val();
