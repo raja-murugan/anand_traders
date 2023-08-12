@@ -169,7 +169,7 @@
                                                     <div class="col-lg-5">
                                                         <div class="form-group">
                                                             <label>Discount</label>
-                                                            <input type="text" class="form-control bill_discount" name="bill_discount" id="bill_discount" placeholder="0">
+                                                            <input type="text" class="form-control bill_discount" name="bill_discount" id="bill_discount" placeholder="0" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,7 +177,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax</label>
-                                                    <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage">
+                                                    <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" required>
                                                         <option>No Tax</option>
                                                         <option value="3">GST - (3%)</option>
                                                         <option value="8">GST - (8%)</option>
@@ -204,31 +204,31 @@
                                                         <div class="invoice-total-box">
                                                             <div class="invoice-total-inner">
 
-                                                                <p>Gross Amount <span class="bill_sub_total">  </span></p>
+                                                                <p>Gross Amount <span class="billsub_total">  </span></p>
                                                                 <input type="hidden" class="form-control bill_sub_total" name="bill_sub_total" id="bill_sub_total">
 
-                                                                <p>Discount <span class="bill_discount_price">  </span></p>
+                                                                <p>Discount <span class="billdiscount_price">  </span></p>
                                                                 <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price">
 
-                                                                <p>Total <span class="bill_total_amount">  </span></p>
+                                                                <p>Total <span class="billtotal_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_total_amount"name="bill_total_amount"id="bill_total_amount">
 
-                                                                <p>Tax Amount <span class="bill_tax_amount">  </span></p>
+                                                                <p>Tax Amount <span class="billtax_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount">
                                                                 
-                                                                <p>Extra Cost <span class="bill_extracost_amount">  </span></p>
+                                                                <p>Extra Cost <span class="billextracost_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_extracost_amount" name="bill_extracost_amount" id="bill_extracost_amount">
 
                                                             </div>
                                                             <div class="invoice-total-footer">
-                                                                <h4>Grand Total <span class="bill_grand_total">  </span></h4>
+                                                                <h4>Grand Total <span class="billgrand_total">  </span></h4>
                                                                 <input type="hidden" class="form-control bill_grand_total" name="bill_grand_total" id="bill_grand_total">
                                                             </div>
                                                             <div class="invoice-total-footer">
                                                                 <h4>Paid Amount <span class=""><input type="text" class="form-control bill_paid_amount"  name="bill_paid_amount" id="bill_paid_amount" placeholder="Paid Amount"> </span></h4>
                                                             </div>
                                                             <div class="invoice-total-footer">
-                                                                <h4>Balance<span class="bill_balance_amount"> </span>
+                                                                <h4>Balance<span class="billbalance_amount"> </span>
                                                                 <input type="hidden" class="form-control bill_balance_amount"  name="bill_balance_amount" id="bill_balance_amount" ></h4>
                                                             </div>
                                                         </div>
@@ -241,7 +241,7 @@
                                             <input type="submit" class="btn btn-primary"
                                                 onclick="billubmitForm(this);" />
                                             <a href="{{ route('bill.index') }}"
-                                                class="btn btn-primary cancel">Cancel</a>
+                                                class="btn btn-cancel btn-danger">Cancel</a>
                                         </div>
 
                                     </form>

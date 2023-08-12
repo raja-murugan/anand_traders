@@ -74,7 +74,7 @@ class BillController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function convertbillstore(Request $request)
     {
 
         $quotation_id = $request->get('quotation_id');
@@ -138,15 +138,77 @@ class BillController extends Controller
     }
 
 
+    public function store(Request $request)
+    {
+
+        
+
+        $randomkey = Str::random(5);
+
+        $data = new Bill();
+
+        $data->unique_key = $randomkey;
+        $data->billno = $request->get('billno');
+        $data->date = $request->get('date');
+        $data->time = $request->get('time');
+        $data->customer_id = $request->get('customer_id');
+        $data->bank_id = $request->get('bank_id');
+        $data->bill_discount_type = $request->get('bill_discount_type');
+        $data->bill_discount = $request->get('bill_discount');
+        $data->bill_tax_percentage = $request->get('bill_tax_percentage');
+        $data->bill_add_on_note = $request->get('bill_add_on_note');
+
+
+        $data->bill_sub_total = $request->get('bill_sub_total');
+        $data->bill_discount_price = $request->get('bill_discount_price');
+        $data->bill_total_amount = $request->get('bill_total_amount');
+        $data->bill_tax_amount = $request->get('bill_tax_amount');
+        $data->bill_extracost_amount = $request->get('bill_extracost_amount');
+        $data->bill_grand_total = $request->get('bill_grand_total');
+        $data->bill_paid_amount = $request->get('bill_paid_amount');
+        $data->bill_balance_amount = $request->get('bill_balance_amount');
+
+        $data->save();
+
+        $bill_id = $data->id;
+
+        foreach ($request->get('bill_product_id') as $key => $bill_product_id) {
+
+            $BillProduct = new BillProduct;
+            $BillProduct->bill_id = $bill_id;
+            $BillProduct->bill_product_id = $bill_product_id;
+            $BillProduct->bill_quantity = $request->bill_quantity[$key];
+            $BillProduct->bill_rateper_quantity = $request->bill_rateper_quantity[$key];
+            $BillProduct->bill_product_total = $request->bill_product_total[$key];
+            $BillProduct->save();
+        }
+
+
+        foreach ($request->get('bill_extracost_note') as $key => $bill_extracost_note) {
+            if ($bill_extracost_note != "") {
+
+                $BillExtracost = new BillExtracost;
+                $BillExtracost->bill_id = $bill_id;
+                $BillExtracost->bill_extracost_note = $bill_extracost_note;
+                $BillExtracost->bill_extracost = $request->bill_extracost[$key];
+                $BillExtracost->save();
+            }
+        }
+
+        return redirect()->route('bill.index')->with('message', 'Added !');
+    }
+
+
     public function edit($unique_key)
     {
         $BillData = Bill::where('unique_key', '=', $unique_key)->first();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $product = Product::where('soft_delete', '!=', 1)->get();
-        $BillProducts = BillProduct::where('quotation_id', '=', $BillData->id)->get();
-        $BillExtracosts = BillExtracost::where('quotation_id', '=', $BillData->id)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
+        $BillProducts = BillProduct::where('bill_id', '=', $BillData->id)->get();
+        $BillExtracosts = BillExtracost::where('bill_id', '=', $BillData->id)->get();
 
-        return view('page.backend.bill.edit', compact('BillData', 'customer', 'product', 'BillProducts', 'BillExtracosts'));
+        return view('page.backend.bill.edit', compact('BillData', 'customer', 'bank', 'product', 'BillProducts', 'BillExtracosts'));
     }
 
 

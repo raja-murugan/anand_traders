@@ -154,7 +154,7 @@
                                                     <div class="col-lg-5">
                                                         <div class="form-group">
                                                             <label>Discount</label>
-                                                            <input type="text" class="form-control discount" name="discount" id="discount" placeholder="0">
+                                                            <input type="text" class="form-control discount" name="discount" id="discount" placeholder="0" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,7 +162,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax</label>
-                                                    <select class="select tax_percentage" name="tax_percentage" id="tax_percentage">
+                                                    <select class="select tax_percentage" name="tax_percentage" id="tax_percentage" required>
                                                         <option>No Tax</option>
                                                         <option value="3">GST - (3%)</option>
                                                         <option value="8">GST - (8%)</option>
@@ -219,7 +219,7 @@
                                             <input type="submit" class="btn btn-primary"
                                                 onclick="quotationubmitForm(this);" />
                                             <a href="{{ route('quotation.index') }}"
-                                                class="btn btn-primary cancel">Cancel</a>
+                                                class="btn btn-cancel btn-danger">Cancel</a>
                                         </div>
 
                                     </form>

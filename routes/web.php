@@ -126,6 +126,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/bill', [BillController::class, 'index'])->name('bill.index');
     // CREATE
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/bill/create', [BillController::class, 'create'])->name('bill.create');
+    // QUOTATION TO BILL STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/bill/convertbillstore', [BillController::class, 'convertbillstore'])->name('bill.convertbillstore');
     // STORE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/bill/store', [BillController::class, 'store'])->name('bill.store');
     // EDIT

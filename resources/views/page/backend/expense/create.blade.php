@@ -82,9 +82,9 @@
                                                                 value="" name="note[]" />
                                                         </td>
                                                         <td><input type="hidden" name="expenses_id[]" />
-                                                            <input type="text" class="form-control price"
-                                                                id="price"placeholder="Cost"
-                                                                name="price[]"value="" />
+                                                            <input type="text" class="form-control expense_price"
+                                                                id="expense_price"placeholder="Cost"
+                                                                name="expense_price[]"value="" />
                                                         </td>
                                                         <td>
                                                             <button class="btn btn-primary form-plus-btn addexpensenote" type="button" id="" value="Add"><i class="fe fe-plus-circle"></i></button>
@@ -107,11 +107,9 @@
                                                 <div class="col-xl-6 col-lg-12">
                                                     <div class="form-group-bank">
                                                         <div class="invoice-total-box">
-                                                            <div class="invoice-total-inner">
-                                                                <p>Gross Amount <span>$120.00</span></p>
-                                                            </div>
                                                             <div class="invoice-total-footer">
-                                                                <h4>Total Amount <span>$107.80</span></h4>
+                                                                <h4>Total Amount <span class="total_expense"></span></h4>
+                                                                <input type="hidden" name="total_expense_amount" id="total_expense_amount" class="total_expense_amount" value=""/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -122,8 +120,8 @@
                                         <div class="text-end" style="margin-top:3%">
                                             <input type="submit" class="btn btn-primary"
                                                 onclick="quotationubmitForm(this);" />
-                                            <a href="{{ route('quotation.index') }}"
-                                                class="btn btn-primary cancel">Cancel</a>
+                                            <a href="{{ route('expense.index') }}"
+                                                class="btn btn-cancel btn-danger">Cancel</a>
                                         </div>
 
                                     </form>

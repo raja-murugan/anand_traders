@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('quotation_id');
-            $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('cascade');
+            $table->unsignedBigInteger('quotation_id')->nullable();
 
             $table->string('unique_key')->unique();
             $table->string('billno')->nullable();

@@ -234,7 +234,7 @@
                                             <input type="submit" class="btn btn-primary"
                                                 onclick="quotationubmitForm(this);" />
                                             <a href="{{ route('quotation.index') }}"
-                                                class="btn btn-primary cancel">Cancel</a>
+                                                class="btn btn-cancel btn-danger">Cancel</a>
                                         </div>
 
                                     </form>

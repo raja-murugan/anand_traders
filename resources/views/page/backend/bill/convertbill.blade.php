@@ -15,7 +15,7 @@
                             <div class="quotation-card">
                                 <div class="card-body">
 
-                                <form autocomplete="off" method="POST" action="{{ route('bill.store') }}"
+                                <form autocomplete="off" method="POST" action="{{ route('bill.convertbillstore') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
