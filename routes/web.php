@@ -7,6 +7,7 @@ use App\Http\Controllers\AddonController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 
@@ -113,6 +114,26 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/update/{unique_key}', [QuotationController::class, 'update'])->name('quotation.update');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/delete/{unique_key}', [QuotationController::class, 'delete'])->name('quotation.delete');
+    // GENERATE BILL
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/quotation/convertbill/{unique_key}', [QuotationController::class, 'convertbill'])->name('quotation.convertbill');
+});
+
+
+
+// BILL CONTROLLER
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // INDEX
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/bill', [BillController::class, 'index'])->name('bill.index');
+    // CREATE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/bill/create', [BillController::class, 'create'])->name('bill.create');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/bill/store', [BillController::class, 'store'])->name('bill.store');
+    // EDIT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/bill/edit/{unique_key}', [BillController::class, 'edit'])->name('bill.edit');
+    // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/bill/update/{unique_key}', [BillController::class, 'update'])->name('bill.update');
+    // DELETE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/bill/delete/{unique_key}', [BillController::class, 'delete'])->name('bill.delete');
 });
 
 // EXPENSES CONTROLLER

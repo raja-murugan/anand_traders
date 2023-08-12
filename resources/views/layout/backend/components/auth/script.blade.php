@@ -24,7 +24,7 @@
 <script>
     var i = 1;
     var j = 1;
-    $(document).ready(function() {
+        $(document).ready(function() {
             $('.js-example-basic-single').select2();
 
 
@@ -282,7 +282,7 @@
             });
 
 
-    });
+        });
 
     $(document).on("blur", "input[name*=quantity]", function() {
         var quantity = $(this).val();
@@ -504,16 +504,92 @@
     });
 
 
+    var k = 1;
+    var l = 1;
+        $(document).ready(function() {
+            $(document).on('click', '.addbillproductfields', function() {
+                ++k;
 
-    $(document).on("keyup", 'input.paid_amount', function() {
-        var paid_amount = $(this).val();
-        var grand_total = $(".grand_total").val();
-        var balance_amount = Number(grand_total) - Number(paid_amount);
-        $('.balance_amount').val(balance_amount.toFixed(2));
+                let  rowIndex = $('.auto_num').length+1;
+                let  rowIndexx = $('.auto_num').length+1;
+
+                $(".billproduct_fields").append(
+                    '<tr>' +
+                    '<td><input class="auto_num form-control"  type="text" readonly value="'+rowIndexx+'"/></td>' +
+                    '<td colspan="2" class=""><input type="hidden" id="bill_detail_id" name="bill_detail_id[]" />' +
+                    '<select class="form-control js-example-basic-single bill_product_id select"name="bill_product_id[]" id="bill_product_id' + k + '"required>' +
+                    '<option value="" selected hidden class="text-muted">Select Product</option></select>' +
+                    '</td>' +
+                    '<td><input type="text" class="form-control bill_quantity" id="bill_quantity" name="bill_quantity[]"  value="" required /></td>' +
+                    '<td><input type="text" class="form-control bill_rateper_quantity" id="bill_rateper_quantity" name="bill_rateper_quantity[]"  value="" required /></td>' +
+                    '<td><input type="text" class="form-control bill_product_total" readonly id="bill_product_total"style="background-color: #e9ecef;" name="bill_product_total[]" placeholder="Total" /></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn billremove-tr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
+                    '</tr>'
+                );
+
+
+                $.ajax({
+                    url: '/getProducts/',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        //console.log(response['data']);
+                        var len = response['data'].length;
+
+                        var selectedValues = new Array();
+
+                        if (len > 0) {
+                            for (var i = 0; i < len; i++) {
+
+                                    var id = response['data'][i].id;
+                                    var name = response['data'][i].name;
+                                    var option = "<option value='" + id + "'>" + name +
+                                        "</option>";
+                                    selectedValues.push(option);
+                            }
+                        }
+                        ++l;
+                        $('#bill_product_id' + l).append(selectedValues);
+                        //add_count.push(Object.keys(selectedValues).length);
+                    }
+                });
+
+
+            });
+
+
+            $(document).on('click', '.addbillextranotefields', function() {
+                $(".billextracost_tr").append(
+                    '<tr>' +
+                    '<td colspan="2"></td>' +
+                    '<td colspan="3"><input type="text" class="form-control"id="bill_extracost_note" placeholder="Note" value=""name="bill_extracost_note[]" /></td>' +
+                    '<td><input type="hidden" name="billextracost_detail_id[]"/><input type="text" class="form-control bill_extracost" id="bill_extracost"placeholder="Extra Cost"  name="bill_extracost[]"value="" /></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn remove-billextratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
+                    '</tr>'
+                );
+            });
+        });
+
+
+
+    $(document).on("blur", 'input.bill_paid_amount', function() {
+        var bill_paid_amount = $(this).val();
+        var bill_grand_total = $(".bill_grand_total").val();
+        //alert(bill_paid_amount);
+        var bill_balance_amount = Number(bill_grand_total) - Number(bill_paid_amount);
+        $('.bill_balance_amount').val(bill_balance_amount.toFixed(2));
+        $('.bill_balance_amount').text('₹ ' + bill_balance_amount);
     });
 
 
     function quotationubmitForm(btn) {
+        // disable the button
+        btn.disabled = true;
+        // submit the form
+        btn.form.submit();
+    }
+
+    function billubmitForm(btn) {
         // disable the button
         btn.disabled = true;
         // submit the form

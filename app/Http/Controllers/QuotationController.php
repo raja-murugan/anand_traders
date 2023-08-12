@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
+use App\Models\Bank;
 use App\Models\Quotation;
 use App\Models\Product;
 use App\Models\QuotationProduct;
@@ -37,20 +38,18 @@ class QuotationController extends Controller
             }
                 $quotation_data[] = array(
                     'unique_key' => $datas->unique_key,
+                    'id' => $datas->id,
                     'quotation_number' => $datas->quotation_number,
                     'date' => $datas->date,
                     'time' => $datas->time,
                     'customer' => $customer->name,
                     'sub_total' => $datas->sub_total,
                     'discount_price' => $datas->discount_price,
-                    'overallamount' => $datas->overallamount,
+                    'total_amount' => $datas->total_amount,
                     'tax_percentage' => $datas->tax_percentage,
                     'tax_amount' => $datas->tax_amount,
-                    'tax_added_amunt' => $datas->tax_added_amunt,
                     'extracost_amount' => $datas->extracost_amount,
                     'grand_total' => $datas->grand_total,
-                    'paid_amount' => $datas->paid_amount,
-                    'balance_amount' => $datas->balance_amount,
                     'products_data' => $products,
                 );
 
@@ -223,6 +222,23 @@ class QuotationController extends Controller
         }
 
 
+        $getInsertedextracost = QuotationExtracost::where('quotation_id', '=', $quotation_id)->get();
+        $quotaton_extracost = array();
+        foreach ($getInsertedextracost as $key => $getInsertedextracosts) {
+            $quotaton_extracost[] = $getInsertedextracosts->id;
+        }
+
+        $updated_extracosts = $request->extracost_detail_id;
+        $updated_extracosts_ids = array_filter($updated_extracosts);
+        $different_ex_cost_ids = array_merge(array_diff($quotaton_extracost, $updated_extracosts_ids), array_diff($updated_extracosts_ids, $quotaton_extracost));
+
+        if (!empty($different_ex_cost_ids)) {
+            foreach ($different_ex_cost_ids as $key => $different_ex_cost_id) {
+                QuotationExtracost::where('id', $different_ex_cost_id)->delete();
+            }
+        }
+
+
 // Extracost
         $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $quotation_id)->first();
         if($QuotationExtracosts != ""){
@@ -263,5 +279,20 @@ class QuotationController extends Controller
         $data->update();
 
         return redirect()->route('quotation.index')->with('warning', 'Deleted !');
+    }
+
+
+
+
+    public function convertbill($unique_key)
+    {
+        $QuotationData = Quotation::where('unique_key', '=', $unique_key)->first();
+        $customer = Customer::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
+        $product = Product::where('soft_delete', '!=', 1)->get();
+        $QuotationProducts = QuotationProduct::where('quotation_id', '=', $QuotationData->id)->get();
+        $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $QuotationData->id)->get();
+
+        return view('page.backend.bill.convertbill', compact('QuotationData', 'customer', 'product', 'QuotationProducts', 'QuotationExtracosts', 'bank'));
     }
 }

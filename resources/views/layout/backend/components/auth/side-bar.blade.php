@@ -24,8 +24,8 @@
                 <li class="{{ Route::is('quotation.index', 'quotation.create', 'quotation.store', 'quotation.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('quotation.index') }}"><i class="fe fe-file-text"></i> <span>Quotation</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-database"></i> <span>Bill</span></a>
+                <li class="{{ Route::is('bill.index', 'bill.create', 'bill.store', 'bill.edit' ) ? 'active' : '' }}">
+                    <a href="{{ route('bill.index') }}"><i class="fe fe-database"></i> <span>Bill</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fe fe-shopping-cart"></i> <span>Purchase</span></a>
