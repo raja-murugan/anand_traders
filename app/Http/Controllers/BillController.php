@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Bill;
 use App\Models\BillProduct;
 use App\Models\BillExtracost;
+use App\Models\PaymentBalance;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -90,7 +91,7 @@ class BillController extends Controller
         $data->billno = $request->get('billno');
         $data->date = $request->get('date');
         $data->time = $request->get('time');
-        $data->customer_id = $request->get('customer_id');
+        $data->customer_id = $QuotationData->customer_id;
         $data->bank_id = $request->get('bank_id');
         $data->bill_discount_type = $QuotationData->discount_type;
         $data->bill_discount = $request->get('bill_discount');
@@ -134,6 +135,36 @@ class BillController extends Controller
             }
         }
 
+
+        $PaymentBalanceDAta = PaymentBalance::where('customer_id', '=', $QuotationData->customer_id)->first();
+        if($PaymentBalanceDAta != ""){
+            $old_grossamount = $PaymentBalanceDAta->customer_amount;
+            $old_paid = $PaymentBalanceDAta->customer_paid;
+
+            $gross_amount = $request->get('bill_grand_total');
+            $payable_amount = $request->get('bill_paid_amount');
+
+            $new_grossamount = $old_grossamount + $gross_amount;
+            $new_paid = $old_paid + $payable_amount;
+            $new_balance = $new_grossamount - $new_paid;
+
+            DB::table('payment_balances')->where('customer_id', $QuotationData->customer_id)->update([
+                'customer_amount' => $new_grossamount,  'customer_paid' => $new_paid, 'customer_balance' => $new_balance
+            ]);
+        }else {
+            $gross_amount = $request->get('bill_grand_total');
+            $payable_amount = $request->get('bill_paid_amount');
+            $balance_amount = $gross_amount - $payable_amount;
+
+            $data = new PaymentBalance();
+
+            $data->customer_id = $QuotationData->customer_id;
+            $data->customer_amount = $request->get('bill_grand_total');
+            $data->customer_paid = $request->get('bill_paid_amount');
+            $data->customer_balance = $balance_amount;
+            $data->save();
+        }
+
         return redirect()->route('bill.index')->with('message', 'Added !');
     }
 
@@ -141,7 +172,7 @@ class BillController extends Controller
     public function store(Request $request)
     {
 
-        
+        $custmerid = $request->get('customer_id');
 
         $randomkey = Str::random(5);
 
@@ -195,6 +226,36 @@ class BillController extends Controller
             }
         }
 
+
+        $PaymentBalanceDAta = PaymentBalance::where('customer_id', '=', $custmerid)->first();
+        if($PaymentBalanceDAta != ""){
+            $old_grossamount = $PaymentBalanceDAta->customer_amount;
+            $old_paid = $PaymentBalanceDAta->customer_paid;
+
+            $gross_amount = $request->get('bill_grand_total');
+            $payable_amount = $request->get('bill_paid_amount');
+
+            $new_grossamount = $old_grossamount + $gross_amount;
+            $new_paid = $old_paid + $payable_amount;
+            $new_balance = $new_grossamount - $new_paid;
+
+            DB::table('payment_balances')->where('customer_id', $custmerid)->update([
+                'customer_amount' => $new_grossamount,  'customer_paid' => $new_paid, 'customer_balance' => $new_balance
+            ]);
+        }else {
+            $gross_amount = $request->get('bill_grand_total');
+            $payable_amount = $request->get('bill_paid_amount');
+            $balance_amount = $gross_amount - $payable_amount;
+
+            $data = new PaymentBalance();
+
+            $data->customer_id = $custmerid;
+            $data->customer_amount = $request->get('bill_grand_total');
+            $data->customer_paid = $request->get('bill_paid_amount');
+            $data->customer_balance = $balance_amount;
+            $data->save();
+        }
+
         return redirect()->route('bill.index')->with('message', 'Added !');
     }
 
@@ -215,6 +276,51 @@ class BillController extends Controller
     public function update(Request $request, $unique_key)
     {
         $BillData = Bill::where('unique_key', '=', $unique_key)->first();
+
+        $Billdata_customerid = $BillData->customer_id;
+
+        $billbranchwiseData = PaymentBalance::where('customer_id', '=', $Billdata_customerid)->first();
+        if($billbranchwiseData != ""){
+
+            $old_grossamount = $billbranchwiseData->customer_amount;
+            $old_paid = $billbranchwiseData->customer_paid;
+
+            $oldentry_grossamount = $BillData->bill_grand_total;
+            $oldentry_paid = $BillData->bill_paid_amount;
+
+            $gross_amount = $request->get('bill_grand_total');
+            $payable_amount = $request->get('bill_paid_amount');
+
+
+            if($oldentry_grossamount > $gross_amount){
+                $newgross = $oldentry_grossamount - $gross_amount;
+                $updated_gross = $old_grossamount - $newgross;
+            }else if($oldentry_grossamount < $gross_amount){
+                $newgross = $gross_amount - $oldentry_grossamount;
+                $updated_gross = $old_grossamount + $newgross;
+            }else if($oldentry_grossamount == $gross_amount){
+                $updated_gross = $old_grossamount;
+            }
+
+
+
+            if($oldentry_paid > $payable_amount){
+                $newPaidAmt = $oldentry_paid - $payable_amount;
+                $updated_paid = $old_paid - $newPaidAmt;
+            }else if($oldentry_paid < $payable_amount){
+                $newPaidAmt = $payable_amount - $oldentry_paid;
+                $updated_paid = $old_paid + $newPaidAmt;
+            }else if($oldentry_paid == $payable_amount){
+                $updated_paid = $old_paid;
+            }
+
+            $new_balance = $updated_gross - $updated_paid;
+
+            DB::table('payment_balances')->where('customer_id', $Billdata_customerid)->update([
+                'customer_amount' => $updated_gross,  'customer_paid' => $updated_paid, 'customer_balance' => $new_balance
+            ]);
+        }
+
 
         $BillData->quotation_id = $request->get('quotation_id');
         $BillData->billno = $request->get('billno');
@@ -349,6 +455,34 @@ class BillController extends Controller
 
 
 
+    public function oldbalanceforCustomerPayment()
+    {
+        $customerid = request()->get('customerid');
 
+
+
+        $last_idrow = PaymentBalance::where('customer_id', '=', $customerid)->first();
+        if($last_idrow != ""){
+
+            if($last_idrow->customer_balance != NULL){
+
+                $output[] = array(
+                    'payment_pending' => $last_idrow->customer_balance,
+                );
+            }else {
+                $output[] = array(
+                    'payment_pending' => 0,
+                );
+
+
+            }
+        }else {
+            $output[] = array(
+                'payment_pending' => 0,
+            );
+        }
+
+        echo json_encode($output);
+    }
 
 }

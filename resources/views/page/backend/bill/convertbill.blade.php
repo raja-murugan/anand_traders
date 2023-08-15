@@ -51,7 +51,7 @@
                                                     <div class="form-group">
                                                         <label>Select Customer <span class="text-danger">*</span></label>
                                                         <select
-                                                            class="form-control select customer_id js-example-basic-single"
+                                                            class="form-control select customer_id js-example-basic-single" disabled
                                                             name="customer_id" id="customer_id" required>
                                                             <option value="" disabled selected hiddden>Select Customer
                                                             </option>
@@ -210,19 +210,19 @@
                                                         <div class="invoice-total-box">
                                                             <div class="invoice-total-inner">
 
-                                                                <p>Gross Amount <span class="bill_sub_total">₹  {{ $QuotationData->sub_total }} </span></p>
+                                                                <p>Gross Amount <span class="billsub_total">₹  {{ $QuotationData->sub_total }} </span></p>
                                                                 <input type="hidden" class="form-control bill_sub_total" name="bill_sub_total" id="bill_sub_total" value="{{ $QuotationData->sub_total }}">
 
-                                                                <p>Discount <span class="bill_discount_price">₹  {{ $QuotationData->discount_price }} </span></p>
+                                                                <p>Discount <span class="billdiscount_price">₹  {{ $QuotationData->discount_price }} </span></p>
                                                                 <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price" value="{{ $QuotationData->discount_price }}">
 
-                                                                <p>Total <span class="bill_total_amount">₹  {{ $QuotationData->total_amount }} </span></p>
+                                                                <p>Total <span class="billtotal_amount">₹  {{ $QuotationData->total_amount }} </span></p>
                                                                 <input type="hidden" class="form-control bill_total_amount"name="bill_total_amount"id="bill_total_amount" value="{{ $QuotationData->total_amount }}">
 
-                                                                <p>Tax Amount <span class="bill_tax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
+                                                                <p>Tax Amount <span class="billtax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
                                                                 <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount" value="{{ $QuotationData->tax_amount }}">
                                                                 
-                                                                <p>Extra Cost <span class="bill_extracost_amount">₹  {{ $QuotationData->extracost_amount }} </span></p>
+                                                                <p>Extra Cost <span class="billextracost_amount">₹  {{ $QuotationData->extracost_amount }} </span></p>
                                                                 <input type="hidden" class="form-control bill_extracost_amount" name="bill_extracost_amount" id="bill_extracost_amount" value="{{ $QuotationData->extracost_amount }}">
 
                                                             </div>
@@ -237,7 +237,7 @@
                                                                 <h4>Paid Amount <span class=""><input type="text" class="form-control bill_paid_amount"  name="bill_paid_amount" id="bill_paid_amount" placeholder="Paid Amount"> </span></h4>
                                                             </div>
                                                             <div class="invoice-total-footer">
-                                                                <h4>Balance<span class="bill_balance_amount"> </span>
+                                                                <h4>Balance<span class="billbalance_amount"> </span>
                                                                 <input type="hidden" class="form-control bill_balance_amount"  name="bill_balance_amount" id="bill_balance_amount" ></h4>
                                                             </div>
                                                         </div>

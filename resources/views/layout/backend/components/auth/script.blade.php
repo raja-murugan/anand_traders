@@ -981,6 +981,492 @@
     });
 
 
+
+
+
+    var f = 1;
+    var b = 1;
+        $(document).ready(function() {
+            $(document).on('click', '.addpurchaseproductfields', function() {
+                ++b;
+
+                let  rowIndex = $('.auto_num').length+1;
+                let  rowIndexx = $('.auto_num').length+1;
+
+                $(".purchaseproduct_fields").append(
+                    '<tr>' +
+                    '<td><input class="auto_num form-control"  type="text" readonly value="'+rowIndexx+'"/></td>' +
+                    '<td colspan="2" class=""><input type="hidden" id="purchase_detail_id" name="purchase_detail_id[]" />' +
+                    '<select class="form-control js-example-basic-single purchase_productid select"name="purchase_productid[]" id="purchase_productid' + b + '"required>' +
+                    '<option value="" selected hidden class="text-muted">Select Product</option></select>' +
+                    '</td>' +
+                    '<td><input type="text" class="form-control purchase_quantity" id="purchase_quantity" name="purchase_quantity[]"  value="" required /></td>' +
+                    '<td><input type="text" class="form-control purchase_rateperquantity" id="purchase_rateperquantity" name="purchase_rateperquantity[]"  value="" required /></td>' +
+                    '<td><input type="text" class="form-control purchase_producttotal" readonly id="purchase_producttotal"style="background-color: #e9ecef;" name="purchase_producttotal[]" placeholder="Total" /></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn purchaseremove-tr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
+                    '</tr>'
+                );
+
+
+                $.ajax({
+                    url: '/getProducts/',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        //console.log(response['data']);
+                        var len = response['data'].length;
+
+                        var selectedValues = new Array();
+
+                        if (len > 0) {
+                            for (var i = 0; i < len; i++) {
+
+                                    var id = response['data'][i].id;
+                                    var name = response['data'][i].name;
+                                    var option = "<option value='" + id + "'>" + name +
+                                        "</option>";
+                                    selectedValues.push(option);
+                            }
+                        }
+                        ++f;
+                        $('#purchase_productid' + f).append(selectedValues);
+                        //add_count.push(Object.keys(selectedValues).length);
+                    }
+                });
+
+
+            });
+
+
+            $(document).on('click', '.addpurchaseextranotefields', function() {
+                $(".purchaseextracost_tr").append(
+                    '<tr>' +
+                    '<td colspan="2"></td>' +
+                    '<td colspan="3"><input type="text" class="form-control"id="purchase_extracostnote" placeholder="Note" value=""name="purchase_extracostnote[]" /></td>' +
+                    '<td><input type="hidden" name="purchaseextracost_detail_id[]"/><input type="text" class="form-control purchase_extracost" id="purchase_extracost"placeholder="Extra Cost"  name="purchase_extracost[]"value="" /></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn remove-purchaseextratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
+                    '</tr>'
+                );
+            });
+        
+
+
+
+            $(document).on('click', '.purchaseremove-tr', function() {
+                $(this).parents('tr').remove();
+                purchaseregenerate_auto_num();
+
+
+                var totalAmount = 0;
+                $("input[name='purchase_producttotal[]']").each(
+                                    function() {
+                                        totalAmount = Number(totalAmount) + Number($(this).val());
+                                        $('.purchase_subtotal').val(totalAmount);
+                                        $('.purchasesubtotal').text('₹ ' + totalAmount);
+                                    });
+
+
+                var purchase_discounttype = $("#purchase_discounttype").val();
+
+                if(purchase_discounttype == 'fixed'){
+
+                    var purchase_discount = $('.purchase_discount').val();
+                    $('.purchase_discountprice').val(purchase_discount);
+                    $('.purchasediscountprice').text('₹ ' + purchase_discount);
+
+                    var purchase_subtotal = $(".purchase_subtotal").val();
+                    var purchase_totalamount = Number(purchase_subtotal) - Number(purchase_discount);
+                    $('.purchase_totalamount').val(purchase_totalamount);
+                    $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                }else if(purchase_discounttype == 'percentage'){
+
+                    var purchase_discount = $('.purchase_discount').val();
+                    var purchase_subtotal = $(".purchase_subtotal").val();
+                    var discountPercentageAmount = (purchase_discount / 100) * purchase_subtotal;
+                    $('.purchase_discountprice').val(discountPercentageAmount);
+                    $('.purchasediscountprice').text('₹ ' + discountPercentageAmount);
+
+                    var purchase_totalamount = Number(purchase_subtotal) - Number(discountPercentageAmount);
+                    $('.purchase_totalamount').val(purchase_totalamount);
+                    $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                }
+
+
+                var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
+                var purchase_totalamount = $(".purchase_totalamount").val();
+                var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
+                $('.purchase_taxamount').val(purchase_taxamount);
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+
+                var purchase_extracostamount = $(".purchase_extracostamount").val();
+                var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+                $('.purchase_grandtotal').val(purchase_grandtotal);
+                $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+
+                var purchase_paidamount = $('.purchase_paidamount').val();
+                //alert(bill_paid_amount);
+                var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+                $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+                $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+
+            });
+
+            function purchaseregenerate_auto_num(){
+                let count  = 1;
+                $(".auto_num").each(function(i,v){
+                $(this).val(count);
+                count++;
+              })
+            }
+
+            $(document).on('click', '.remove-purchaseextratr', function() {
+                $(this).parents('tr').remove();
+
+                var totalExtraAmount = 0;
+                $("input[name='purchase_extracost[]']").each(
+                                    function() {
+                                        //alert($(this).val());
+                                        totalExtraAmount = Number(totalExtraAmount) +
+                                            Number($(this).val());
+                                        $('.purchase_extracostamount').val(totalExtraAmount);
+                                        $('.purchaseextracostamount').text('₹ ' + totalExtraAmount);
+                                    });
+
+
+
+                                    var purchase_discounttype = $("#purchase_discounttype").val();
+
+                                    if(purchase_discounttype == 'fixed'){
+
+                                        var purchase_discount = $('.purchase_discount').val();
+                                        $('.purchase_discountprice').val(purchase_discount);
+                                        $('.purchasediscountprice').text('₹ ' + purchase_discount);
+
+                                        var purchase_subtotal = $(".purchase_subtotal").val();
+                                        var purchase_totalamount = Number(purchase_subtotal) - Number(purchase_discount);
+                                        $('.purchase_totalamount').val(purchase_totalamount);
+                                        $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                                    }else if(purchase_discounttype == 'percentage'){
+
+                                        var purchase_discount = $('.purchase_discount').val();
+                                        var purchase_subtotal = $(".purchase_subtotal").val();
+                                        var discountPercentageAmount = (purchase_discount / 100) * purchase_subtotal;
+                                        $('.purchase_discountprice').val(discountPercentageAmount);
+                                        $('.purchasediscountprice').text('₹ ' + discountPercentageAmount);
+
+                                        var purchase_totalamount = Number(purchase_subtotal) - Number(discountPercentageAmount);
+                                        $('.purchase_totalamount').val(purchase_totalamount);
+                                        $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                                    }
+
+
+
+                var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
+                var purchase_totalamount = $(".purchase_totalamount").val();
+                var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
+                $('.purchase_taxamount').val(purchase_taxamount);
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+
+                var purchase_extracostamount = $(".purchase_extracostamount").val();
+                var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+                $('.purchase_grandtotal').val(purchase_grandtotal);
+                $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+                var purchase_paidamount = $('.purchase_paidamount').val();
+                //alert(bill_paid_amount);
+                var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+                $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+                $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+
+
+            });
+
+
+        });
+
+
+        $(document).on("blur", "input[name*=purchase_quantity]", function() {
+            var purchase_quantity = $(this).val();
+            var purchase_rateperquantity = $(this).parents('tr').find('.purchase_rateperquantity').val();
+            var total = purchase_quantity * purchase_rateperquantity;
+            $(this).parents('tr').find('.purchase_producttotal').val(total);
+
+                var totalAmount = 0;
+                $("input[name='purchase_producttotal[]']").each(
+                                    function() {
+                                        totalAmount = Number(totalAmount) + Number($(this).val());
+                                        $('.purchase_subtotal').val(totalAmount);
+                                        $('.purchasesubtotal').text('₹ ' + totalAmount);
+                                    });
+
+
+
+
+
+                                    var purchase_discounttype = $("#purchase_discounttype").val();
+
+                                    if(purchase_discounttype == 'fixed'){
+
+                                        var purchase_discount = $('.purchase_discount').val();
+                                        $('.purchase_discountprice').val(purchase_discount);
+                                        $('.purchasediscountprice').text('₹ ' + purchase_discount);
+
+                                        var purchase_subtotal = $(".purchase_subtotal").val();
+                                        var purchase_totalamount = Number(purchase_subtotal) - Number(purchase_discount);
+                                        $('.purchase_totalamount').val(purchase_totalamount);
+                                        $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                                    }else if(purchase_discounttype == 'percentage'){
+
+                                        var purchase_discount = $('.purchase_discount').val();
+                                        var purchase_subtotal = $(".purchase_subtotal").val();
+                                        var discountPercentageAmount = (purchase_discount / 100) * purchase_subtotal;
+                                        $('.purchase_discountprice').val(discountPercentageAmount);
+                                        $('.purchasediscountprice').text('₹ ' + discountPercentageAmount);
+
+                                        var purchase_totalamount = Number(purchase_subtotal) - Number(discountPercentageAmount);
+                                        $('.purchase_totalamount').val(purchase_totalamount);
+                                        $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                                    }
+
+
+
+                var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
+                var purchase_totalamount = $(".purchase_totalamount").val();
+                var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
+                $('.purchase_taxamount').val(purchase_taxamount);
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+
+                var purchase_extracostamount = $(".purchase_extracostamount").val();
+                var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+                $('.purchase_grandtotal').val(purchase_grandtotal);
+                $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+                var purchase_paidamount = $('.purchase_paidamount').val();
+                //alert(bill_paid_amount);
+                var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+                $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+                $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+        });
+
+
+        $("#purchase_discounttype").on('change', function() {
+            var purchase_discounttype = this.value;
+            if(purchase_discounttype == 'fixed'){
+                $('#purchase_discount').val('');
+                $('.purchase_discountprice').val(0);
+                $('.purchasediscountprice').text('₹ ' + 0);
+            }else if(purchase_discounttype == 'percentage'){
+                $('#purchase_discount').val('');
+                $('.purchase_discountprice').val(0);
+                $('.purchasediscountprice').text('₹ ' + 0);
+            }
+        });
+
+
+
+
+        $(document).on("keyup", 'input.purchase_discount', function() {
+            var purchase_discount = $(this).val();
+            var purchase_discounttype = $("#purchase_discounttype").val();
+
+            if(purchase_discounttype == 'fixed'){
+
+                $('.purchase_discountprice').val(purchase_discount);
+                $('.purchasediscountprice').text('₹ ' + purchase_discount);
+
+                var purchase_subtotal = $(".purchase_subtotal").val();
+                var purchase_totalamount = Number(purchase_subtotal) - Number(purchase_discount);
+                $('.purchase_totalamount').val(purchase_totalamount);
+                $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                var purchase_taxamount = $('.purchase_taxamount').val();
+                var purchase_extracostamount = $(".purchase_extracostamount").val();
+                var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+                $('.purchase_grandtotal').val(purchase_grandtotal);
+                $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+
+                var purchase_paidamount = $('.purchase_paidamount').val();
+                //alert(bill_paid_amount);
+                var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+                $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+                $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+
+            }else if(purchase_discounttype == 'percentage'){
+
+                var purchase_subtotal = $(".purchase_subtotal").val();
+                var discountPercentageAmount = (purchase_discount / 100) * purchase_subtotal;
+                $('.purchase_discountprice').val(discountPercentageAmount);
+                $('.purchasediscountprice').text('₹ ' + discountPercentageAmount);
+
+                var purchase_totalamount = Number(purchase_subtotal) - Number(discountPercentageAmount);
+                $('.purchase_totalamount').val(purchase_totalamount);
+                $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+
+                var purchase_taxamount = $('.purchase_taxamount').val();
+                var purchase_extracostamount = $(".purchase_extracostamount").val();
+                var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+                $('.purchase_grandtotal').val(purchase_grandtotal);
+                $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+                var purchase_paidamount = $('.purchase_paidamount').val();
+                //alert(bill_paid_amount);
+                var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+                $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+                $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+            }
+        });
+
+
+
+    $("#purchase_taxpercentage").on('change', function() {
+        var purchase_taxpercentage = $(this).val();
+        var purchase_totalamount = $(".purchase_totalamount").val();
+        var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
+        $('.purchase_taxamount').val(purchase_taxamount);
+        $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+
+        //console.log(bill_total_amount);
+
+
+        var purchase_extracostamount = $(".purchase_extracostamount").val();
+        var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+        $('.purchase_grandtotal').val(purchase_grandtotal);
+        $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+
+        var purchase_paidamount = $('.purchase_paidamount').val();
+        //alert(bill_paid_amount);
+        var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+        $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+        $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+    });
+
+
+
+
+    $(document).on("blur", "input[name*=purchase_rateperquantity]", function() {
+        var purchase_rateperquantity = $(this).val();
+        var purchase_quantity = $(this).parents('tr').find('.purchase_quantity').val();
+        var total = purchase_quantity * purchase_rateperquantity;
+        $(this).parents('tr').find('.purchase_producttotal').val(total);
+
+        var totalAmount = 0;
+        $("input[name='purchase_producttotal[]']").each(
+                            function() {
+                                //alert($(this).val());
+                                totalAmount = Number(totalAmount) +
+                                    Number($(this).val());
+                                    $('.purchase_subtotal').val(totalAmount);
+                                    $('.purchasesubtotal').text('₹ ' + totalAmount);
+                            });
+        
+
+
+                            var purchase_discounttype = $("#purchase_discounttype").val();
+
+                            if(purchase_discounttype == 'fixed'){
+
+                                var purchase_discount = $('.purchase_discount').val();
+                                $('.purchase_discountprice').val(purchase_discount);
+                                $('.purchasediscountprice').text('₹ ' + purchase_discount);
+
+                                var purchase_subtotal = $(".purchase_subtotal").val();
+                                var purchase_totalamount = Number(purchase_subtotal) - Number(purchase_discount);
+                                $('.purchase_totalamount').val(purchase_totalamount);
+                                $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                            }else if(purchase_discounttype == 'percentage'){
+
+                                var purchase_discount = $('.purchase_discount').val();
+                                var purchase_subtotal = $(".purchase_subtotal").val();
+                                var discountPercentageAmount = (purchase_discount / 100) * purchase_subtotal;
+                                $('.purchase_discountprice').val(discountPercentageAmount);
+                                $('.purchasediscountprice').text('₹ ' + discountPercentageAmount);
+
+                                var purchase_totalamount = Number(purchase_subtotal) - Number(discountPercentageAmount);
+                                $('.purchase_totalamount').val(purchase_totalamount);
+                                $('.purchasetotalamount').text('₹ ' + purchase_totalamount);
+
+                            }
+
+       
+            var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
+                var purchase_totalamount = $(".purchase_totalamount").val();
+                var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
+                $('.purchase_taxamount').val(purchase_taxamount);
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+
+                var purchase_extracostamount = $(".purchase_extracostamount").val();
+                var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+                $('.purchase_grandtotal').val(purchase_grandtotal);
+                $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+                var purchase_paidamount = $('.purchase_paidamount').val();
+                //alert(bill_paid_amount);
+                var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+                $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+                $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+    });
+
+
+
+    $(document).on("blur", "input[name*=purchase_extracost]", function() {
+        var purchase_extracost = $(this).val();
+        var totalExtraAmount = 0;
+        $("input[name='purchase_extracost[]']").each(
+                                    function() {
+                                        //alert($(this).val());
+                                        totalExtraAmount = Number(totalExtraAmount) +
+                                            Number($(this).val());
+                                        $('.purchase_extracostamount').val(totalExtraAmount);
+                                        $('.purchaseextracostamount').text('₹ ' + totalExtraAmount);
+                                    });
+
+        var purchase_totalamount = $('.purchase_totalamount').val();
+        var purchase_taxamount = $('.purchase_taxamount').val();
+        var purchase_extracostamount = $(".purchase_extracostamount").val();
+
+       
+        var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
+        $('.purchase_grandtotal').val(purchase_grandtotal);
+        $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
+
+
+        var purchase_paidamount = $('.purchase_paidamount').val();
+        //alert(bill_paid_amount);
+        var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+        $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+        $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+    });
+
+
+
+    $(document).on("blur", 'input.purchase_paidamount', function() {
+        var purchase_paidamount = $(this).val();
+        var purchase_grandtotal = $(".purchase_grandtotal").val();
+        //alert(bill_paid_amount);
+        var purchase_balanceamount = Number(purchase_grandtotal) - Number(purchase_paidamount);
+        $('.purchase_balanceamount').val(purchase_balanceamount.toFixed(2));
+        $('.purchasebalanceamount').text('₹ ' + purchase_balanceamount.toFixed(2));
+    });
+
+
+
+
+
+
+
+
+
     function quotationubmitForm(btn) {
         // disable the button
         btn.disabled = true;
@@ -989,6 +1475,13 @@
     }
 
     function billubmitForm(btn) {
+        // disable the button
+        btn.disabled = true;
+        // submit the form
+        btn.form.submit();
+    }
+
+    function purchseubmitForm(btn) {
         // disable the button
         btn.disabled = true;
         // submit the form
@@ -1010,5 +1503,96 @@
                                     });
     });
 
+
+
+    $(document).ready(function() {
+        $('.customerpayment_customer_id').on('change', function() {
+            var customerid = this.value;
+            $('.customerpayment_oldblance').val('');
+                $.ajax({
+                    url: '/oldbalanceforCustomerPayment/',
+                    type: 'get',
+                    data: {
+                            _token: "{{ csrf_token() }}",
+                            customerid: customerid
+                        },
+                    dataType: 'json',
+                    success: function(response) {
+                        //
+                        console.log(response);
+                        var len = response.length;
+                        for (var i = 0; i < len; i++) {
+                            $(".customerpayment_oldblance").val(response[i].payment_pending);
+                            $('.customerpayment_totalamount').val(response[i].payment_pending);
+                        }
+                    }
+                });
+        });
+
+            $(document).on("keyup", 'input.customerpayment_discount', function() {
+                var customerpayment_discount = $(this).val();
+                var oldblance = $(".customerpayment_oldblance").val();
+                var Totalbillpayment = Number(oldblance) - Number(customerpayment_discount);
+                $('.customerpayment_totalamount').val(Totalbillpayment);
+
+                var customerpayment_paidamount = $(".customerpayment_paidamount").val();
+                var payment_pending_amount = Number(Totalbillpayment) - Number(customerpayment_paidamount);
+                $('.customerpayment_paymentpending').val(payment_pending_amount.toFixed(2));
+                
+            });
+
+            $(document).on("keyup", 'input.customerpayment_paidamount', function() {
+                var customerpayment_paidamount = $(this).val();
+                var customerpayment_totalamount = $(".customerpayment_totalamount").val();
+                var payment_pending_amount = Number(customerpayment_totalamount) - Number(customerpayment_paidamount);
+                $('.customerpayment_paymentpending').val(payment_pending_amount.toFixed(2));
+            });
+
+
+
+        $('.vendorpayment_vendorid').on('change', function() {
+            var vendorid = this.value;
+            $('.vendorpayment__oldblance').val('');
+                $.ajax({
+                    url: '/oldbalanceforvendorPayment/',
+                    type: 'get',
+                    data: {
+                            _token: "{{ csrf_token() }}",
+                            vendorid: vendorid
+                        },
+                    dataType: 'json',
+                    success: function(response) {
+                        //
+                        console.log(response);
+                        var len = response.length;
+                        for (var i = 0; i < len; i++) {
+                            $(".vendorpayment__oldblance").val(response[i].payment_pending);
+                            $('.vendorpayment__totalamount').val(response[i].payment_pending);
+                        }
+                    }
+                });
+        });
+
+
+
+            $(document).on("keyup", 'input.vendorpayment_discount', function() {
+                var vendorpayment_discount = $(this).val();
+                var oldblance = $(".vendorpayment_oldblance").val();
+                var Totalbillpayment = Number(oldblance) - Number(vendorpayment_discount);
+                $('.vendorpayment_totalamount').val(Totalbillpayment);
+
+                var vendorpayment_paidamount = $(".vendorpayment_paidamount").val();
+                var payment_pending_amount = Number(Totalbillpayment) - Number(vendorpayment_paidamount);
+                $('.vendorpayment_paymentpending').val(payment_pending_amount.toFixed(2));
+                
+            });
+
+            $(document).on("keyup", 'input.vendorpayment_paidamount', function() {
+                var vendorpayment_paidamount = $(this).val();
+                var vendorpayment_totalamount = $(".vendorpayment_totalamount").val();
+                var payment_pending_amount = Number(vendorpayment_totalamount) - Number(vendorpayment_paidamount);
+                $('.vendorpayment_paymentpending').val(payment_pending_amount.toFixed(2));
+            });
+    });
 
 </script>

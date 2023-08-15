@@ -27,8 +27,8 @@
                 <li class="{{ Route::is('bill.index', 'bill.create', 'bill.store', 'bill.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('bill.index') }}"><i class="fe fe-database"></i> <span>Bill</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-shopping-cart"></i> <span>Purchase</span></a>
+                <li class="{{ Route::is('purchase.index', 'purchase.create', 'purchase.store', 'purchase.edit' ) ? 'active' : '' }}">
+                    <a href="{{ route('purchase.index') }}"><i class="fe fe-shopping-cart"></i> <span>Purchase</span></a>
                 </li>
                 <li class="{{ Route::is('expense.index', 'expense.create', 'expense.store', 'expense.edit') ? 'active' : '' }}">
                     <a href="{{ route('expense.index') }}"><i class="fe fe-credit-card"></i> <span>Expense</span></a>
@@ -37,11 +37,11 @@
 
             <ul>
                 <li class="menu-title"><span>Payment Management</span></li>
-                <li>
-                    <a href="#"><i class="fe fe-dollar-sign"></i> <span>Vendor Payment</span></a>
+                <li class="{{ Route::is('vendor_payment.index', 'vendor_payment.create', 'vendor_payment.store', 'vendor_payment.edit') ? 'active' : '' }}">
+                    <a href="{{ route('vendor_payment.index') }}"><i class="fe fe-dollar-sign"></i> <span>Vendor Payment</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="fe fe-dollar-sign"></i> <span>Customer Payment</span></a>
+                <li class="{{ Route::is('customer_payment.index', 'customer_payment.create', 'customer_payment.store', 'customer_payment.edit') ? 'active' : '' }}">
+                    <a href="{{ route('customer_payment.index') }}"><i class="fe fe-dollar-sign"></i> <span>Customer Payment</span></a>
                 </li>
             </ul>
 

@@ -9,6 +9,9 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\CustomerPaymentController;
+use App\Http\Controllers\VendorPaymentController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -154,4 +157,61 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/expense/delete/{unique_key}', [ExpenseController::class, 'delete'])->name('expense.delete');
 });
 
+
+
+// CUSTOMER PAYMENT CONTROLLER
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // INDEX
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/customer_payment', [CustomerPaymentController::class, 'index'])->name('customer_payment.index');
+     // CREATE
+     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/customer_payment/create', [CustomerPaymentController::class, 'create'])->name('customer_payment.create');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/customer_payment/store', [CustomerPaymentController::class, 'store'])->name('customer_payment.store');
+     // EDIT
+     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/customer_payment/edit/{unique_key}', [CustomerPaymentController::class, 'edit'])->name('customer_payment.edit');
+     // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/customer_payment/update/{unique_key}', [CustomerPaymentController::class, 'update'])->name('customer_payment.update');
+    // DELETE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/customer_payment/delete/{unique_key}', [CustomerPaymentController::class, 'delete'])->name('customer_payment.delete');
+
+});
+
+
+// VENDOR PAYMENT CONTROLLER
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // INDEX
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/vendor_payment', [VendorPaymentController::class, 'index'])->name('vendor_payment.index');
+     // CREATE
+     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/vendor_payment/create', [VendorPaymentController::class, 'create'])->name('vendor_payment.create');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/vendor_payment/store', [VendorPaymentController::class, 'store'])->name('vendor_payment.store');
+     // EDIT
+     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/vendor_payment/edit/{unique_key}', [VendorPaymentController::class, 'edit'])->name('vendor_payment.edit');
+     // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/vendor_payment/update/{unique_key}', [VendorPaymentController::class, 'update'])->name('vendor_payment.update');
+    // DELETE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/vendor_payment/delete/{unique_key}', [VendorPaymentController::class, 'delete'])->name('vendor_payment.delete');
+
+});
+
+
+
+
+// PURCHASE CONTROLLER
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // INDEX
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/purchase', [PurchaseController::class, 'index'])->name('purchase.index');
+    // CREATE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/purchase/create', [PurchaseController::class, 'create'])->name('purchase.create');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/purchase/store', [PurchaseController::class, 'store'])->name('purchase.store');
+    // EDIT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/purchase/edit/{unique_key}', [PurchaseController::class, 'edit'])->name('purchase.edit');
+    // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/purchase/update/{unique_key}', [PurchaseController::class, 'update'])->name('purchase.update');
+    // DELETE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/purchase/delete/{unique_key}', [PurchaseController::class, 'delete'])->name('purchase.delete');
+});
+
 Route::get('getProducts/', [ProductController::class, 'getProducts']);
+Route::get('/oldbalanceforCustomerPayment', [BillController::class, 'oldbalanceforCustomerPayment']);
