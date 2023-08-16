@@ -1552,7 +1552,7 @@
 
         $('.vendorpayment_vendorid').on('change', function() {
             var vendorid = this.value;
-            $('.vendorpayment__oldblance').val('');
+            $('.vendorpayment_oldblance').val('');
                 $.ajax({
                     url: '/oldbalanceforvendorPayment/',
                     type: 'get',
@@ -1566,8 +1566,8 @@
                         console.log(response);
                         var len = response.length;
                         for (var i = 0; i < len; i++) {
-                            $(".vendorpayment__oldblance").val(response[i].payment_pending);
-                            $('.vendorpayment__totalamount').val(response[i].payment_pending);
+                            $(".vendorpayment_oldblance").val(response[i].payment_pending);
+                            $('.vendorpayment_totalamount').val(response[i].payment_pending);
                         }
                     }
                 });

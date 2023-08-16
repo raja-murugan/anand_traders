@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vendor;
+use App\Models\PaymentBalance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -29,8 +30,23 @@ class VendorController extends Controller
         $data->phone_number = $request->get('phone_number');
         $data->email_id = $request->get('email_id');
         $data->shop_name = $request->get('shop_name');
+        $data->balance_amount = $request->get('balance_amount');
 
         $data->save();
+
+
+        $vendorid = $data->id;
+        $PaymentBalanceDAta = PaymentBalance::where('vendor_id', '=', $vendorid)->first();
+        if($PaymentBalanceDAta == ""){
+            $balance_amount = $request->get('balance_amount');
+            $paymentbalacedata = new PaymentBalance();
+
+            $paymentbalacedata->vendor_id = $vendorid;
+            $paymentbalacedata->vendor_amount = $balance_amount;
+            $paymentbalacedata->vendor_paid = 0;
+            $paymentbalacedata->vendor_balance = $balance_amount;
+            $paymentbalacedata->save();
+        }
 
 
         return redirect()->route('vendor.index')->with('message', 'Added !');

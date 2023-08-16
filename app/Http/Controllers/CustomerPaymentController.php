@@ -87,6 +87,7 @@ class CustomerPaymentController extends Controller
 
             $old_grossamount = $CustomerpaymentData->customer_amount;
             $old_paid = $CustomerpaymentData->customer_paid;
+            
 
             $payment_paid_amount = $request->get('paid_amount');
             $salespayment_discount = $request->get('discount');

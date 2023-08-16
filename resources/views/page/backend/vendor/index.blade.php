@@ -34,6 +34,7 @@
                                  <th style="width:15%">Phone No</th>
                                  <th style="width:15%">Email</th>
                                  <th style="width:15%">Shop Name</th>
+                                 <th style="width:15%">Balance</th>
                                  <th style="width:20%">Action</th>
                               </tr>
                            </thead>
@@ -46,6 +47,7 @@
                                  <td>{{ $vendor_data->phone_number }}</td>
                                  <td>{{ $vendor_data->email_id }}</td>
                                  <td>{{ $vendor_data->shop_name }}</td>
+                                 <td>{{ $vendor_data->balance_amount }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>

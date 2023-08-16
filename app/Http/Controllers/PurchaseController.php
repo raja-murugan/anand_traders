@@ -365,7 +365,7 @@ class PurchaseController extends Controller
 
 
 
-    public function oldbalanceforVendorPayment()
+    public function oldbalanceforvendorPayment()
     {
         $vendorid = request()->get('vendorid');
 

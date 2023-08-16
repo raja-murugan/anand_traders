@@ -37,6 +37,12 @@
                      <input type="email" class="form-control" placeholder="Enter Customer E-Mail" name="email_id" id="email_id">
                   </div>
                </div>
+               <div class="col-lg-12 col-md-12">
+                  <div class="form-group">
+                     <label>Old Balance</label>
+                     <input type="text" class="form-control" placeholder="Enter Customer Old Balance" name="balance_amount" id="balance_amount">
+                  </div>
+               </div>
          </div>
       </div>
 

@@ -215,3 +215,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::get('getProducts/', [ProductController::class, 'getProducts']);
 Route::get('/oldbalanceforCustomerPayment', [BillController::class, 'oldbalanceforCustomerPayment']);
+Route::get('/oldbalanceforvendorPayment', [PurchaseController::class, 'oldbalanceforvendorPayment']);

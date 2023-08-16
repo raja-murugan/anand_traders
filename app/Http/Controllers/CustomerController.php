@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\PaymentBalance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -28,8 +29,21 @@ class CustomerController extends Controller
         $data->address = $request->get('address');
         $data->phone_number = $request->get('phone_number');
         $data->email_id = $request->get('email_id');
-
+        $data->balance_amount = $request->get('balance_amount');
         $data->save();
+
+        $customerid = $data->id;
+        $PaymentBalanceDAta = PaymentBalance::where('customer_id', '=', $customerid)->first();
+        if($PaymentBalanceDAta == ""){
+            $balance_amount = $request->get('balance_amount');
+            $paymentbalacedata = new PaymentBalance();
+
+            $paymentbalacedata->customer_id = $customerid;
+            $paymentbalacedata->customer_amount = $balance_amount;
+            $paymentbalacedata->customer_paid = 0;
+            $paymentbalacedata->customer_balance = $balance_amount;
+            $paymentbalacedata->save();
+        }
 
 
         return redirect()->route('customer.index')->with('message', 'Added !');
@@ -44,7 +58,6 @@ class CustomerController extends Controller
         $CustomerData->address = $request->get('address');
         $CustomerData->phone_number = $request->get('phone_number');
         $CustomerData->email_id = $request->get('email_id');
-
         $CustomerData->update();
 
         return redirect()->route('customer.index')->with('info', 'Updated !');
