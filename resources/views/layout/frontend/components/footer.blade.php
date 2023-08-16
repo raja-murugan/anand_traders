@@ -1,90 +1,162 @@
-<footer class="site-footer">
-    <div class="site-footer__top">
-        <div class="container">
-            <div class="site-footer__top-inner">
-                <div class="site-footer-shape-1 float-bob-x"
-                    style="background-image: url(assets/images/shapes/site-footer-shape-1.png);"></div>
-                <div class="row">
-                    <div class="col-xl-5 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                        <div class="footer-widget__column footer-widget__about">
-                            <div class="footer-widget__logo">
-                                <a href="javascript::void(o);"><img src="assets/images/spm.png"
-                                        alt=""></a>
+<!--Main Footer-->
+<footer class="main-footer">
+
+    <div class="auto-container">
+
+        <!--Widgets Section-->
+        <div class="widgets-section">
+            <div class="row clearfix">
+
+                <!--Footer Column-->
+                <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="footer-widget links-widget">
+                        <h2>Usefull Links</h2>
+                        <div class="row clearfix">
+
+                            <div class="column col-lg-6 col-md-6 col-sm-12">
+                                <ul class="footer-link">
+                                    <li><a href="#">Window Styles</a></li>
+                                    <li><a href="#">Door Styles</a></li>
+                                    <li><a href="#">Maintenance</a></li>
+                                    <li><a href="#">uPVC Features</a></li>
+                                    <li><a href="#">Work Gallery</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                    <li><a href="#">Our Products</a></li>
+                                </ul>
                             </div>
-                            <div class="footer-widget__about-text-box">
-                                <img src="{{ asset('assets/frontend/images/spm.jpg') }}" style="border-radius: 10px;height:100PX;" alt="">
+
+                            <div class="column col-lg-6 col-md-6 col-sm-12">
+                                <ul class="footer-link">
+                                    <li><a href="#">About Company</a></li>
+                                    <li><a href="#">Testimonials</a></li>
+                                    <li><a href="#">Appointment</a></li>
+                                    <li><a href="#">Get Free Estimate</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Meet Our Team</a></li>
+                                </ul>
                             </div>
+
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
-                        <div class="footer-widget__column footer-widget__Explore">
-                            <div class="footer-widget__title-box">
-                                <h3 class="footer-widget__title">Explore</h3>
+                </div>
+
+                <!--Footer Column-->
+                <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="footer-widget news-widget">
+                        <h2>Latest News</h2>
+
+                        <!--News Widget Block-->
+                        <div class="news-widget-block">
+                            <div class="widget-inner">
+                                <div class="image">
+                                    <img src="images/resource/news-image-1.jpg" alt="" />
+                                </div>
+                                <h3><a href="blog-single.html">5 reasons why uPVC is a better fenestration
+                                        material.</a></h3>
+                                <div class="post-date">14th August, 2018</div>
                             </div>
-                            <ul class="footer-widget__Explore-list list-unstyled">
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#products">Products</a></li>
-                                <li><a href="#contact">Contact</a></li>
-                            </ul>
                         </div>
-                    </div>
-                    <div class="col-xl-5 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
-                        <div class="footer-widget__column footer-widget__Contact">
-                            <div class="footer-widget__title-box">
-                                <h3 class="footer-widget__title">Contact</h3>
+
+                        <!--News Widget Block-->
+                        <div class="news-widget-block">
+                            <div class="widget-inner">
+                                <div class="image">
+                                    <img src="images/resource/news-image-2.jpg" alt="" />
+                                </div>
+                                <h3><a href="blog-single.html">Shape your dream house with uPVC doors!.</a>
+                                </h3>
+                                <div class="post-date">21st June, 2018</div>
                             </div>
-                            <ul class="footer-widget__Contact-list list-unstyled">
-                                <li>
-                                    <div class="icon">
-                                        <span class="fas fa-phone-square-alt"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Footer Column-->
+                <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="footer-widget newsletter-widget">
+                        <h2>Newsletter Sign Up</h2>
+                        <div class="widget-content">
+                            <div class="message-icon flaticon-letter"></div>
+                            <div class="text">Subcribe us for latest news and updates.</div>
+                            <!--Newsletter Form-->
+                            <div class="newsletter-form">
+                                <form method="post" action="contact.html">
+                                    <div class="form-group clearfix">
+                                        <input type="text" name="name" value=""
+                                            placeholder="Name" required>
+                                        <input type="email" name="email" value=""
+                                            placeholder="Email Address" required>
+                                        <button type="submit" class="theme-btn"><span
+                                                class="icon flaticon-right-arrow-5"></span></button>
                                     </div>
-                                    <div class="text">
-                                        <p><a href="tel:9200886823">+91 9994065696</a></p>
-                                    </div>
+                                </form>
+                            </div>
+                            <!--Social Icon One-->
+                            <ul class="social-icon-one">
+                                <li><a href="#"><span class="icon fa fa-facebook"></span>facebook</a>
                                 </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-pin"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>SPM, NS 83, 84, Gandhi Market, Trichy - 8.</p>
-                                    </div>
+                                <li><a href="#"><span class="icon fa fa-twitter"></span>twitter</a></li>
+                                <li><a href="#"><span class="icon fa fa-linkedin"></span>linkedin</a>
                                 </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-pin"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>RR, OT 166, 167, 117, Gandhi Market, Trichy - 8.</p>
-                                    </div>
+                                <li><a href="#"><span class="icon fa fa-google-plus"></span>google +</a>
                                 </li>
+                                <li><a href="#"><span class="icon fa fa-vimeo"></span>vimeo</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
-    <div class="site-footer__bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="site-footer__bottom-inner">
-                        <p class="site-footer__bottom-text">© Copyright 2023 Developed by <a
-                                href="https://zworktechnology.com/" target="_blank">Zworktechnology</a></p>
-                        {{-- <div class="site-footer__social">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div> --}}
-                        <div class="site-footer__bottom-scroll">
-                            <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i
-                                    class="icon-up-arrow"></i></a>
-                        </div>
+
+    <!--Footer Bottom-->
+    <div class="footer-bottom">
+        <div class="auto-container">
+            <div class="row clearfix">
+
+                <div class="column col-lg-7 col-md-12 col-sm-12">
+                    <div class="logo">
+                        <a href="index.html"><img src="images/footer-logo.png" alt="" /></a>
                     </div>
+                    <div class="copyright">© 2009–2018 All rights reserved by <a href="#">Shutters.</a>
+                        <br> Certified uPVC company.</div>
                 </div>
+
+
+                <div class="column col-lg-5 col-md-12 col-sm-12">
+                    <ul class="footer-nav clearfix">
+                        <li><a href="#">Private Policy</a></li>
+                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Legal</a></li>
+                        <li class="dropdown">
+                            <button class="search-box-btn dropdown-toggle" type="button" id="dropdownMenu3"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                    class="fa fa-search"></span></button>
+                            <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
+                                <li class="panel-outer">
+                                    <div class="form-container">
+                                        <form method="post" action="blog.html">
+                                            <div class="form-group">
+                                                <input type="search" name="field-name" value=""
+                                                    placeholder="Search Here" required>
+                                                <button type="submit" class="search-btn"><span
+                                                        class="fa fa-search"></span></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
+
 </footer>
+<!--End Main Footer-->

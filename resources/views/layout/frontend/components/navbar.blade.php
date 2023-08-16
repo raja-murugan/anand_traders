@@ -1,81 +1,219 @@
+<!-- Main Header-->
 <header class="main-header">
-    <div class="main-header__wrapper">
-        <div class="main-header__wrapper-inner">
-            <div class="main-header__logo">
-                <a href="javascript::void(o);"><img src="{{ asset('assets/frontend/images/spm.jpg') }}" style="height: 100px;" alt=""></a>
-            </div>
-            <div class="main-header__menu-box">
-                <div class="main-header__menu-box-top">
-                    <ul class="list-unstyled main-header__contact-list">
-                        {{-- <li>
-                            <div class="icon">
-                                <i class="icon-email"></i>
-                            </div>
-                            <div class="text">
-                                <p><a href="mailto:needhelp@company.com">needhelp@company.com</a></p>
-                            </div>
-                        </li> --}}
-                        <li>
-                            <div class="icon">
-                                <i class="icon-pin"></i>
-                            </div>
-                            <div class="text">
-                                <p>SPM, NS83, 84 | RR, OT166, 167, 117, Gandhi Market, Trichy 8.</p>
-                            </div>
+
+    <!--Header-Upper-->
+    <div class="header-upper">
+        <div class="outer-container">
+            <div class="clearfix">
+
+                <div class="pull-left logo-box">
+                    <div class="logo"><a href="index.html"><img src="{{ asset('assets/frontend/images/logo.png') }}" alt=""
+                                title=""></a></div>
+                </div>
+
+                <!-- Main Menu End-->
+                <div class="outer-box clearfix">
+                    <ul class="option-list">
+                        <li><span
+                                class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span><strong>Tel:</strong>
+                            +32 89 4567 01</li>
+                        <li><a href="appointment.html"><span
+                                    class="icon flaticon-calendar-2"></span><strong>Appointment</strong></a>
                         </li>
                     </ul>
-                    {{-- <div class="main-header__social">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div> --}}
                 </div>
-                <div class="main-header__menu-box-bottom">
-                    <nav class="main-menu">
-                        <div class="main-menu__wrapper">
-                            <div class="main-menu__wrapper-inner">
-                                <div class="main-menu__left">
-                                    <div class="main-menu__main-menu-box">
-                                        <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
-                                        <ul class="main-menu__list one-page-scroll-menu">
-                                            <li class="scrollToLink">
-                                                <a href="#home">Home</a>
-                                            </li>
-                                            <li class="scrollToLink">
-                                                <a href="#about">About</a>
-                                            </li>
-                                            <li class="scrollToLink">
-                                                <a href="#products">Products</a>
-                                            </li>
-                                            <li class="scrollToLink">
-                                                <a href="#contact">Contact</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+
+                <div class="nav-outer clearfix">
+
+                    <!-- Main Menu -->
+                    <nav class="main-menu navbar-expand-md">
+                        <div class="navbar-header">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
                         </div>
+
+                        <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+                                <li class="current dropdown"><a href="#">Home</a>
+                                    <ul>
+                                        <li><a href="index.html">Home Page 01</a></li>
+                                        <li><a href="index-2.html">Home Page 02</a></li>
+                                        <li class="dropdown"><a href="#">Header Styles</a>
+                                            <ul>
+                                                <li><a href="index.html">Header Style 01</a></li>
+                                                <li><a href="index-2.html">Header Style 02</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Windows</a>
+                                    <ul>
+                                        <li><a href="windows-instalation.html">Installation</a></li>
+                                        <li><a href="window-services.html">Service & Repair</a></li>
+                                        <li><a href="window-replacement.html">Replacement</a></li>
+                                        <li><a href="window-brands.html">Brands We Carry</a></li>
+                                        <li><a href="window-types.html">Window Types</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Doors</a>
+                                    <ul>
+                                        <li><a href="doors-instalation.html">Installation</a></li>
+                                        <li><a href="doors-repair.html">Service & Repair</a></li>
+                                        <li><a href="doors-replacement.html">Replacement</a></li>
+                                        <li><a href="doors-brands.html">Brands We Carry</a></li>
+                                        <li><a href="doors-type.html">Doors Types</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Shop</a>
+                                    <ul>
+                                        <li><a href="shop.html">Our Products</a></li>
+                                        <li><a href="shop-single.html">Product Single</a></li>
+                                        <li><a href="shoping-cart.html">Shopping Cart</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="account.html">Account</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Gallery</a>
+                                    <ul>
+                                        <li><a href="gallery.html">Gallery Style 01</a></li>
+                                        <li><a href="gallery-2.html">Gallery Style 02</a></li>
+                                        <li><a href="gallery-3.html">Gallery Style 03</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Pages</a>
+                                    <ul>
+                                        <li><a href="about.html">About Company</a></li>
+                                        <li><a href="appointment.html">Make an Appointment</a></li>
+                                        <li><a href="pricing.html">Pricing Plan</a></li>
+                                        <li><a href="faq.html">FAQ’s</a></li>
+                                        <li><a href="testimonial.html">Testimonials</a></li>
+                                        <li class="dropdown"><a href="#">Blog</a>
+                                            <ul>
+                                                <li><a href="blog.html">Our Blog</a></li>
+                                                <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
+                                                <li><a href="blog-single.html">Blog Single</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact.html">Contact us</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="cart-box">
+                            <a href="shop-single.html"><span
+                                    class="icon flaticon-shopping-cart-of-checkered-design"></span><span
+                                    class="number">0</span></a>
+                        </div>
+
                     </nav>
+
                 </div>
-            </div>
-            <div class="main-header__phone-contact-box">
-                <div class="main-header__phone-number">
-                    <a href="tel:+91 9994065696">+91 9994065696</a>
-                </div>
-                <div class="main-header__call-box">
-                    <div class="main-header__call-inner">
-                        <div class="main-header__call-icon">
-                            <span class="fas fa-phone"></span>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
+    <!--End Header Upper-->
+
+    <!--Sticky Header-->
+    <div class="sticky-header">
+        <div class="auto-container clearfix">
+            <!--Logo-->
+            <div class="logo pull-left">
+                <a href="index.html" class="img-responsive"><img src="{{ asset('assets/frontend/images/logo-small.png') }}" alt=""
+                        title=""></a>
+            </div>
+
+            <!--Right Col-->
+            <div class="right-col pull-right">
+                <!-- Main Menu -->
+                <nav class="main-menu navbar-expand-md">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent1">
+                        <ul class="navigation clearfix">
+                            <li class="current dropdown"><a href="#">Home</a>
+                                <ul>
+                                    <li><a href="index.html">Home Page 01</a></li>
+                                    <li><a href="index-2.html">Home Page 02</a></li>
+                                    <li class="dropdown"><a href="#">Header Styles</a>
+                                        <ul>
+                                            <li><a href="index.html">Header Style 01</a></li>
+                                            <li><a href="index-2.html">Header Style 02</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Windows</a>
+                                <ul>
+                                    <li><a href="windows-instalation.html">Installation</a></li>
+                                    <li><a href="window-services.html">Service & Repair</a></li>
+                                    <li><a href="window-replacement.html">Replacement</a></li>
+                                    <li><a href="window-brands.html">Brands We Carry</a></li>
+                                    <li><a href="window-types.html">Window Types</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Doors</a>
+                                <ul>
+                                    <li><a href="doors-instalation.html">Installation</a></li>
+                                    <li><a href="doors-repair.html">Service & Repair</a></li>
+                                    <li><a href="doors-replacement.html">Replacement</a></li>
+                                    <li><a href="doors-brands.html">Brands We Carry</a></li>
+                                    <li><a href="doors-type.html">Doors Types</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Shop</a>
+                                <ul>
+                                    <li><a href="shop.html">Our Products</a></li>
+                                    <li><a href="shop-single.html">Product Single</a></li>
+                                    <li><a href="shoping-cart.html">Shopping Cart</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="account.html">Account</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Gallery</a>
+                                <ul>
+                                    <li><a href="gallery.html">Gallery Style 01</a></li>
+                                    <li><a href="gallery-2.html">Gallery Style 02</a></li>
+                                    <li><a href="gallery-3.html">Gallery Style 03</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Pages</a>
+                                <ul>
+                                    <li><a href="about.html">About Company</a></li>
+                                    <li><a href="appointment.html">Make an Appointment</a></li>
+                                    <li><a href="pricing.html">Pricing Plan</a></li>
+                                    <li><a href="faq.html">FAQ’s</a></li>
+                                    <li><a href="testimonial.html">Testimonials</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Blog</a>
+                                <ul>
+                                    <li><a href="blog.html">Our Blog</a></li>
+                                    <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
+                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="contact.html">Contact us</a></li>
+                        </ul>
+                    </div>
+                </nav><!-- Main Menu End-->
+            </div>
+
+        </div>
+    </div>
+    <!--End Sticky Header-->
+
 </header>
-
-
-<div class="stricky-header stricked-menu main-menu">
-    <div class="sticky-header__content"></div>
-</div>
+<!--End Main Header -->

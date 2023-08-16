@@ -7,13 +7,11 @@
 
 </head>
 
-<body clas="custom-cursor">
-
-        {{-- @include('layout.frontend.components.cursor') --}}
-
-        @include('layout.frontend.components.loader')
+<body>
 
     <div class="page-wrapper">
+
+            {{-- @include('layout.frontend.components.loader') --}}
 
             @include('layout.frontend.components.navbar')
 

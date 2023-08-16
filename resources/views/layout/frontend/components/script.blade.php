@@ -1,26 +1,22 @@
-    <script src={{ asset('assets/frontend/vendors/jquery/jquery-3.6.0.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/bootstrap/js/bootstrap.bundle.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/jarallax/jarallax.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/jquery-appear/jquery.appear.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/jquery-circle-progress/jquery.circle-progress.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/jquery-validate/jquery.validate.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/nouislider/nouislider.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/odometer/odometer.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/swiper/swiper.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/tiny-slider/tiny-slider.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/wnumb/wNumb.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/wow/wow.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/isotope/isotope.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/countdown/countdown.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/owl-carousel/owl.carousel.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/bxslider/jquery.bxslider.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/bootstrap-select/js/bootstrap-select.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/vegas/vegas.min.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/jquery-ui/jquery-ui.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/timepicker/timePicker.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/circleType/jquery.circleType.js') }}></script>
-    <script src={{ asset('assets/frontend/vendors/circleType/jquery.lettering.min.js') }}></script>
+<script src="{{ asset('assets/frontend/js/jquery.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/popper.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/jquery.fancybox.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/appear.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/owl.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/wow.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/slick.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/script.js') }}"></script>
 
-    <script src={{ asset('assets/frontend/js/agrion.js') }}></script>
+<!-- Master Slider -->
+<script src="{{ asset('assets/frontend/js/masterslider/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/masterslider/masterslider.min.js') }}"></script>
+<!--End Master Slider -->
+
+<!--Google Map APi Key-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2uu6KHbLc_y7fyAVA4dpqSVM4w9ZnnUw"></script>
+<script src="{{ asset('assets/frontend/js/gmaps.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/map-script.js') }}"></script>
+<!--End Google Map APi-->
