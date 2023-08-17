@@ -178,7 +178,7 @@
                                                 <div class="form-group">
                                                     <label>Tax</label>
                                                     <select class="select tax_percentage" name="tax_percentage" id="tax_percentage">
-                                                        <option>No Tax</option>
+                                                        <option value="0"@if ('0' === $QuotationData->tax_percentage) selected='selected' @endif>No Tax</option>
                                                         <option value="3"@if ('3' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (3%)</option>
                                                         <option value="8"@if ('8' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (8%)</option>
                                                         <option value="12"@if ('12' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (12%)</option>

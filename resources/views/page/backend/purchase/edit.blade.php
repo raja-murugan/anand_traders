@@ -200,6 +200,7 @@
                                                     <label>Tax</label>
                                                     <select class="select purchase_taxpercentage" name="purchase_taxpercentage" id="purchase_taxpercentage">
                                                         <option>No Tax</option>
+                                                        <option value="0"@if ('0' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>No Tax</option>
                                                         <option value="3"@if ('3' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (3%)</option>
                                                         <option value="8"@if ('8' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (8%)</option>
                                                         <option value="12"@if ('12' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (12%)</option>

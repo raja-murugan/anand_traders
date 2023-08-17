@@ -178,7 +178,7 @@
                                                 <div class="form-group">
                                                     <label>Tax</label>
                                                     <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" required>
-                                                        <option>No Tax</option>
+                                                        <option value="0">No Tax</option>
                                                         <option value="3">GST - (3%)</option>
                                                         <option value="8">GST - (8%)</option>
                                                         <option value="12">GST - (12%)</option>

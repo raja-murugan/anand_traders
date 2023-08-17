@@ -193,7 +193,7 @@
                                                 <div class="form-group">
                                                     <label>Tax</label>
                                                     <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage">
-                                                        <option>No Tax</option>
+                                                        <option value="0" @if ('0' === $BillData->bill_tax_percentage) selected='selected' @endif>No Tax</option>
                                                         <option value="3"@if ('3' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (3%)</option>
                                                         <option value="8"@if ('8' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (8%)</option>
                                                         <option value="12"@if ('12' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (12%)</option>
