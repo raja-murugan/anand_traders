@@ -70,12 +70,13 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th style="width:8%">S.No</th>
-                                                        <th style="width:23%">Product</th>
-                                                        <th style="width:14%"></th>
-                                                        <th style="width:14%">Quantity</th>
-                                                        <th style="width:14%">Cost Per Quantity</th>
-
-                                                        <th style="width:20%">Cost</th>
+                                                        <th style="width:23%">Descriptions</th>
+                                                        <th style="width:10%">Width</th>
+                                                        <th style="width:10%">Heigh</th>
+                                                        <th style="width:10%">Qty</th>
+                                                        <th style="width:10%">Area/Sq.ft</th>
+                                                        <th style="width:10%">Rate</th>
+                                                        <th style="width:14%">Cost</th>
                                                         <th style="width:5%">Action</th>
                                                     </tr>
                                                 </thead>
@@ -86,7 +87,7 @@
                                                                 class="auto_num form-control" type="text" value="1"
                                                                 readonly />
                                                         </td>
-                                                        <td colspan="2"><input type="hidden" id="quotation_detail_id"
+                                                        <td><input type="hidden" id="quotation_detail_id"
                                                                 name="quotation_detail_id[]" />
                                                             <select
                                                                 class="form-control  product_id select js-example-basic-single"
@@ -101,6 +102,16 @@
                                                                 @endforeach
                                                             </select>
                                                         </td>
+                                                        <td><input type="text" class="form-control width"
+                                                            id="width" name="width[]" value="" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control height"
+                                                            id="height" name="height[]" value="" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control qty"
+                                                            id="qty" name="qty[]" value="" required />
+                                                        </td>
+                                                        {{-- Area-Sq.ft --}}
                                                         <td><input type="text" class="form-control quantity"
                                                                 id="quantity" name="quantity[]" value="" required />
                                                         </td>
@@ -118,7 +129,7 @@
                                                 </tbody>
                                                 <tbody class="extracost_tr">
                                                     <tr>
-                                                        <td colspan="2" class="text-end"
+                                                        <td colspan="4" class="text-end"
                                                             style="font-size:15px;color:black">Extra Costing</td>
                                                         <td colspan="3"><input type="text"
                                                                 class="form-control"id="extracost_note"
@@ -200,7 +211,7 @@
 
                                                                 <p>Tax Amount <span class="tax_amount">  </span></p>
                                                                 <input type="hidden" class="form-control tax_amount"name="tax_amount"id="tax_amount">
-                                                                
+
                                                                 <p>Extra Cost <span class="extracost_amount">  </span></p>
                                                                 <input type="hidden" class="form-control extracost_amount" name="extracost_amount" id="extracost_amount">
 

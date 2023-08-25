@@ -21,14 +21,14 @@
 
                                         <div class="form-group-item border-0 mb-0">
                                             <div class="row align-item-center">
-                                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Bill Number</label>
                                                         <input type="text"  class="form-control" placeholder="Enter Bill No"name="billno"
                                                             id="billno" >
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label> Date <span class="text-danger">*</span></label>
                                                         <input type="date" class="datetimepicker form-control"
@@ -37,7 +37,7 @@
                                                             required>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Time <span class="text-danger">*</span></label>
                                                         <input type="time" class="datetimepicker form-control"
@@ -61,7 +61,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Select Bank <span class="text-danger">*</span></label>
@@ -85,12 +85,13 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th style="width:8%">S.No</th>
-                                                        <th style="width:23%">Product</th>
-                                                        <th style="width:14%"></th>
-                                                        <th style="width:14%">Quantity</th>
-                                                        <th style="width:14%">Cost Per Quantity</th>
-
-                                                        <th style="width:20%">Cost</th>
+                                                        <th style="width:23%">Descriptions</th>
+                                                        <th style="width:10%">Width</th>
+                                                        <th style="width:10%">Heigh</th>
+                                                        <th style="width:10%">Qty</th>
+                                                        <th style="width:10%">Area/Sq.ft</th>
+                                                        <th style="width:10%">Rate</th>
+                                                        <th style="width:14%">Cost</th>
                                                         <th style="width:5%">Action</th>
                                                     </tr>
                                                 </thead>
@@ -101,7 +102,7 @@
                                                                 class="auto_num form-control" type="text" value="1"
                                                                 readonly />
                                                         </td>
-                                                        <td colspan="2"><input type="hidden" id="bill_detail_id"
+                                                        <td><input type="hidden" id="bill_detail_id"
                                                                 name="bill_detail_id[]" />
                                                             <select
                                                                 class="form-control  bill_product_id select js-example-basic-single"
@@ -115,6 +116,15 @@
                                                                     </option>
                                                                 @endforeach
                                                             </select>
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_width"
+                                                            id="bill_width" name="bill_width[]" value="" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_height"
+                                                            id="bill_height" name="bill_height[]" value="" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_qty"
+                                                            id="bill_qty" name="bill_qty[]" value="" required />
                                                         </td>
                                                         <td><input type="text" class="form-control bill_quantity"
                                                                 id="bill_quantity" name="bill_quantity[]" value="" required />
@@ -133,7 +143,7 @@
                                                 </tbody>
                                                 <tbody class="billextracost_tr">
                                                     <tr>
-                                                        <td colspan="2" class="text-end"
+                                                        <td colspan="4" class="text-end"
                                                             style="font-size:15px;color:black">Extra Costing</td>
                                                         <td colspan="3"><input type="text"
                                                                 class="form-control"id="bill_extracost_note"
@@ -215,7 +225,7 @@
 
                                                                 <p>Tax Amount <span class="billtax_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount">
-                                                                
+
                                                                 <p>Extra Cost <span class="billextracost_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_extracost_amount" name="bill_extracost_amount" id="bill_extracost_amount">
 

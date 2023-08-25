@@ -12,7 +12,10 @@ class QuotationProduct extends Model
     protected $fillable = [
         'quotation_id',
         'product_id',
-        'quantity',
+        'width',
+        'height',
+        'qty',
+        'quantity', // Area-Sq.ft
         'rateper_quantity',
         'product_total',
         'soft_delete'

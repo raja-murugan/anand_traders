@@ -63,7 +63,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Select Bank <span class="text-danger">*</span></label>
@@ -88,12 +88,13 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th style="width:8%">S.No</th>
-                                                        <th style="width:23%">Product</th>
-                                                        <th style="width:14%"></th>
-                                                        <th style="width:14%">Quantity</th>
-                                                        <th style="width:14%">Cost Per Quantity</th>
-
-                                                        <th style="width:20%">Cost</th>
+                                                        <th style="width:23%">Descriptions</th>
+                                                        <th style="width:10%">Width</th>
+                                                        <th style="width:10%">Heigh</th>
+                                                        <th style="width:10%">Qty</th>
+                                                        <th style="width:10%">Area/Sq.ft</th>
+                                                        <th style="width:10%">Rate</th>
+                                                        <th style="width:14%">Cost</th>
                                                         <th style="width:5%">Action</th>
                                                     </tr>
                                                 </thead>
@@ -105,7 +106,7 @@
                                                                 class="auto_num form-control" type="text" value="{{ $index + 1 }}"
                                                                 readonly />
                                                         </td>
-                                                        <td colspan="2"><input type="hidden" id="bill_detail_id"
+                                                        <td><input type="hidden" id="bill_detail_id"
                                                                 name="bill_detail_id[]" value="{{ $BillProduct->id }}"/>
                                                             <select
                                                                 class="form-control  bill_product_id select js-example-basic-single"
@@ -120,6 +121,15 @@
                                                                         </option>
                                                                 @endforeach
                                                             </select>
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_width"
+                                                            id="bill_width" name="bill_width[]" value="{{ $BillProduct->bill_width }}" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_height"
+                                                            id="bill_height" name="bill_height[]" value="{{ $BillProduct->bill_height }}" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_qty"
+                                                            id="bill_qty" name="bill_qty[]" value="{{ $BillProduct->bill_qty }}" required />
                                                         </td>
                                                         <td><input type="text" class="form-control bill_quantity"
                                                                 id="bill_quantity" name="bill_quantity[]" value="{{ $BillProduct->bill_quantity }}" required />
@@ -147,7 +157,7 @@
                                                 <tbody class="billextracost_tr">
                                                 @foreach ($BillExtracosts as $index => $BillExtracosts_arr)
                                                     <tr>
-                                                        <td colspan="2" class="text-end"style="font-size:15px;color:black">Extra Costing</td>
+                                                        <td colspan="4" class="text-end"style="font-size:15px;color:black">Extra Costing</td>
                                                         <td colspan="3">
                                                             <input type="hidden" id="billextracost_detail_id"name="billextracost_detail_id[]"value="{{ $BillExtracosts_arr->id }}" />
                                                             <input type="text" class="form-control"id="bill_extracost_note"
@@ -230,7 +240,7 @@
 
                                                                 <p>Tax Amount <span class="billtax_amount">₹  {{ $BillData->bill_tax_amount }}  </span></p>
                                                                 <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount" value="{{ $BillData->bill_tax_amount }}">
-                                                                
+
                                                                 <p>Extra Cost <span class="billextracost_amount">₹  {{ $BillData->bill_extracost_amount }} </span></p>
                                                                 <input type="hidden" class="form-control bill_extracost_amount" name="bill_extracost_amount" id="bill_extracost_amount" value="{{ $BillData->bill_extracost_amount }}">
 

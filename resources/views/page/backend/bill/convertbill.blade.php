@@ -22,14 +22,14 @@
                                         <div class="form-group-item border-0 mb-0">
                                             <div class="row align-item-center">
                                                 <input type="hidden" class="form-control quotation_id" name="quotation_id" id="quotation_id" value="{{ $QuotationData->id }}">
-                                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Bill No <span class="text-danger">*</span></label>
                                                         <input type="text"  class="form-control" name="billno" placeholder="Enter Bill No"
                                                             id="billno" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label> Date <span class="text-danger">*</span></label>
                                                         <input type="date" class="datetimepicker form-control"
@@ -38,7 +38,7 @@
                                                             required>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Time <span class="text-danger">*</span></label>
                                                         <input type="time" class="datetimepicker form-control"
@@ -86,12 +86,14 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th style="width:8%">S.No</th>
-                                                        <th style="width:23%">Product</th>
-                                                        <th style="width:14%"></th>
-                                                        <th style="width:14%">Quantity</th>
-                                                        <th style="width:14%">Cost Per Quantity</th>
-
-                                                        <th style="width:20%">Cost</th>
+                                                        <th style="width:23%">Descriptions</th>
+                                                        <th style="width:10%">Width</th>
+                                                        <th style="width:10%">Heigh</th>
+                                                        <th style="width:10%">Qty</th>
+                                                        <th style="width:10%">Area/Sq.ft</th>
+                                                        <th style="width:10%">Rate</th>
+                                                        <th style="width:14%">Cost</th>
+                                                        {{-- <th style="width:5%">Action</th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody class="">
@@ -102,7 +104,7 @@
                                                                 class="auto_num form-control" type="text" value="{{ $index + 1 }}"
                                                                 readonly />
                                                         </td>
-                                                        <td colspan="2"><input type="hidden" id="bill_detail_id"
+                                                        <td><input type="hidden" id="bill_detail_id"
                                                                 name="bill_detail_id[]" value="{{ $QuotationProduct->id }}"/>
                                                             <select class="form-control" disabled>
                                                                 <option value="" selected hidden class="text-muted" >
@@ -117,11 +119,20 @@
                                                             </select>
                                                             <input type="hidden" name="bill_product_id[]" id="bill_product_id" value="{{ $QuotationProduct->product_id }}"/>
                                                         </td>
-                                                        <td><input type="text" class="form-control bill_quantity" readonly
+                                                        <td><input type="text" class="form-control bill_width"
+                                                            id="bill_width" name="bill_width[]" value="{{ $QuotationProduct->width }}" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_height"
+                                                            id="bill_height" name="bill_height[]" value="{{ $QuotationProduct->height }}" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_qty"
+                                                            id="bill_qty" name="bill_qty[]" value="{{ $QuotationProduct->qty }}" required />
+                                                        </td>
+                                                        <td><input type="text" class="form-control bill_quantity"
                                                                 id="bill_quantity" name="bill_quantity[]" value="{{ $QuotationProduct->quantity }}"  />
                                                         </td>
                                                         <td><input type="text" class="form-control bill_rateper_quantity"
-                                                                id="bill_rateper_quantity" name="bill_rateper_quantity[]" readonly
+                                                                id="bill_rateper_quantity" name="bill_rateper_quantity[]"
                                                                 value="{{ $QuotationProduct->rateper_quantity }}"  /></td>
                                                         <td><input type="text" class="form-control bill_product_total"
                                                                 readonly id="bill_product_total"
@@ -221,17 +232,17 @@
 
                                                                 <p>Tax Amount <span class="billtax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
                                                                 <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount" value="{{ $QuotationData->tax_amount }}">
-                                                                
+
                                                                 <p>Extra Cost <span class="billextracost_amount">₹  {{ $QuotationData->extracost_amount }} </span></p>
                                                                 <input type="hidden" class="form-control bill_extracost_amount" name="bill_extracost_amount" id="bill_extracost_amount" value="{{ $QuotationData->extracost_amount }}">
 
                                                             </div>
                                                             <div class="invoice-total-footer">
                                                                 <h4>Grand Total <span class="">₹  {{ $QuotationData->grand_total }} </span></h4>
-                                                                
+
                                                                 <input type="hidden" class="form-control bill_grand_total" name="bill_grand_total" id="bill_grand_total" value="{{ $QuotationData->grand_total }}">
 
-                                                               
+
                                                             </div>
                                                             <div class="invoice-total-footer">
                                                                 <h4>Paid Amount <span class=""><input type="text" class="form-control bill_paid_amount"  name="bill_paid_amount" id="bill_paid_amount" placeholder="Paid Amount"> </span></h4>

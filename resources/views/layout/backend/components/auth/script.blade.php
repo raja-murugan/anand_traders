@@ -91,10 +91,13 @@
                 $(".product_fields").append(
                     '<tr>' +
                     '<td><input class="auto_num form-control"  type="text" readonly value="'+rowIndexx+'"/></td>' +
-                    '<td colspan="2" class=""><input type="hidden" id="quotation_detail_id" name="quotation_detail_id[]" />' +
+                    '<td class=""><input type="hidden" id="quotation_detail_id" name="quotation_detail_id[]" />' +
                     '<select class="form-control js-example-basic-single product_id select"name="product_id[]" id="product_id' + i + '"required>' +
                     '<option value="" selected hidden class="text-muted">Select Product</option></select>' +
                     '</td>' +
+                    '<td><input type="text" class="form-control width" id="width" name="width[]" value="" required /></td>' +
+                    '<td><input type="text" class="form-control height" id="height" name="height[]" value="" required /></td>' +
+                    '<td><input type="text" class="form-control qty" id="qty" name="qty[]" value="" required /></td>' +
                     '<td><input type="text" class="form-control quantity" id="quantity" name="quantity[]"  value="" required /></td>' +
                     '<td><input type="text" class="form-control rateper_quantity" id="rateper_quantity" name="rateper_quantity[]"  value="" required /></td>' +
                     '<td><input type="text" class="form-control product_total" readonly id="product_total"style="background-color: #e9ecef;" name="product_total[]" placeholder="Total" /></td>' +
@@ -204,7 +207,7 @@
             $(document).on('click', '.addextranotefields', function() {
                 $(".extracost_tr").append(
                     '<tr>' +
-                    '<td colspan="2"></td>' +
+                    '<td colspan="4"></td>' +
                     '<td colspan="3"><input type="text" class="form-control"id="extracost_note" placeholder="Note" value=""name="extracost_note[]" /></td>' +
                     '<td><input type="hidden" name="extracost_id[]"/><input type="text" class="form-control extracost" id="extracost"placeholder="Extra Cost"  name="extracost[]"value="" /></td>' +
                     '<td><button class="btn btn-danger form-plus-btn remove-extratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
@@ -338,7 +341,7 @@
                 $('.tax_amount').text('₹ ' + tax_amount);
                 var extracost_amount = $(".extracost_amount").val();
 
-       
+
         var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
         $('.grand_total').text('₹ ' + grand_total);
@@ -434,7 +437,7 @@
                                     $('.sub_total').val(totalAmount);
                                     $('.sub_total').text('₹ ' + totalAmount);
                             });
-        
+
 
 
             var discount_type = $("#discount_type").val();
@@ -472,7 +475,7 @@
                 $('.tax_amount').text('₹ ' + tax_amount);
         var extracost_amount = $(".extracost_amount").val();
 
-       
+
         var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
         $('.grand_total').text('₹ ' + grand_total);
@@ -497,7 +500,7 @@
         var tax_amount = $('.tax_amount').val();
         var extracost_amount = $(".extracost_amount").val();
 
-       
+
         var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
         $('.grand_total').val(grand_total);
         $('.grand_total').text('₹ ' + grand_total);
@@ -516,10 +519,13 @@
                 $(".billproduct_fields").append(
                     '<tr>' +
                     '<td><input class="auto_num form-control"  type="text" readonly value="'+rowIndexx+'"/></td>' +
-                    '<td colspan="2" class=""><input type="hidden" id="bill_detail_id" name="bill_detail_id[]" />' +
+                    '<td class=""><input type="hidden" id="bill_detail_id" name="bill_detail_id[]" />' +
                     '<select class="form-control js-example-basic-single bill_product_id select"name="bill_product_id[]" id="bill_product_id' + k + '"required>' +
                     '<option value="" selected hidden class="text-muted">Select Product</option></select>' +
                     '</td>' +
+                    '<td><input type="text" class="form-control bill_width" id="bill_width" name="bill_width[]" value="" required /></td>' +
+                    '<td><input type="text" class="form-control bill_height" id="bill_height" name="bill_height[]" value="" required /></td>' +
+                    '<td><input type="text" class="form-control bill_qty" id="bill_qty" name="bill_qty[]" value="" required /></td>' +
                     '<td><input type="text" class="form-control bill_quantity" id="bill_quantity" name="bill_quantity[]"  value="" required /></td>' +
                     '<td><input type="text" class="form-control bill_rateper_quantity" id="bill_rateper_quantity" name="bill_rateper_quantity[]"  value="" required /></td>' +
                     '<td><input type="text" class="form-control bill_product_total" readonly id="bill_product_total"style="background-color: #e9ecef;" name="bill_product_total[]" placeholder="Total" /></td>' +
@@ -561,14 +567,14 @@
             $(document).on('click', '.addbillextranotefields', function() {
                 $(".billextracost_tr").append(
                     '<tr>' +
-                    '<td colspan="2"></td>' +
+                    '<td colspan="4"></td>' +
                     '<td colspan="3"><input type="text" class="form-control"id="bill_extracost_note" placeholder="Note" value=""name="bill_extracost_note[]" /></td>' +
                     '<td><input type="hidden" name="billextracost_detail_id[]"/><input type="text" class="form-control bill_extracost" id="bill_extracost"placeholder="Extra Cost"  name="bill_extracost[]"value="" /></td>' +
                     '<td><button class="btn btn-danger form-plus-btn remove-billextratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
                     '</tr>'
                 );
             });
-        
+
 
 
 
@@ -710,7 +716,7 @@
         });
 
 
-            
+
     $(document).on("blur", "input[name*=bill_quantity]", function() {
         var bill_quantity = $(this).val();
         var bill_rateper_quantity = $(this).parents('tr').find('.bill_rateper_quantity').val();
@@ -765,7 +771,7 @@
                 $('.billtax_amount').text('₹ ' + bill_tax_amount);
                 var bill_extracost_amount = $(".bill_extracost_amount").val();
 
-       
+
         var bill_grand_total = Number(bill_total_amount) + Number(bill_tax_amount) + Number(bill_extracost_amount);
         $('.bill_grand_total').val(bill_grand_total);
         $('.billgrand_total').text('₹ ' + bill_grand_total);
@@ -888,7 +894,7 @@
                                     $('.bill_sub_total').val(totalAmount);
                                     $('.billsub_total').text('₹ ' + totalAmount);
                             });
-        
+
 
 
             var bill_discount_type = $("#bill_discount_type").val();
@@ -918,7 +924,7 @@
 
             }
 
-       
+
         var bill_tax_percentage = $( "#bill_tax_percentage option:selected" ).val();
                 var bill_total_amount = $(".bill_total_amount").val();
                 var bill_tax_amount = (bill_tax_percentage / 100) * bill_total_amount;
@@ -926,7 +932,7 @@
                 $('.billtax_amount').text('₹ ' + bill_tax_amount);
         var bill_extracost_amount = $(".bill_extracost_amount").val();
 
-       
+
         var bill_grand_total = Number(bill_total_amount) + Number(bill_tax_amount) + Number(bill_extracost_amount);
         $('.bill_grand_total').val(bill_grand_total);
         $('.billgrand_total').text('₹ ' + bill_grand_total);
@@ -956,7 +962,7 @@
         var bill_tax_amount = $('.bill_tax_amount').val();
         var bill_extracost_amount = $(".bill_extracost_amount").val();
 
-       
+
         var bill_grand_total = Number(bill_total_amount) + Number(bill_tax_amount) + Number(bill_extracost_amount);
         $('.bill_grand_total').val(bill_grand_total);
         $('.billgrand_total').text('₹ ' + bill_grand_total);
@@ -1048,7 +1054,7 @@
                     '</tr>'
                 );
             });
-        
+
 
 
 
@@ -1368,7 +1374,7 @@
                                     $('.purchase_subtotal').val(totalAmount);
                                     $('.purchasesubtotal').text('₹ ' + totalAmount);
                             });
-        
+
 
 
                             var purchase_discounttype = $("#purchase_discounttype").val();
@@ -1398,7 +1404,7 @@
 
                             }
 
-       
+
             var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
                 var purchase_totalamount = $(".purchase_totalamount").val();
                 var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
@@ -1435,7 +1441,7 @@
         var purchase_taxamount = $('.purchase_taxamount').val();
         var purchase_extracostamount = $(".purchase_extracostamount").val();
 
-       
+
         var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
         $('.purchase_grandtotal').val(purchase_grandtotal);
         $('.purchasegrandtotal').text('₹ ' + purchase_grandtotal);
@@ -1538,7 +1544,7 @@
                 var customerpayment_paidamount = $(".customerpayment_paidamount").val();
                 var payment_pending_amount = Number(Totalbillpayment) - Number(customerpayment_paidamount);
                 $('.customerpayment_paymentpending').val(payment_pending_amount.toFixed(2));
-                
+
             });
 
             $(document).on("keyup", 'input.customerpayment_paidamount', function() {
@@ -1584,7 +1590,7 @@
                 var vendorpayment_paidamount = $(".vendorpayment_paidamount").val();
                 var payment_pending_amount = Number(Totalbillpayment) - Number(vendorpayment_paidamount);
                 $('.vendorpayment_paymentpending').val(payment_pending_amount.toFixed(2));
-                
+
             });
 
             $(document).on("keyup", 'input.vendorpayment_paidamount', function() {

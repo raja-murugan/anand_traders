@@ -112,7 +112,10 @@ class QuotationController extends Controller
             $QuotationProduct = new QuotationProduct;
             $QuotationProduct->quotation_id = $quotation_id;
             $QuotationProduct->product_id = $product_id;
-            $QuotationProduct->quantity = $request->quantity[$key];
+            $QuotationProduct->width = $request->width[$key];
+            $QuotationProduct->height = $request->height[$key];
+            $QuotationProduct->qty = $request->qty[$key];
+            $QuotationProduct->quantity = $request->quantity[$key]; // Area-Sq.ft
             $QuotationProduct->rateper_quantity = $request->rateper_quantity[$key];
             $QuotationProduct->product_total = $request->product_total[$key];
             $QuotationProduct->save();
@@ -169,7 +172,7 @@ class QuotationController extends Controller
         $QuotationData->tax_amount = $request->get('tax_amount');
         $QuotationData->extracost_amount = $request->get('extracost_amount');
         $QuotationData->grand_total = $request->get('grand_total');
-        
+
         $QuotationData->update();
 
         $quotation_id = $QuotationData->id;
@@ -201,12 +204,15 @@ class QuotationController extends Controller
 
                 $ids = $quotation_detail_id;
                 $product_id = $request->product_id[$key];
+                $width = $request->width[$key];
+                $height = $request->height[$key];
+                $qty = $request->qty[$key];
                 $quantity = $request->quantity[$key];
                 $rateper_quantity = $request->rateper_quantity[$key];
                 $product_total = $request->product_total[$key];
 
                 DB::table('quotation_products')->where('id', $ids)->update([
-                    'quotation_id' => $quotation_id, 'product_id' => $product_id, 'quantity' => $quantity, 'rateper_quantity' => $rateper_quantity, 'product_total' => $product_total
+                    'quotation_id' => $quotation_id, 'product_id' => $product_id, 'width' => $width, 'height' => $height, 'qty' => $qty, 'quantity' => $quantity, 'rateper_quantity' => $rateper_quantity, 'product_total' => $product_total
                 ]);
 
             } else if ($quotation_detail_id == '') {
@@ -214,6 +220,9 @@ class QuotationController extends Controller
                 $QuotationProduct = new QuotationProduct;
                 $QuotationProduct->quotation_id = $quotation_id;
                 $QuotationProduct->product_id = $request->product_id[$key];
+                $QuotationProduct->width = $request->width[$key];
+                $QuotationProduct->height = $request->height[$key];
+                $QuotationProduct->qty = $request->qty[$key];
                 $QuotationProduct->quantity = $request->quantity[$key];
                 $QuotationProduct->rateper_quantity = $request->rateper_quantity[$key];
                 $QuotationProduct->product_total = $request->product_total[$key];

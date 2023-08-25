@@ -117,6 +117,9 @@ class BillController extends Controller
             $BillProduct = new BillProduct;
             $BillProduct->bill_id = $bill_id;
             $BillProduct->bill_product_id = $bill_product_id;
+            $BillProduct->bill_width = $request->bill_width[$key];
+            $BillProduct->bill_height = $request->bill_height[$key];
+            $BillProduct->bill_qty = $request->bill_qty[$key];
             $BillProduct->bill_quantity = $request->bill_quantity[$key];
             $BillProduct->bill_rateper_quantity = $request->bill_rateper_quantity[$key];
             $BillProduct->bill_product_total = $request->bill_product_total[$key];
@@ -208,6 +211,9 @@ class BillController extends Controller
             $BillProduct = new BillProduct;
             $BillProduct->bill_id = $bill_id;
             $BillProduct->bill_product_id = $bill_product_id;
+            $BillProduct->bill_width = $request->bill_width[$key];
+            $BillProduct->bill_height = $request->bill_height[$key];
+            $BillProduct->bill_qty = $request->bill_qty[$key];
             $BillProduct->bill_quantity = $request->bill_quantity[$key];
             $BillProduct->bill_rateper_quantity = $request->bill_rateper_quantity[$key];
             $BillProduct->bill_product_total = $request->bill_product_total[$key];
@@ -342,7 +348,7 @@ class BillController extends Controller
         $BillData->bill_grand_total = $request->get('bill_grand_total');
         $BillData->bill_paid_amount = $request->get('bill_paid_amount');
         $BillData->bill_balance_amount = $request->get('bill_balance_amount');
-        
+
         $BillData->update();
 
         $bill_id = $BillData->id;
@@ -374,12 +380,15 @@ class BillController extends Controller
 
                 $ids = $bill_detail_id;
                 $bill_product_id = $request->bill_product_id[$key];
+                $bill_width = $request->bill_width[$key];
+                $bill_height = $request->bill_height[$key];
+                $bill_qty = $request->bill_qty[$key];
                 $bill_quantity = $request->bill_quantity[$key];
                 $bill_rateper_quantity = $request->bill_rateper_quantity[$key];
                 $bill_product_total = $request->bill_product_total[$key];
 
                 DB::table('bill_products')->where('id', $ids)->update([
-                    'bill_id' => $bill_id, 'bill_product_id' => $bill_product_id, 'bill_quantity' => $bill_quantity, 'bill_rateper_quantity' => $bill_rateper_quantity, 'bill_product_total' => $bill_product_total
+                    'bill_id' => $bill_id, 'bill_product_id' => $bill_product_id, 'bill_width' => $bill_width, 'bill_height' => $bill_height, 'bill_qty' => $bill_qty, 'bill_quantity' => $bill_quantity, 'bill_rateper_quantity' => $bill_rateper_quantity, 'bill_product_total' => $bill_product_total
                 ]);
 
             } else if ($bill_detail_id == '') {
@@ -387,6 +396,9 @@ class BillController extends Controller
                 $BillProduct = new BillProduct;
                 $BillProduct->bill_id = $bill_id;
                 $BillProduct->bill_product_id = $request->bill_product_id[$key];
+                $BillProduct->bill_width = $request->bill_width[$key];
+                $BillProduct->bill_height = $request->bill_height[$key];
+                $BillProduct->bill_qty = $request->bill_qty[$key];
                 $BillProduct->bill_quantity = $request->bill_quantity[$key];
                 $BillProduct->bill_rateper_quantity = $request->bill_rateper_quantity[$key];
                 $BillProduct->bill_product_total = $request->bill_product_total[$key];

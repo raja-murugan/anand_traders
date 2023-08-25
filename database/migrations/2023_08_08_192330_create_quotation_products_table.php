@@ -22,7 +22,10 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
-            $table->string('quantity')->nullable();
+            $table->string('width')->nullable();
+            $table->string('height')->nullable();
+            $table->string('qty')->nullable();
+            $table->string('quantity')->nullable(); // Area-Sq.ft
             $table->string('rateper_quantity')->nullable();
             $table->string('product_total')->nullable();
             $table->boolean('soft_delete')->default(0);
