@@ -29,16 +29,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/print', function () {
+    return view('page.backend.quotation.print');
+});
+
 Auth::routes();
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DASHBOARD
     Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home');
 });
-
-
-
-
 // BANK CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -50,7 +50,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/bank/delete/{unique_key}', [BankController::class, 'delete'])->name('bank.delete');
 });
-
 // PRODUCT CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -62,7 +61,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/product/delete/{unique_key}', [ProductController::class, 'delete'])->name('product.delete');
 });
-
 // ADDON CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -74,7 +72,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/addon/delete/{unique_key}', [AddonController::class, 'delete'])->name('addon.delete');
 });
-
 // CUSTOMER CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -88,7 +85,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // CHECK DUPLICATE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/customer/checkduplicate', [CustomerController::class, 'checkduplicate'])->name('customer.checkduplicate');
 });
-
 // VENDOR CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -102,7 +98,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // CHECK DUPLICATE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/vendor/checkduplicate', [VendorController::class, 'checkduplicate'])->name('vendor.checkduplicate');
 });
-
 // QUOTATION CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -120,9 +115,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // GENERATE BILL
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/quotation/convertbill/{unique_key}', [QuotationController::class, 'convertbill'])->name('quotation.convertbill');
 });
-
-
-
 // BILL CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -140,7 +132,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/bill/delete/{unique_key}', [BillController::class, 'delete'])->name('bill.delete');
 });
-
 // EXPENSES CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -156,9 +147,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/expense/delete/{unique_key}', [ExpenseController::class, 'delete'])->name('expense.delete');
 });
-
-
-
 // CUSTOMER PAYMENT CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -175,8 +163,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/customer_payment/delete/{unique_key}', [CustomerPaymentController::class, 'delete'])->name('customer_payment.delete');
 
 });
-
-
 // VENDOR PAYMENT CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -193,10 +179,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/vendor_payment/delete/{unique_key}', [VendorPaymentController::class, 'delete'])->name('vendor_payment.delete');
 
 });
-
-
-
-
 // PURCHASE CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // INDEX
@@ -212,7 +194,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/purchase/delete/{unique_key}', [PurchaseController::class, 'delete'])->name('purchase.delete');
 });
-
 Route::get('getProducts/', [ProductController::class, 'getProducts']);
 Route::get('/oldbalanceforCustomerPayment', [BillController::class, 'oldbalanceforCustomerPayment']);
 Route::get('/oldbalanceforvendorPayment', [PurchaseController::class, 'oldbalanceforvendorPayment']);

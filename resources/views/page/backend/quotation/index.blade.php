@@ -54,8 +54,12 @@
                                              data-bs-target=".quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                        <li>
-                                             <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}" 
+                                             <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}"
                                              class="badge bg-primary-light" style="color:#28084b;">Convert to Bill</a>
+                                       </li>
+                                       <li>
+                                            <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}"
+                                            class="badge bg-info" style="color:#28084b;">Print</a>
                                        </li>
                                     </ul>
                                  </td>
