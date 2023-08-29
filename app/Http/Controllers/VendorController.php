@@ -14,7 +14,25 @@ class VendorController extends Controller
     public function index()
     {
         $data = Vendor::where('soft_delete', '!=', 1)->get();
-        return view('page.backend.vendor.index', compact('data'));
+
+        $Vendor_data = [];
+        foreach ($data as $key => $datas) {
+
+            $PaymentBalanceAmount = PaymentBalance::where('vendor_id', '=', $datas->id)->first();
+
+            $Vendor_data[] = array(
+                'name' => $datas->name,
+                'unique_key' => $datas->unique_key,
+                'address' => $datas->address,
+                'phone_number' => $datas->phone_number,
+                'email_id' => $datas->email_id,
+                'id' => $datas->id,
+                'shop_name' => $datas->shop_name,
+                'vendor_balance' => $PaymentBalanceAmount->vendor_balance,
+            );
+
+        }
+        return view('page.backend.vendor.index', compact('Vendor_data'));
     }
 
 

@@ -25,7 +25,7 @@
                                                     <div class="form-group">
                                                         <label>Bill Number</label>
                                                         <input type="text"  class="form-control" placeholder="Enter Bill No"name="billno"
-                                                            id="billno" >
+                                                            id="billno" value="{{$billno}}" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-6 col-sm-12">

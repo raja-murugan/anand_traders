@@ -71,7 +71,15 @@ class BillController extends Controller
         $today = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
 
-        return view('page.backend.bill.create', compact('customer', 'today', 'timenow', 'product', 'bank'));
+
+        $Latest_Bill = Bill::latest('id')->first();
+        if($Latest_Bill != ''){
+            $billno = $Latest_Bill->billno + 1;
+        }else {
+            $billno = 1;
+        }
+
+        return view('page.backend.bill.create', compact('customer', 'today', 'timenow', 'product', 'bank', 'billno'));
     }
 
 

@@ -39,39 +39,39 @@
                               </tr>
                            </thead>
                            <tbody>
-                           @foreach ($data as $keydata => $vendor_data)
+                           @foreach ($Vendor_data as $keydata => $vendor_data)
                               <tr>
                                  <td>{{ ++$keydata }}</td>
-                                 <td>{{ $vendor_data->name }}</td>
-                                 <td>{{ $vendor_data->address }}</td>
-                                 <td>{{ $vendor_data->phone_number }}</td>
-                                 <td>{{ $vendor_data->email_id }}</td>
-                                 <td>{{ $vendor_data->shop_name }}</td>
-                                 <td>{{ $vendor_data->balance_amount }}</td>
+                                 <td>{{ $vendor_data['name'] }}</td>
+                                 <td>{{ $vendor_data['address'] }}</td>
+                                 <td>{{ $vendor_data['phone_number'] }}</td>
+                                 <td>{{ $vendor_data['email_id'] }}</td>
+                                 <td>{{ $vendor_data['shop_name'] }}</td>
+                                 <td>{{ $vendor_data['vendor_balance'] }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                          <a class="badge bg-warning-light" href="#edit{{ $vendor_data->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".vendoredit-modal-xl{{ $vendor_data->unique_key }}" style="color: #28084b;">Edit</a>
+                                          <a class="badge bg-warning-light" href="#edit{{ $vendor_data['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".vendoredit-modal-xl{{ $vendor_data['unique_key'] }}" style="color: #28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          <a href="#delete{{ $vendor_data->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".vendordelete-modal-xl{{ $vendor_data->unique_key }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a href="#delete{{ $vendor_data['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".vendordelete-modal-xl{{ $vendor_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
 
-                              <div class="modal fade vendoredit-modal-xl{{ $vendor_data->unique_key }}"
+                              <div class="modal fade vendoredit-modal-xl{{ $vendor_data['unique_key'] }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="vendoreditLargeModalLabel{{ $vendor_data->unique_key }}"
+                                    aria-labelledby="vendoreditLargeModalLabel{{ $vendor_data['unique_key'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.vendor.edit')
                               </div>
-                              <div class="modal fade vendordelete-modal-xl{{ $vendor_data->unique_key }}"
+                              <div class="modal fade vendordelete-modal-xl{{ $vendor_data['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="vendordeleteLargeModalLabel{{ $vendor_data->unique_key }}"
+                                    aria-labelledby="vendordeleteLargeModalLabel{{ $vendor_data['unique_key'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.vendor.delete')
                               </div>

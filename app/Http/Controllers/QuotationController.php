@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Bank;
 use App\Models\Quotation;
 use App\Models\Product;
+use App\Models\Bill;
 use App\Models\QuotationProduct;
 use App\Models\QuotationExtracost;
 use Illuminate\Http\Request;
@@ -302,6 +303,13 @@ class QuotationController extends Controller
         $QuotationProducts = QuotationProduct::where('quotation_id', '=', $QuotationData->id)->get();
         $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $QuotationData->id)->get();
 
-        return view('page.backend.bill.convertbill', compact('QuotationData', 'customer', 'product', 'QuotationProducts', 'QuotationExtracosts', 'bank'));
+        $Latest_Bill = Bill::latest('id')->first();
+        if($Latest_Bill != ''){
+            $billno = $Latest_Bill->billno + 1;
+        }else {
+            $billno = 1;
+        }
+
+        return view('page.backend.bill.convertbill', compact('QuotationData', 'customer', 'product', 'QuotationProducts', 'QuotationExtracosts', 'bank', 'billno'));
     }
 }

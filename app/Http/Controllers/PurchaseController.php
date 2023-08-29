@@ -72,7 +72,16 @@ class PurchaseController extends Controller
         $today = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
 
-        return view('page.backend.purchase.create', compact('vendor', 'today', 'timenow', 'product', 'bank'));
+        $LatestPurchase = Purchase::latest('id')->first();
+        if($LatestPurchase != ''){
+            $purchase_number = $LatestPurchase->purchase_number + 1;
+        }else {
+            $purchase_number = 1;
+        }
+
+
+
+        return view('page.backend.purchase.create', compact('vendor', 'today', 'timenow', 'product', 'bank', 'purchase_number'));
     }
 
 

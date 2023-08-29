@@ -14,7 +14,24 @@ class CustomerController extends Controller
     public function index()
     {
         $data = Customer::where('soft_delete', '!=', 1)->get();
-        return view('page.backend.customer.index', compact('data'));
+
+        $Customer_data = [];
+        foreach ($data as $key => $datas) {
+
+            $PaymentBalanceAmount = PaymentBalance::where('customer_id', '=', $datas->id)->first();
+
+            $Customer_data[] = array(
+                'name' => $datas->name,
+                'unique_key' => $datas->unique_key,
+                'address' => $datas->address,
+                'phone_number' => $datas->phone_number,
+                'email_id' => $datas->email_id,
+                'id' => $datas->id,
+                'customer_balance' => $PaymentBalanceAmount->customer_balance,
+            );
+
+        }
+        return view('page.backend.customer.index', compact('Customer_data'));
     }
 
 

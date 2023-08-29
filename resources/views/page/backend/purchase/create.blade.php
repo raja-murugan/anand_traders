@@ -24,7 +24,7 @@
                                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Purchase Number</label>
-                                                        <input type="text"  class="form-control" placeholder="Enter Purchase No"name="purchase_number"
+                                                        <input type="text" value="{{ $purchase_number}}" readonly class="form-control" placeholder="Enter Purchase No"name="purchase_number"
                                                             id="purchase_number" >
                                                     </div>
                                                 </div>

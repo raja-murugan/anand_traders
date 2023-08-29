@@ -26,7 +26,7 @@
                                                     <div class="form-group">
                                                         <label>Bill No <span class="text-danger">*</span></label>
                                                         <input type="text"  class="form-control" name="billno" placeholder="Enter Bill No"
-                                                            id="billno" required>
+                                                            id="billno" value="{{$billno}}" readonly required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-6 col-sm-12">
@@ -83,6 +83,7 @@
 
                                         <div class="table-responsive no-pagination">
                                             <table class="table table-center table-hover datatable">
+                                            <button class="btn btn-primary form-plus-btn addbillproductfields" type="button" id="" value="Add">Add Products</button>
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th style="width:8%">S.No</th>
@@ -93,10 +94,10 @@
                                                         <th style="width:10%">Area/Sq.ft</th>
                                                         <th style="width:10%">Rate</th>
                                                         <th style="width:14%">Cost</th>
-                                                        {{-- <th style="width:5%">Action</th> --}}
+                                                        <th style="width:5%">Action</th> 
                                                     </tr>
                                                 </thead>
-                                                <tbody class="">
+                                                <tbody class="billproduct_fields">
                                                 @foreach ($QuotationProducts as $index => $QuotationProduct)
                                                     <tr>
                                                         <td>
@@ -106,7 +107,7 @@
                                                         </td>
                                                         <td><input type="hidden" id="bill_detail_id"
                                                                 name="bill_detail_id[]" value="{{ $QuotationProduct->id }}"/>
-                                                            <select class="form-control" disabled>
+                                                            <select class="form-control">
                                                                 <option value="" selected hidden class="text-muted" >
                                                                     Select Product
                                                                 </option>
@@ -138,6 +139,9 @@
                                                                 readonly id="bill_product_total"
                                                                 style="background-color: #e9ecef;" name="bill_product_total[]"
                                                                 placeholder="Total" value="{{ $QuotationProduct->product_total }}"/></td>
+                                                        <td>
+                                                        <button class="btn btn-danger form-plus-btn billremove-tr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button>
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -146,21 +150,25 @@
                                             <hr>
                                             <table class="table table-center table-hover datatable">
                                                 <thead class="thead-light">
+                                                <button class="btn btn-primary form-plus-btn addbillextranotefields" type="button" id="" value="Add">Add Extra Cost</button>
                                                 </thead>
-                                                <tbody class="extracost_tr">
+                                                <tbody class="billextracost_tr">
                                                 @foreach ($QuotationExtracosts as $index => $QuotationExtracosts_arr)
                                                     <tr>
-                                                        <td colspan="2" class="text-end"style="font-size:15px;color:black">Extra Costing</td>
+                                                        <td colspan="4" class="text-end"style="font-size:15px;color:black">Extra Costing</td>
                                                         <td colspan="3">
                                                             <input type="hidden" id="billextracost_detail_id"name="billextracost_detail_id[]"value="{{ $QuotationExtracosts_arr->id }}" />
-                                                            <input type="text" class="form-control"id="bill_extracost_note" readonly
+                                                            <input type="text" class="form-control"id="bill_extracost_note" 
                                                                 placeholder="Note"
                                                                 value="{{ $QuotationExtracosts_arr->extracost_note }}" name="bill_extracost_note[]" />
                                                         </td>
                                                         <td><input type="hidden" name="extracost_id[]" />
                                                             <input type="text" class="form-control bill_extracost"
-                                                                id="bill_extracost"placeholder="Extra Cost" readonly
+                                                                id="bill_extracost"placeholder="Extra Cost" 
                                                                 name="bill_extracost[]" value="{{ $QuotationExtracosts_arr->extracost }}" />
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-danger form-plus-btn remove-billextratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -176,7 +184,7 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
-                                                            <select class="select" name="bill_discount_type" id="bill_discount_type" required disabled>
+                                                            <select class="select" name="bill_discount_type" id="bill_discount_type" required>
                                                                 <option value="">Select</option>
                                                                 <option value="percentage"@if ('percentage' === $QuotationData->discount_type) selected='selected' @endif>Percentage(%)</option>
                                                                 <option value="fixed"@if ('fixed' === $QuotationData->discount_type) selected='selected' @endif>Fixed</option>
@@ -186,7 +194,7 @@
                                                     <div class="col-lg-5">
                                                         <div class="form-group">
                                                             <label>Discount</label>
-                                                            <input type="text" class="form-control bill_discount" readonly value="{{ $QuotationData->discount }}" name="bill_discount" id="bill_discount" placeholder="0">
+                                                            <input type="text" class="form-control bill_discount"  value="{{ $QuotationData->discount }}" name="bill_discount" id="bill_discount" placeholder="0">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -194,8 +202,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax</label>
-                                                    <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" disabled>
-                                                        <option>No Tax</option>
+                                                    <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage">
+                                                        <option value="0"@if ('0' === $QuotationData->tax_percentage) selected='selected' @endif>No Tax</option>
                                                         <option value="3"@if ('3' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (3%)</option>
                                                         <option value="8"@if ('8' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (8%)</option>
                                                         <option value="12"@if ('12' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (12%)</option>

@@ -38,38 +38,38 @@
                               </tr>
                            </thead>
                            <tbody>
-                           @foreach ($data as $keydata => $customer_data)
+                           @foreach ($Customer_data as $keydata => $customer_data)
                               <tr>
                                  <td>{{ ++$keydata }}</td>
-                                 <td>{{ $customer_data->name }}</td>
-                                 <td>{{ $customer_data->address }}</td>
-                                 <td>{{ $customer_data->phone_number }}</td>
-                                 <td>{{ $customer_data->email_id }}</td>
-                                 <td>{{ $customer_data->balance_amount }}</td>
+                                 <td>{{ $customer_data['name'] }}</td>
+                                 <td>{{ $customer_data['address'] }}</td>
+                                 <td>{{ $customer_data['phone_number'] }}</td>
+                                 <td>{{ $customer_data['email_id'] }}</td>
+                                 <td> ₹ {{ $customer_data['customer_balance'] }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                          <a class="badge bg-warning-light" href="#edit{{ $customer_data->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".customeredit-modal-xl{{ $customer_data->unique_key }}" style="color: #28084b;">Edit</a>
+                                          <a class="badge bg-warning-light" href="#edit{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customeredit-modal-xl{{ $customer_data['unique_key'] }}" style="color: #28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          <a href="#delete{{ $customer_data->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data->unique_key }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a href="#delete{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
 
-                              <div class="modal fade customeredit-modal-xl{{ $customer_data->unique_key }}"
+                              <div class="modal fade customeredit-modal-xl{{ $customer_data['unique_key'] }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="customereditLargeModalLabel{{ $customer_data->unique_key }}"
+                                    aria-labelledby="customereditLargeModalLabel{{ $customer_data['unique_key'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.customer.edit')
                               </div>
-                              <div class="modal fade customerdelete-modal-xl{{ $customer_data->unique_key }}"
+                              <div class="modal fade customerdelete-modal-xl{{ $customer_data['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="customerdeleteLargeModalLabel{{ $customer_data->unique_key }}"
+                                    aria-labelledby="customerdeleteLargeModalLabel{{ $customer_data['unique_key'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.customer.delete')
                               </div>

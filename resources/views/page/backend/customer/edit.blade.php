@@ -10,32 +10,32 @@
          </button>
       </div>
       <form autocomplete="off" method="POST"
-                action="{{ route('customer.edit', ['unique_key' => $customer_data->unique_key]) }}" enctype="multipart/form-data">
+                action="{{ route('customer.edit', ['unique_key' => $customer_data['unique_key']]) }}" enctype="multipart/form-data">
                 @csrf
       <div class="modal-body">
          <div class="row">
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
                      <label>Name <span class="text-danger">*</span></label>
-                     <input type="text" class="form-control" placeholder="Enter Customer Name" name="name" id="name" required value="{{ $customer_data->name }}">
+                     <input type="text" class="form-control" placeholder="Enter Customer Name" name="name" id="name" required value="{{ $customer_data['name'] }}">
                   </div>
                </div>
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
                      <label>Address</label>
-                     <input type="text" class="form-control" placeholder="Enter Customer Address" name="address" id="address" value="{{ $customer_data->address }}">
+                     <input type="text" class="form-control" placeholder="Enter Customer Address" name="address" id="address" value="{{ $customer_data['address'] }}">
                   </div>
                </div>
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
                      <label>Phone Number<span class="text-danger">*</span></label>
-                     <input type="text" class="form-control" placeholder="Enter Customer Contact No" name="phone_number" id="phone_number" required value="{{ $customer_data->phone_number }}">
+                     <input type="text" class="form-control" placeholder="Enter Customer Contact No" name="phone_number" id="phone_number" required value="{{ $customer_data['phone_number'] }}">
                   </div>
                </div>
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
                      <label>Email ID</label>
-                     <input type="email" class="form-control" placeholder="Enter Customer E-Mail" name="email_id" id="email_id" value="{{ $customer_data->email_id }}">
+                     <input type="email" class="form-control" placeholder="Enter Customer E-Mail" name="email_id" id="email_id" value="{{ $customer_data['email_id'] }}">
                   </div>
                </div>
          </div>

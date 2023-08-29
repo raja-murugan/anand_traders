@@ -201,24 +201,24 @@
                                                             <div class="invoice-total-inner">
 
                                                                 <p>Gross Amount <span class="sub_total">  </span></p>
-                                                                <input type="hidden" class="form-control sub_total" name="sub_total" id="sub_total">
+                                                                <input type="hidden" class="form-control subq_total" name="sub_total" id="sub_total">
 
                                                                 <p>Discount <span class="discount_price">  </span></p>
-                                                                <input type="hidden" class="form-control discount_price"name="discount_price"id="discount_price">
+                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price">
 
                                                                 <p>Total <span class="total_amount">  </span></p>
-                                                                <input type="hidden" class="form-control total_amount"name="total_amount"id="total_amount">
+                                                                <input type="hidden" class="form-control totalq_amount"name="total_amount"id="total_amount">
 
                                                                 <p>Tax Amount <span class="tax_amount">  </span></p>
-                                                                <input type="hidden" class="form-control tax_amount"name="tax_amount"id="tax_amount">
+                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount">
 
                                                                 <p>Extra Cost <span class="extracost_amount">  </span></p>
-                                                                <input type="hidden" class="form-control extracost_amount" name="extracost_amount" id="extracost_amount">
+                                                                <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount">
 
                                                             </div>
                                                             <div class="invoice-total-footer">
                                                                 <h4>Grand Total <span class="grand_total">  </span></h4>
-                                                                <input type="hidden" class="form-control grand_total" name="grand_total" id="grand_total">
+                                                                <input type="hidden" class="form-control grandq_total" name="grand_total" id="grand_total">
                                                             </div>
                                                         </div>
                                                     </div>

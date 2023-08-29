@@ -140,14 +140,12 @@
                 $(this).parents('tr').remove();
                 regenerate_auto_num();
 
-
-                var totalAmount = 0;
-                $("input[name='product_total[]']").each(
-                                    function() {
-                                        totalAmount = Number(totalAmount) + Number($(this).val());
-                                        $('.sub_total').val(totalAmount);
-                                        $('.sub_total').text('₹ ' + totalAmount);
-                                    });
+                var sum = 0;
+                $(".product_total").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".subq_total").val(sum);
+                $('.sub_total').text('₹ ' + sum);
 
 
                 var discount_type = $("#discount_type").val();
@@ -155,38 +153,53 @@
                 if(discount_type == 'fixed'){
 
                     var discount = $('.discount').val();
-                    $('.discount_price').val(discount);
+                    $('.discountq_price').val(discount);
                     $('.discount_price').text('₹ ' + discount);
 
-                    var sub_total = $(".sub_total").val();
+                    var sub_total = $(".subq_total").val();
                     var total_amount = Number(sub_total) - Number(discount);
-                    $('.total_amount').val(total_amount);
+                    $('.totalq_amount').val(total_amount);
                     $('.total_amount').text('₹ ' + total_amount);
 
                 }else if(discount_type == 'percentage'){
 
                     var discount = $('.discount').val();
-                    var sub_total = $(".sub_total").val();
+                    var sub_total = $(".subq_total").val();
                     var discountPercentageAmount = (discount / 100) * sub_total;
-                    $('.discount_price').val(discountPercentageAmount);
+                    $('.discountq_price').val(discountPercentageAmount);
                     $('.discount_price').text('₹ ' + discountPercentageAmount);
 
                     var total_amount = Number(sub_total) - Number(discountPercentageAmount);
-                    $('.total_amount').val(total_amount);
+                    $('.totalq_amount').val(total_amount);
                     $('.total_amount').text('₹ ' + total_amount);
 
+                }else if(discount_type == 'none'){
+                    $('.discount').val(0);
+                    $('.discountq_price').val(0);
+                    $('.discount_price').text('₹ ' + 0);
+
+                    var total_amount = Number(sub_total) - Number(0);
+                    $('.totalq_amount').val(total_amount);
+                    $('.total_amount').text('₹ ' + total_amount);
+
+
+                    var tax_amount = $('.taxq_amount').val();
+                    var extracost_amount = $(".extracostq_amount").val();
+                    var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
+                    $('.grandq_total').val(grand_total);
+                    $('.grand_total').text('₹ ' + grand_total);
                 }
 
 
                 var tax_percentage = $( "#tax_percentage option:selected" ).val();
-                var total_amount = $(".total_amount").val();
+                var total_amount = $(".totalq_amount").val();
                 var tax_amount = (tax_percentage / 100) * total_amount;
-                $('.tax_amount').val(tax_amount);
-                $('.tax_amount').text('₹ ' + tax_amount);
+                $('.taxq_amount').val(tax_amount.toFixed(2));
+                $('.tax_amount').text('₹ ' + tax_amount.toFixed(2));
 
                 var extracost_amount = $(".extracost_amount").val();
                 var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-                $('.grand_total').val(grand_total);
+                $('.grandq_total').val(grand_total);
                 $('.grand_total').text('₹ ' + grand_total);
 
             });
@@ -217,16 +230,15 @@
             $(document).on('click', '.remove-extratr', function() {
                 $(this).parents('tr').remove();
 
-                var totalExtraAmount = 0;
-                $("input[name='extracost[]']").each(
-                                    function() {
-                                        //alert($(this).val());
-                                        totalExtraAmount = Number(totalExtraAmount) +
-                                            Number($(this).val());
-                                        $('.extracost_amount').val(totalExtraAmount);
-                                        $('.extracost_amount').text('₹ ' + totalExtraAmount);
-                                    });
 
+                var sum = 0;
+                $(".extracost").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".extracostq_amount").val(sum);
+                $('.extracost_amount').text('₹ ' + sum);
+
+              
 
 
                 var discount_type = $("#discount_type").val();
@@ -234,38 +246,53 @@
                 if(discount_type == 'fixed'){
 
                     var discount = $('.discount').val();
-                    $('.discount_price').val(discount);
+                    $('.discountq_price').val(discount);
                     $('.discount_price').text('₹ ' + discount);
 
-                    var sub_total = $(".sub_total").val();
+                    var sub_total = $(".subq_total").val();
                     var total_amount = Number(sub_total) - Number(discount);
-                    $('.total_amount').val(total_amount);
+                    $('.totalq_amount').val(total_amount);
                     $('.total_amount').text('₹ ' + total_amount);
 
                 }else if(discount_type == 'percentage'){
 
                     var discount = $('.discount').val();
-                    var sub_total = $(".sub_total").val();
+                    var sub_total = $(".subq_total").val();
                     var discountPercentageAmount = (discount / 100) * sub_total;
-                    $('.discount_price').val(discountPercentageAmount);
+                    $('.discountq_price').val(discountPercentageAmount);
                     $('.discount_price').text('₹ ' + discountPercentageAmount);
 
                     var total_amount = Number(sub_total) - Number(discountPercentageAmount);
-                    $('.total_amount').val(total_amount);
+                    $('.totalq_amount').val(total_amount);
                     $('.total_amount').text('₹ ' + total_amount);
 
+                }else if(discount_type == 'none'){
+                    $('.discount').val(0);
+                    $('.discountq_price').val(0);
+                    $('.discount_price').text('₹ ' + 0);
+
+                    var total_amount = Number(sub_total) - Number(0);
+                    $('.totalq_amount').val(total_amount);
+                    $('.total_amount').text('₹ ' + total_amount);
+
+
+                    var tax_amount = $('.taxq_amount').val();
+                    var extracost_amount = $(".extracostq_amount").val();
+                    var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
+                    $('.grandq_total').val(grand_total);
+                    $('.grand_total').text('₹ ' + grand_total);
                 }
 
 
                 var tax_percentage = $("#tax_percentage").val();
-                var total_amount = $(".total_amount").val();
+                var total_amount = $(".totalq_amount").val();
                 var tax_amount = (tax_percentage / 100) * total_amount;
-                $('.tax_amount').val(tax_amount);
-                $('.tax_amount').text('₹ ' + tax_amount);
+                $('.taxq_amount').val(tax_amount.toFixed(2));
+                $('.tax_amount').text('₹ ' + tax_amount.toFixed(2));
 
-                var extracost_amount = $(".extracost_amount").val();
+                var extracost_amount = $(".extracostq_amount").val();
                 var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-                $('.grand_total').val(grand_total);
+                $('.grandq_total').val(grand_total);
                 $('.grand_total').text('₹ ' + grand_total);
 
 
@@ -293,15 +320,14 @@
         var total = quantity * rateper_quantity;
         $(this).parents('tr').find('.product_total').val(total);
 
-                var totalAmount = 0;
-                $("input[name='product_total[]']").each(
-                                    function() {
-                                        totalAmount = Number(totalAmount) + Number($(this).val());
-                                        $('.sub_total').val(totalAmount);
-                                        $('.sub_total').text('₹ ' + totalAmount);
-                                    });
+                
 
-
+                var sum = 0;
+                $(".product_total").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".subq_total").val(sum);
+                $('.sub_total').text('₹ ' + sum);
 
 
 
@@ -310,40 +336,55 @@
             if(discount_type == 'fixed'){
 
                 var discount = $('.discount').val();
-                $('.discount_price').val(discount);
+                $('.discountq_price').val(discount);
                 $('.discount_price').text('₹ ' + discount);
 
-                var sub_total = $(".sub_total").val();
+                var sub_total = $(".subq_total").val();
                 var total_amount = Number(sub_total) - Number(discount);
-                $('.total_amount').val(total_amount);
+                $('.totalq_amount').val(total_amount);
                 $('.total_amount').text('₹ ' + total_amount);
 
             }else if(discount_type == 'percentage'){
 
                 var discount = $('.discount').val();
-                var sub_total = $(".sub_total").val();
+                var sub_total = $(".subq_total").val();
                 var discountPercentageAmount = (discount / 100) * sub_total;
-                $('.discount_price').val(discountPercentageAmount);
+                $('.discountq_price').val(discountPercentageAmount);
                 $('.discount_price').text('₹ ' + discountPercentageAmount);
 
                 var total_amount = Number(sub_total) - Number(discountPercentageAmount);
-                $('.total_amount').val(total_amount);
+                $('.totalq_amount').val(total_amount);
                 $('.total_amount').text('₹ ' + total_amount);
 
-            }
+            }else if(discount_type == 'none'){
+                $('.discount').val(0);
+                $('.discountq_price').val(0);
+                $('.discount_price').text('₹ ' + 0);
+
+                var total_amount = Number(sub_total) - Number(0);
+                $('.totalq_amount').val(total_amount);
+                $('.total_amount').text('₹ ' + total_amount);
+
+
+                var tax_amount = $('.taxq_amount').val();
+                var extracost_amount = $(".extracostq_amount").val();
+                var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
+                $('.grandq_total').val(grand_total);
+                $('.grand_total').text('₹ ' + grand_total);
+        }
 
 
 
         var tax_percentage = $( "#tax_percentage option:selected" ).val();
-                var total_amount = $(".total_amount").val();
+                var total_amount = $(".totalq_amount").val();
                 var tax_amount = (tax_percentage / 100) * total_amount;
-                $('.tax_amount').val(tax_amount);
-                $('.tax_amount').text('₹ ' + tax_amount);
-                var extracost_amount = $(".extracost_amount").val();
+                $('.taxq_amount').val(tax_amount.toFixed(2));
+                $('.tax_amount').text('₹ ' + tax_amount.toFixed(2));
+                var extracost_amount = $(".extracostq_amount").val();
 
 
         var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-        $('.grand_total').val(grand_total);
+        $('.grandq_total').val(grand_total);
         $('.grand_total').text('₹ ' + grand_total);
     });
 
@@ -352,11 +393,11 @@
         var discount_type = this.value;
         if(discount_type == 'fixed'){
             $('#discount').val('');
-            $('.discount_price').val(0);
+            $('.discountq_price').val(0);
             $('.discount_price').text('₹ ' + 0);
         }else if(discount_type == 'percentage'){
             $('#discount').val('');
-            $('.discount_price').val(0);
+            $('.discountq_price').val(0);
             $('.discount_price').text('₹ ' + 0);
         }
     });
@@ -369,36 +410,51 @@
 
         if(discount_type == 'fixed'){
 
-            $('.discount_price').val(discount);
+            $('.discountq_price').val(discount);
             $('.discount_price').text('₹ ' + discount);
 
-            var sub_total = $(".sub_total").val();
+            var sub_total = $(".subq_total").val();
             var total_amount = Number(sub_total) - Number(discount);
-            $('.total_amount').val(total_amount);
+            $('.totalq_amount').val(total_amount);
             $('.total_amount').text('₹ ' + total_amount);
 
-            var tax_amount = $('.tax_amount').val();
-            var extracost_amount = $(".extracost_amount").val();
+            var tax_amount = $('.taxq_amount').val();
+            var extracost_amount = $(".extracostq_amount").val();
             var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-            $('.grand_total').val(grand_total);
+            $('.grandq_total').val(grand_total);
             $('.grand_total').text('₹ ' + grand_total);
 
         }else if(discount_type == 'percentage'){
 
-            var sub_total = $(".sub_total").val();
+            var sub_total = $(".subq_total").val();
             var discountPercentageAmount = (discount / 100) * sub_total;
-            $('.discount_price').val(discountPercentageAmount);
+            $('.discountq_price').val(discountPercentageAmount);
             $('.discount_price').text('₹ ' + discountPercentageAmount);
 
             var total_amount = Number(sub_total) - Number(discountPercentageAmount);
-            $('.total_amount').val(total_amount);
+            $('.totalq_amount').val(total_amount);
             $('.total_amount').text('₹ ' + total_amount);
 
 
-            var tax_amount = $('.tax_amount').val();
-            var extracost_amount = $(".extracost_amount").val();
+            var tax_amount = $('.taxq_amount').val();
+            var extracost_amount = $(".extracostq_amount").val();
             var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-            $('.grand_total').val(grand_total);
+            $('.grandq_total').val(grand_total);
+            $('.grand_total').text('₹ ' + grand_total);
+        }else if(discount_type == 'none'){
+            $('.discount').val(0);
+            $('.discountq_price').val(0);
+            $('.discount_price').text('₹ ' + 0);
+
+            var total_amount = Number(sub_total) - Number(0);
+            $('.totalq_amount').val(total_amount);
+            $('.total_amount').text('₹ ' + total_amount);
+
+
+            var tax_amount = $('.taxq_amount').val();
+            var extracost_amount = $(".extracostq_amount").val();
+            var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
+            $('.grandq_total').val(grand_total);
             $('.grand_total').text('₹ ' + grand_total);
         }
     });
@@ -407,15 +463,15 @@
 
     $("#tax_percentage").on('change', function() {
         var tax_percentage = $(this).val();
-        var total_amount = $(".total_amount").val();
+        var total_amount = $(".totalq_amount").val();
         var tax_amount = (tax_percentage / 100) * total_amount;
-        $('.tax_amount').val(tax_amount);
-        $('.tax_amount').text('₹ ' + tax_amount);
+        $('.taxq_amount').val(tax_amount.toFixed(2));
+        $('.tax_amount').text('₹ ' + tax_amount.toFixed(2));
 
 
-        var extracost_amount = $(".extracost_amount").val();
+        var extracost_amount = $(".extracostq_amount").val();
         var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-        $('.grand_total').val(grand_total);
+        $('.grandq_total').val(grand_total);
         $('.grand_total').text('₹ ' + grand_total);
     });
 
@@ -445,39 +501,54 @@
             if(discount_type == 'fixed'){
 
                 var discount = $('.discount').val();
-                $('.discount_price').val(discount);
+                $('.discountq_price').val(discount);
                 $('.discount_price').text('₹ ' + discount);
 
-                var sub_total = $(".sub_total").val();
+                var sub_total = $(".subq_total").val();
                 var total_amount = Number(sub_total) - Number(discount);
-                $('.total_amount').val(total_amount);
+                $('.totalq_amount').val(total_amount);
                 $('.total_amount').text('₹ ' + total_amount);
 
             }else if(discount_type == 'percentage'){
 
                 var discount = $('.discount').val();
-                var sub_total = $(".sub_total").val();
+                var sub_total = $(".subq_total").val();
                 var discountPercentageAmount = (discount / 100) * sub_total;
-                $('.discount_price').val(discountPercentageAmount);
+                $('.discountq_price').val(discountPercentageAmount);
                 $('.discount_price').text('₹ ' + discountPercentageAmount);
 
                 var total_amount = Number(sub_total) - Number(discountPercentageAmount);
-                $('.total_amount').val(total_amount);
+                $('.totalq_amount').val(total_amount);
                 $('.total_amount').text('₹ ' + total_amount);
 
-            }
+            }else if(discount_type == 'none'){
+                $('.discount').val(0);
+                $('.discountq_price').val(0);
+                $('.discount_price').text('₹ ' + 0);
 
-        var total_amount = $('.total_amount').val();
+                var total_amount = Number(sub_total) - Number(0);
+                $('.totalq_amount').val(total_amount);
+                $('.total_amount').text('₹ ' + total_amount);
+
+
+                var tax_amount = $('.taxq_amount').val();
+                var extracost_amount = $(".extracostq_amount").val();
+                var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
+                $('.grandq_total').val(grand_total);
+                $('.grand_total').text('₹ ' + grand_total);
+        }
+
+        var total_amount = $('.totalq_amount').val();
         var tax_percentage = $( "#tax_percentage option:selected" ).val();
-                var total_amount = $(".total_amount").val();
+                var total_amount = $(".totalq_amount").val();
                 var tax_amount = (tax_percentage / 100) * total_amount;
-                $('.tax_amount').val(tax_amount);
-                $('.tax_amount').text('₹ ' + tax_amount);
-        var extracost_amount = $(".extracost_amount").val();
+                $('.taxq_amount').val(tax_amount.toFixed(2));
+                $('.tax_amount').text('₹ ' + tax_amount.toFixed(2));
+        var extracost_amount = $(".extracostq_amount").val();
 
 
         var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-        $('.grand_total').val(grand_total);
+        $('.grandq_total').val(grand_total);
         $('.grand_total').text('₹ ' + grand_total);
     });
 
@@ -492,19 +563,27 @@
                                         //alert($(this).val());
                                         totalExtraAmount = Number(totalExtraAmount) +
                                             Number($(this).val());
-                                        $('.extracost_amount').val(totalExtraAmount);
+                                        $('.extracostq_amount').val(totalExtraAmount);
                                         $('.extracost_amount').text('₹ ' + totalExtraAmount);
                                     });
 
-        var total_amount = $('.total_amount').val();
-        var tax_amount = $('.tax_amount').val();
-        var extracost_amount = $(".extracost_amount").val();
+        var total_amount = $('.totalq_amount').val();
+        var tax_amount = $('.taxq_amount').val();
+        var extracost_amount = $(".extracostq_amount").val();
 
 
         var grand_total = Number(total_amount) + Number(tax_amount) + Number(extracost_amount);
-        $('.grand_total').val(grand_total);
+        $('.grandq_total').val(grand_total);
         $('.grand_total').text('₹ ' + grand_total);
     });
+
+
+
+
+
+
+
+
 
 
     var k = 1;
@@ -583,13 +662,15 @@
                 billregenerate_auto_num();
 
 
-                var totalAmount = 0;
-                $("input[name='bill_product_total[]']").each(
-                                    function() {
-                                        totalAmount = Number(totalAmount) + Number($(this).val());
-                                        $('.bill_sub_total').val(totalAmount);
-                                        $('.billsub_total').text('₹ ' + totalAmount);
-                                    });
+
+                var sum = 0;
+                $(".bill_product_total").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".bill_sub_total").val(sum);
+                $('.billsub_total').text('₹ ' + sum);
+
+
 
 
                 var bill_discount_type = $("#bill_discount_type").val();
@@ -623,8 +704,8 @@
                 var bill_tax_percentage = $( "#bill_tax_percentage option:selected" ).val();
                 var bill_total_amount = $(".bill_total_amount").val();
                 var bill_tax_amount = (bill_tax_percentage / 100) * bill_total_amount;
-                $('.bill_tax_amount').val(bill_tax_amount);
-                $('.billtax_amount').text('₹ ' + bill_tax_amount);
+                $('.bill_tax_amount').val(bill_tax_amount.toFixed(2));
+                $('.billtax_amount').text('₹ ' + bill_tax_amount.toFixed(2));
 
                 var bill_extracost_amount = $(".bill_extracost_amount").val();
                 var bill_grand_total = Number(bill_total_amount) + Number(bill_tax_amount) + Number(bill_extracost_amount);
@@ -651,16 +732,12 @@
             $(document).on('click', '.remove-billextratr', function() {
                 $(this).parents('tr').remove();
 
-                var totalExtraAmount = 0;
-                $("input[name='bill_extracost[]']").each(
-                                    function() {
-                                        //alert($(this).val());
-                                        totalExtraAmount = Number(totalExtraAmount) +
-                                            Number($(this).val());
-                                        $('.bill_extracost_amount').val(totalExtraAmount);
-                                        $('.billextracost_amount').text('₹ ' + totalExtraAmount);
-                                    });
-
+                var sum = 0;
+                $(".bill_extracost").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".bill_extracost_amount").val(sum);
+                $('.billextracost_amount').text('₹ ' + sum);
 
 
                                     var bill_discount_type = $("#bill_discount_type").val();
@@ -695,8 +772,8 @@
                 var bill_tax_percentage = $( "#bill_tax_percentage option:selected" ).val();
                 var bill_total_amount = $(".bill_total_amount").val();
                 var bill_tax_amount = (bill_tax_percentage / 100) * bill_total_amount;
-                $('.bill_tax_amount').val(bill_tax_amount);
-                $('.billtax_amount').text('₹ ' + bill_tax_amount);
+                $('.bill_tax_amount').val(bill_tax_amount.toFixed(2));
+                $('.billtax_amount').text('₹ ' + bill_tax_amount.toFixed(2));
 
                 var bill_extracost_amount = $(".bill_extracost_amount").val();
                 var bill_grand_total = Number(bill_total_amount) + Number(bill_tax_amount) + Number(bill_extracost_amount);
@@ -723,17 +800,13 @@
         var total = bill_quantity * bill_rateper_quantity;
         $(this).parents('tr').find('.bill_product_total').val(total);
 
-                var totalAmount = 0;
-                $("input[name='bill_product_total[]']").each(
-                                    function() {
-                                        totalAmount = Number(totalAmount) + Number($(this).val());
-                                        $('.bill_sub_total').val(totalAmount);
-                                        $('.billsub_total').text('₹ ' + totalAmount);
-                                    });
 
-
-
-
+                var sum = 0;
+                $(".bill_product_total").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".bill_sub_total").val(sum);
+                $('.billsub_total').text('₹ ' + sum);
 
             var bill_discount_type = $("#bill_discount_type").val();
 
@@ -767,8 +840,8 @@
         var bill_tax_percentage = $( "#bill_tax_percentage option:selected" ).val();
                 var bill_total_amount = $(".bill_total_amount").val();
                 var bill_tax_amount = (bill_tax_percentage / 100) * bill_total_amount;
-                $('.bill_tax_amount').val(bill_tax_amount);
-                $('.billtax_amount').text('₹ ' + bill_tax_amount);
+                $('.bill_tax_amount').val(bill_tax_amount.toFixed(2));
+                $('.billtax_amount').text('₹ ' + bill_tax_amount.toFixed(2));
                 var bill_extracost_amount = $(".bill_extracost_amount").val();
 
 
@@ -858,8 +931,8 @@
         var bill_tax_percentage = $(this).val();
         var bill_total_amount = $(".bill_total_amount").val();
         var bill_tax_amount = (bill_tax_percentage / 100) * bill_total_amount;
-        $('.bill_tax_amount').val(bill_tax_amount);
-        $('.billtax_amount').text('₹ ' + bill_tax_amount);
+        $('.bill_tax_amount').val(bill_tax_amount.toFixed(2));
+        $('.billtax_amount').text('₹ ' + bill_tax_amount.toFixed(2));
 
         console.log(bill_total_amount);
 
@@ -885,17 +958,17 @@
         var total = bill_quantity * bill_rateper_quantity;
         $(this).parents('tr').find('.bill_product_total').val(total);
 
-        var totalAmount = 0;
-        $("input[name='bill_product_total[]']").each(
-                            function() {
-                                //alert($(this).val());
-                                totalAmount = Number(totalAmount) +
-                                    Number($(this).val());
-                                    $('.bill_sub_total').val(totalAmount);
-                                    $('.billsub_total').text('₹ ' + totalAmount);
-                            });
+        var sum = 0;
+                $(".bill_product_total").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".bill_sub_total").val(sum);
+                $('.billsub_total').text('₹ ' + sum);
 
 
+
+
+      
 
             var bill_discount_type = $("#bill_discount_type").val();
 
@@ -928,8 +1001,8 @@
         var bill_tax_percentage = $( "#bill_tax_percentage option:selected" ).val();
                 var bill_total_amount = $(".bill_total_amount").val();
                 var bill_tax_amount = (bill_tax_percentage / 100) * bill_total_amount;
-                $('.bill_tax_amount').val(bill_tax_amount);
-                $('.billtax_amount').text('₹ ' + bill_tax_amount);
+                $('.bill_tax_amount').val(bill_tax_amount.toFixed(2));
+                $('.billtax_amount').text('₹ ' + bill_tax_amount.toFixed(2));
         var bill_extracost_amount = $(".bill_extracost_amount").val();
 
 
@@ -948,15 +1021,14 @@
 
     $(document).on("blur", "input[name*=bill_extracost]", function() {
         var bill_extracost = $(this).val();
-        var totalExtraAmount = 0;
-        $("input[name='bill_extracost[]']").each(
-                                    function() {
-                                        //alert($(this).val());
-                                        totalExtraAmount = Number(totalExtraAmount) +
-                                            Number($(this).val());
-                                        $('.bill_extracost_amount').val(totalExtraAmount);
-                                        $('.billextracost_amount').text('₹ ' + totalExtraAmount);
-                                    });
+
+        var sum = 0;
+                $(".bill_extracost").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".bill_extracost_amount").val(sum);
+                $('.billextracost_amount').text('₹ ' + sum);
+
 
         var bill_total_amount = $('.bill_total_amount').val();
         var bill_tax_amount = $('.bill_tax_amount').val();
@@ -1062,15 +1134,12 @@
                 $(this).parents('tr').remove();
                 purchaseregenerate_auto_num();
 
-
-                var totalAmount = 0;
-                $("input[name='purchase_producttotal[]']").each(
-                                    function() {
-                                        totalAmount = Number(totalAmount) + Number($(this).val());
-                                        $('.purchase_subtotal').val(totalAmount);
-                                        $('.purchasesubtotal').text('₹ ' + totalAmount);
-                                    });
-
+                var sum = 0;
+                $(".purchase_producttotal").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".purchase_subtotal").val(sum);
+                $('.purchasesubtotal').text('₹ ' + sum);
 
                 var purchase_discounttype = $("#purchase_discounttype").val();
 
@@ -1103,8 +1172,8 @@
                 var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
                 var purchase_totalamount = $(".purchase_totalamount").val();
                 var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
-                $('.purchase_taxamount').val(purchase_taxamount);
-                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+                $('.purchase_taxamount').val(purchase_taxamount.toFixed(2));
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount.toFixed(2));
 
                 var purchase_extracostamount = $(".purchase_extracostamount").val();
                 var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
@@ -1131,15 +1200,14 @@
             $(document).on('click', '.remove-purchaseextratr', function() {
                 $(this).parents('tr').remove();
 
-                var totalExtraAmount = 0;
-                $("input[name='purchase_extracost[]']").each(
-                                    function() {
-                                        //alert($(this).val());
-                                        totalExtraAmount = Number(totalExtraAmount) +
-                                            Number($(this).val());
-                                        $('.purchase_extracostamount').val(totalExtraAmount);
-                                        $('.purchaseextracostamount').text('₹ ' + totalExtraAmount);
-                                    });
+
+                var sum = 0;
+                $(".purchase_extracost").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".purchase_extracostamount").val(sum);
+                $('.purchaseextracostamount').text('₹ ' + sum);
+
 
 
 
@@ -1175,8 +1243,8 @@
                 var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
                 var purchase_totalamount = $(".purchase_totalamount").val();
                 var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
-                $('.purchase_taxamount').val(purchase_taxamount);
-                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+                $('.purchase_taxamount').val(purchase_taxamount.toFixed(2));
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount.toFixed(2));
 
                 var purchase_extracostamount = $(".purchase_extracostamount").val();
                 var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
@@ -1202,16 +1270,13 @@
             var total = purchase_quantity * purchase_rateperquantity;
             $(this).parents('tr').find('.purchase_producttotal').val(total);
 
-                var totalAmount = 0;
-                $("input[name='purchase_producttotal[]']").each(
-                                    function() {
-                                        totalAmount = Number(totalAmount) + Number($(this).val());
-                                        $('.purchase_subtotal').val(totalAmount);
-                                        $('.purchasesubtotal').text('₹ ' + totalAmount);
-                                    });
-
-
-
+            
+            var sum = 0;
+                $(".purchase_producttotal").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".purchase_subtotal").val(sum);
+                $('.purchasesubtotal').text('₹ ' + sum);
 
 
                                     var purchase_discounttype = $("#purchase_discounttype").val();
@@ -1246,8 +1311,8 @@
                 var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
                 var purchase_totalamount = $(".purchase_totalamount").val();
                 var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
-                $('.purchase_taxamount').val(purchase_taxamount);
-                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+                $('.purchase_taxamount').val(purchase_taxamount.toFixed(2));
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount.toFixed(2));
 
                 var purchase_extracostamount = $(".purchase_extracostamount").val();
                 var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
@@ -1337,8 +1402,8 @@
         var purchase_taxpercentage = $(this).val();
         var purchase_totalamount = $(".purchase_totalamount").val();
         var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
-        $('.purchase_taxamount').val(purchase_taxamount);
-        $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+        $('.purchase_taxamount').val(purchase_taxamount.toFixed(2));
+        $('.purchasetaxamount').text('₹ ' + purchase_taxamount.toFixed(2));
 
         //console.log(bill_total_amount);
 
@@ -1365,16 +1430,14 @@
         var total = purchase_quantity * purchase_rateperquantity;
         $(this).parents('tr').find('.purchase_producttotal').val(total);
 
-        var totalAmount = 0;
-        $("input[name='purchase_producttotal[]']").each(
-                            function() {
-                                //alert($(this).val());
-                                totalAmount = Number(totalAmount) +
-                                    Number($(this).val());
-                                    $('.purchase_subtotal').val(totalAmount);
-                                    $('.purchasesubtotal').text('₹ ' + totalAmount);
-                            });
 
+
+        var sum = 0;
+                $(".purchase_producttotal").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".purchase_subtotal").val(sum);
+                $('.purchasesubtotal').text('₹ ' + sum);
 
 
                             var purchase_discounttype = $("#purchase_discounttype").val();
@@ -1408,8 +1471,8 @@
             var purchase_taxpercentage = $( "#purchase_taxpercentage option:selected" ).val();
                 var purchase_totalamount = $(".purchase_totalamount").val();
                 var purchase_taxamount = (purchase_taxpercentage / 100) * purchase_totalamount;
-                $('.purchase_taxamount').val(purchase_taxamount);
-                $('.purchasetaxamount').text('₹ ' + purchase_taxamount);
+                $('.purchase_taxamount').val(purchase_taxamount.toFixed(2));
+                $('.purchasetaxamount').text('₹ ' + purchase_taxamount.toFixed(2));
 
                 var purchase_extracostamount = $(".purchase_extracostamount").val();
                 var purchase_grandtotal = Number(purchase_totalamount) + Number(purchase_taxamount) + Number(purchase_extracostamount);
@@ -1427,15 +1490,14 @@
 
     $(document).on("blur", "input[name*=purchase_extracost]", function() {
         var purchase_extracost = $(this).val();
-        var totalExtraAmount = 0;
-        $("input[name='purchase_extracost[]']").each(
-                                    function() {
-                                        //alert($(this).val());
-                                        totalExtraAmount = Number(totalExtraAmount) +
-                                            Number($(this).val());
-                                        $('.purchase_extracostamount').val(totalExtraAmount);
-                                        $('.purchaseextracostamount').text('₹ ' + totalExtraAmount);
-                                    });
+
+
+        var sum = 0;
+                $(".purchase_extracost").each(function(){
+                    sum += +$(this).val();
+                });
+                $(".purchase_extracostamount").val(sum);
+                $('.purchaseextracostamount').text('₹ ' + sum);
 
         var purchase_totalamount = $('.purchase_totalamount').val();
         var purchase_taxamount = $('.purchase_taxamount').val();

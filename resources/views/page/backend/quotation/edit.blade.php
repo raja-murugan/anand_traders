@@ -171,7 +171,7 @@
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
                                                             <select class="select" name="discount_type" id="discount_type" required>
-                                                                <option value="">Select</option>
+                                                                <option value="none">Select</option>
                                                                 <option value="percentage"@if ('percentage' === $QuotationData->discount_type) selected='selected' @endif>Percentage(%)</option>
                                                                 <option value="fixed"@if ('fixed' === $QuotationData->discount_type) selected='selected' @endif>Fixed</option>
                                                             </select>
@@ -216,24 +216,24 @@
                                                             <div class="invoice-total-inner">
 
                                                                 <p>Gross Amount <span class="sub_total">₹  {{ $QuotationData->sub_total }} </span></p>
-                                                                <input type="hidden" class="form-control sub_total" name="sub_total" id="sub_total" value="{{ $QuotationData->sub_total }}">
+                                                                <input type="hidden" class="form-control subq_total" name="sub_total" id="sub_total" value="{{ $QuotationData->sub_total }}">
 
                                                                 <p>Discount <span class="discount_price">₹  {{ $QuotationData->discount_price }} </span></p>
-                                                                <input type="hidden" class="form-control discount_price"name="discount_price"id="discount_price" value="{{ $QuotationData->discount_price }}">
+                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price" value="{{ $QuotationData->discount_price }}">
 
                                                                 <p>Total <span class="total_amount">₹  {{ $QuotationData->total_amount }} </span></p>
-                                                                <input type="hidden" class="form-control total_amount"name="total_amount"id="total_amount" value="{{ $QuotationData->total_amount }}">
+                                                                <input type="hidden" class="form-control totalq_amount"name="total_amount"id="total_amount" value="{{ $QuotationData->total_amount }}">
 
                                                                 <p>Tax Amount <span class="tax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
-                                                                <input type="hidden" class="form-control tax_amount"name="tax_amount"id="tax_amount" value="{{ $QuotationData->tax_amount }}">
+                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount" value="{{ $QuotationData->tax_amount }}">
 
                                                                 <p>Extra Cost <span class="extracost_amount">₹  {{ $QuotationData->extracost_amount }} </span></p>
-                                                                <input type="hidden" class="form-control extracost_amount" name="extracost_amount" id="extracost_amount" value="{{ $QuotationData->extracost_amount }}">
+                                                                <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount" value="{{ $QuotationData->extracost_amount }}">
 
                                                             </div>
                                                             <div class="invoice-total-footer">
                                                                 <h4>Grand Total <span class="grand_total">₹  {{ $QuotationData->grand_total }} </span></h4>
-                                                                <input type="hidden" class="form-control grand_total" name="grand_total" id="grand_total" value="{{ $QuotationData->grand_total }}">
+                                                                <input type="hidden" class="form-control grandq_total" name="grand_total" id="grand_total" value="{{ $QuotationData->grand_total }}">
                                                             </div>
                                                         </div>
                                                     </div>
