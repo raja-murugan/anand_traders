@@ -185,7 +185,7 @@
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
                                                             <select class="select" name="bill_discount_type" id="bill_discount_type" required>
-                                                                <option value="">Select</option>
+                                                                <option value="none">Select</option>
                                                                 <option value="percentage"@if ('percentage' === $QuotationData->discount_type) selected='selected' @endif>Percentage(%)</option>
                                                                 <option value="fixed"@if ('fixed' === $QuotationData->discount_type) selected='selected' @endif>Fixed</option>
                                                             </select>
@@ -246,7 +246,7 @@
 
                                                             </div>
                                                             <div class="invoice-total-footer">
-                                                                <h4>Grand Total <span class="">₹  {{ $QuotationData->grand_total }} </span></h4>
+                                                                <h4>Grand Total <span class="billgrand_total">₹  {{ $QuotationData->grand_total }} </span></h4>
 
                                                                 <input type="hidden" class="form-control bill_grand_total" name="bill_grand_total" id="bill_grand_total" value="{{ $QuotationData->grand_total }}">
 

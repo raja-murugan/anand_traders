@@ -119,6 +119,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/delete/{unique_key}', [QuotationController::class, 'delete'])->name('quotation.delete');
     // GENERATE BILL
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/quotation/convertbill/{unique_key}', [QuotationController::class, 'convertbill'])->name('quotation.convertbill');
+    // DATAE FILTER
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/datefilter', [QuotationController::class, 'datefilter'])->name('quotation.datefilter');
 });
 
 

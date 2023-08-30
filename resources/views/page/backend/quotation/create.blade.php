@@ -156,7 +156,7 @@
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
                                                             <select class="select" name="discount_type" id="discount_type" required>
-                                                                <option value="">Select</option>
+                                                                <option value="none">Select</option>
                                                                 <option value="percentage">Percentage(%)</option>
                                                                 <option value="fixed">Fixed</option>
                                                             </select>
@@ -204,16 +204,16 @@
                                                                 <input type="hidden" class="form-control subq_total" name="sub_total" id="sub_total">
 
                                                                 <p>Discount <span class="discount_price">  </span></p>
-                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price">
+                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price" value="0.00">
 
                                                                 <p>Total <span class="total_amount">  </span></p>
                                                                 <input type="hidden" class="form-control totalq_amount"name="total_amount"id="total_amount">
 
                                                                 <p>Tax Amount <span class="tax_amount">  </span></p>
-                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount">
+                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount" value="0.00">
 
                                                                 <p>Extra Cost <span class="extracost_amount">  </span></p>
-                                                                <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount">
+                                                                <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount" value="0.00">
 
                                                             </div>
                                                             <div class="invoice-total-footer">

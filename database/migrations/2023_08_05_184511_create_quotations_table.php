@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('tax_amount')->nullable();
             $table->string('extracost_amount')->nullable();
             $table->string('grand_total')->nullable();
-            
+            $table->string('status')->nullable();
 
             $table->boolean('soft_delete')->default(0);
             $table->timestamps();

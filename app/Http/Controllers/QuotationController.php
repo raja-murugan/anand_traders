@@ -18,7 +18,7 @@ class QuotationController extends Controller
 {
     public function index()
     {
-        $data = Quotation::where('soft_delete', '!=', 1)->get();
+        $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', NULL)->orderBy('id', 'DESC')->get();
         $products = [];
         $quotation_data = [];
         foreach ($data as $key => $datas) {
@@ -52,11 +52,246 @@ class QuotationController extends Controller
                     'extracost_amount' => $datas->extracost_amount,
                     'grand_total' => $datas->grand_total,
                     'products_data' => $products,
+                    'status' => $datas->status,
                 );
 
 
         }
-        return view('page.backend.quotation.index', compact('quotation_data'));
+        $today = Carbon::now()->format('Y-m-d');
+        return view('page.backend.quotation.index', compact('quotation_data', 'today'));
+    }
+
+    public function datefilter(Request $request) {
+        $today = $request->get('from_date');
+        $quotaiontype = $request->get('quotaiontype');
+
+
+        if($today || $quotaiontype){
+
+            if($today){
+                $data = Quotation::where('soft_delete', '!=', 1)->where('date', '=', $today)->get();
+
+                $products = [];
+                $quotation_data = [];
+                foreach ($data as $key => $datas) {
+                    $customer = Customer::findOrFail($datas->customer_id);
+
+                    $QuotationProducts = QuotationProduct::where('quotation_id', '=', $datas->id)->get();
+                    foreach ($QuotationProducts as $key => $QuotationProducts_arr) {
+
+                        $product = Product::findOrFail($QuotationProducts_arr->product_id);
+                        $products[] = array(
+                            'quantity' => $QuotationProducts_arr->quantity,
+                            'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                            'product_total' => $QuotationProducts_arr->product_total,
+                            'product_name' => $product->name,
+                            'quotation_id' => $QuotationProducts_arr->quotation_id,
+
+                        );
+                    }
+                        $quotation_data[] = array(
+                            'unique_key' => $datas->unique_key,
+                            'id' => $datas->id,
+                            'quotation_number' => $datas->quotation_number,
+                            'date' => $datas->date,
+                            'time' => $datas->time,
+                            'customer' => $customer->name,
+                            'sub_total' => $datas->sub_total,
+                            'discount_price' => $datas->discount_price,
+                            'total_amount' => $datas->total_amount,
+                            'tax_percentage' => $datas->tax_percentage,
+                            'tax_amount' => $datas->tax_amount,
+                            'extracost_amount' => $datas->extracost_amount,
+                            'grand_total' => $datas->grand_total,
+                            'products_data' => $products,
+                            'status' => $datas->status,
+                        );
+
+
+                }
+            }
+
+            if($quotaiontype){
+
+                if($quotaiontype == 'converted Quotation'){
+                    $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', 1)->get();
+                    $products = [];
+                    $quotation_data = [];
+                    foreach ($data as $key => $datas) {
+                        $customer = Customer::findOrFail($datas->customer_id);
+
+                        $QuotationProducts = QuotationProduct::where('quotation_id', '=', $datas->id)->get();
+                        foreach ($QuotationProducts as $key => $QuotationProducts_arr) {
+
+                            $product = Product::findOrFail($QuotationProducts_arr->product_id);
+                            $products[] = array(
+                                'quantity' => $QuotationProducts_arr->quantity,
+                                'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                                'product_total' => $QuotationProducts_arr->product_total,
+                                'product_name' => $product->name,
+                                'quotation_id' => $QuotationProducts_arr->quotation_id,
+
+                            );
+                        }
+                            $quotation_data[] = array(
+                                'unique_key' => $datas->unique_key,
+                                'id' => $datas->id,
+                                'quotation_number' => $datas->quotation_number,
+                                'date' => $datas->date,
+                                'time' => $datas->time,
+                                'customer' => $customer->name,
+                                'sub_total' => $datas->sub_total,
+                                'discount_price' => $datas->discount_price,
+                                'total_amount' => $datas->total_amount,
+                                'tax_percentage' => $datas->tax_percentage,
+                                'tax_amount' => $datas->tax_amount,
+                                'extracost_amount' => $datas->extracost_amount,
+                                'grand_total' => $datas->grand_total,
+                                'products_data' => $products,
+                                'status' => $datas->status,
+                            );
+
+
+                    }
+
+
+
+                }else if($quotaiontype == 'Non converted Quotation'){
+                    $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', NULL)->get();
+                    $products = [];
+                    $quotation_data = [];
+                    foreach ($data as $key => $datas) {
+                        $customer = Customer::findOrFail($datas->customer_id);
+
+                        $QuotationProducts = QuotationProduct::where('quotation_id', '=', $datas->id)->get();
+                        foreach ($QuotationProducts as $key => $QuotationProducts_arr) {
+
+                            $product = Product::findOrFail($QuotationProducts_arr->product_id);
+                            $products[] = array(
+                                'quantity' => $QuotationProducts_arr->quantity,
+                                'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                                'product_total' => $QuotationProducts_arr->product_total,
+                                'product_name' => $product->name,
+                                'quotation_id' => $QuotationProducts_arr->quotation_id,
+
+                            );
+                        }
+                            $quotation_data[] = array(
+                                'unique_key' => $datas->unique_key,
+                                'id' => $datas->id,
+                                'quotation_number' => $datas->quotation_number,
+                                'date' => $datas->date,
+                                'time' => $datas->time,
+                                'customer' => $customer->name,
+                                'sub_total' => $datas->sub_total,
+                                'discount_price' => $datas->discount_price,
+                                'total_amount' => $datas->total_amount,
+                                'tax_percentage' => $datas->tax_percentage,
+                                'tax_amount' => $datas->tax_amount,
+                                'extracost_amount' => $datas->extracost_amount,
+                                'grand_total' => $datas->grand_total,
+                                'products_data' => $products,
+                                'status' => $datas->status,
+                            );
+
+
+                    }
+                }
+                
+            }
+            
+
+        }
+        if($today && $quotaiontype){
+
+            if($quotaiontype == 'converted Quotation'){
+                $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', 1)->where('date', '=', $today)->get();
+                $products = [];
+                $quotation_data = [];
+                foreach ($data as $key => $datas) {
+                    $customer = Customer::findOrFail($datas->customer_id);
+
+                    $QuotationProducts = QuotationProduct::where('quotation_id', '=', $datas->id)->get();
+                    foreach ($QuotationProducts as $key => $QuotationProducts_arr) {
+
+                        $product = Product::findOrFail($QuotationProducts_arr->product_id);
+                        $products[] = array(
+                            'quantity' => $QuotationProducts_arr->quantity,
+                            'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                            'product_total' => $QuotationProducts_arr->product_total,
+                            'product_name' => $product->name,
+                            'quotation_id' => $QuotationProducts_arr->quotation_id,
+
+                        );
+                    }
+                        $quotation_data[] = array(
+                            'unique_key' => $datas->unique_key,
+                            'id' => $datas->id,
+                            'quotation_number' => $datas->quotation_number,
+                            'date' => $datas->date,
+                            'time' => $datas->time,
+                            'customer' => $customer->name,
+                            'sub_total' => $datas->sub_total,
+                            'discount_price' => $datas->discount_price,
+                            'total_amount' => $datas->total_amount,
+                            'tax_percentage' => $datas->tax_percentage,
+                            'tax_amount' => $datas->tax_amount,
+                            'extracost_amount' => $datas->extracost_amount,
+                            'grand_total' => $datas->grand_total,
+                            'products_data' => $products,
+                            'status' => $datas->status,
+                        );
+
+
+                }
+            }else if($quotaiontype == 'Non converted Quotation'){
+                $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', NULL)->where('date', '=', $today)->get();
+                $products = [];
+                $quotation_data = [];
+                foreach ($data as $key => $datas) {
+                    $customer = Customer::findOrFail($datas->customer_id);
+
+                    $QuotationProducts = QuotationProduct::where('quotation_id', '=', $datas->id)->get();
+                    foreach ($QuotationProducts as $key => $QuotationProducts_arr) {
+
+                        $product = Product::findOrFail($QuotationProducts_arr->product_id);
+                        $products[] = array(
+                            'quantity' => $QuotationProducts_arr->quantity,
+                            'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                            'product_total' => $QuotationProducts_arr->product_total,
+                            'product_name' => $product->name,
+                            'quotation_id' => $QuotationProducts_arr->quotation_id,
+
+                        );
+                    }
+                        $quotation_data[] = array(
+                            'unique_key' => $datas->unique_key,
+                            'id' => $datas->id,
+                            'quotation_number' => $datas->quotation_number,
+                            'date' => $datas->date,
+                            'time' => $datas->time,
+                            'customer' => $customer->name,
+                            'sub_total' => $datas->sub_total,
+                            'discount_price' => $datas->discount_price,
+                            'total_amount' => $datas->total_amount,
+                            'tax_percentage' => $datas->tax_percentage,
+                            'tax_amount' => $datas->tax_amount,
+                            'extracost_amount' => $datas->extracost_amount,
+                            'grand_total' => $datas->grand_total,
+                            'products_data' => $products,
+                            'status' => $datas->status,
+                        );
+
+
+                }
+            }
+
+        }
+
+       
+            return view('page.backend.quotation.index', compact('quotation_data', 'today'));
+
+        
     }
 
 
@@ -239,14 +474,19 @@ class QuotationController extends Controller
         }
 
         $updated_extracosts = $request->extracost_detail_id;
-        $updated_extracosts_ids = array_filter($updated_extracosts);
-        $different_ex_cost_ids = array_merge(array_diff($quotaton_extracost, $updated_extracosts_ids), array_diff($updated_extracosts_ids, $quotaton_extracost));
+        if($updated_extracosts != ""){
 
-        if (!empty($different_ex_cost_ids)) {
-            foreach ($different_ex_cost_ids as $key => $different_ex_cost_id) {
-                QuotationExtracost::where('id', $different_ex_cost_id)->delete();
+            $updated_extracosts_ids = array_filter($updated_extracosts);
+            $different_ex_cost_ids = array_merge(array_diff($quotaton_extracost, $updated_extracosts_ids), array_diff($updated_extracosts_ids, $quotaton_extracost));
+    
+            if (!empty($different_ex_cost_ids)) {
+                foreach ($different_ex_cost_ids as $key => $different_ex_cost_id) {
+                    QuotationExtracost::where('id', $different_ex_cost_id)->delete();
+                }
             }
+
         }
+        
 
 
 // Extracost
@@ -262,16 +502,19 @@ class QuotationController extends Controller
                 ]);
             }
         }else {
-            foreach ($request->get('extracost_note') as $key => $extracost_note) {
-                if ($extracost_note != "") {
-
-                    $QuotationExtracost = new QuotationExtracost;
-                    $QuotationExtracost->quotation_id = $quotation_id;
-                    $QuotationExtracost->extracost_note = $extracost_note;
-                    $QuotationExtracost->extracost = $request->extracost[$key];
-                    $QuotationExtracost->save();
+            if ($request->get('extracost_note') != "") {
+                foreach ($request->get('extracost_note') as $key => $extracost_note) {
+                    if ($extracost_note != "") {
+    
+                        $QuotationExtracost = new QuotationExtracost;
+                        $QuotationExtracost->quotation_id = $quotation_id;
+                        $QuotationExtracost->extracost_note = $extracost_note;
+                        $QuotationExtracost->extracost = $request->extracost[$key];
+                        $QuotationExtracost->save();
+                    }
                 }
             }
+            
         }
 
 

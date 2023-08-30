@@ -115,6 +115,7 @@ class BillController extends Controller
         $data->bill_grand_total = $request->get('bill_grand_total');
         $data->bill_paid_amount = $request->get('bill_paid_amount');
         $data->bill_balance_amount = $request->get('bill_balance_amount');
+        
 
         $data->save();
 
@@ -175,6 +176,12 @@ class BillController extends Controller
             $data->customer_balance = $balance_amount;
             $data->save();
         }
+
+
+        DB::table('quotations')->where('id', $quotation_id)->update([
+            'status' => 1
+        ]);
+
 
         return redirect()->route('bill.index')->with('message', 'Added !');
     }
