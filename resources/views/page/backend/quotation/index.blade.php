@@ -79,6 +79,10 @@
                                              <a class="badge" style="color:#28084b;background-color:#e5e5e5;">Bill Converted</a>
                                         @endif
                                        </li>
+                                       <li>
+                                            <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}"
+                                            class="badge bg-info" style="color:#28084b;">Print</a>
+                                       </li>
                                     </ul>
                                  </td>
                               </tr>
