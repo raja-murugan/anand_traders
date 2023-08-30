@@ -19,6 +19,11 @@ class VendorController extends Controller
         foreach ($data as $key => $datas) {
 
             $PaymentBalanceAmount = PaymentBalance::where('vendor_id', '=', $datas->id)->first();
+            if($PaymentBalanceAmount != ""){
+                $vendor_bal = $PaymentBalanceAmount->vendor_balance;
+            }else {
+                $vendor_bal = '0';
+            }
 
             $Vendor_data[] = array(
                 'name' => $datas->name,
@@ -28,7 +33,7 @@ class VendorController extends Controller
                 'email_id' => $datas->email_id,
                 'id' => $datas->id,
                 'shop_name' => $datas->shop_name,
-                'vendor_balance' => $PaymentBalanceAmount->vendor_balance,
+                'vendor_balance' => $vendor_bal,
             );
 
         }

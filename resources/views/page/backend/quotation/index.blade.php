@@ -67,25 +67,34 @@
                                              <a href="{{ route('quotation.edit', ['unique_key' => $Quotationdata['unique_key']]) }}"
                                                    class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
+                                       
                                        <li>
-                                             <a href="#quotationdelete{{ $Quotationdata['unique_key'] }}" data-bs-toggle="modal"
-                                             data-bs-target=".quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a class="badge" href="#quotationview{{ $Quotationdata['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".quotationview-modal-xl{{ $Quotationdata['unique_key'] }}" style="color: #28084b;background: #aaa;">View</a>
                                        </li>
                                        <li>
                                        @if ($Quotationdata['status'] != 1)
                                              <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}" 
                                              class="badge bg-primary-light" style="color:#28084b;">Convert to Bill</a>
                                        @else
-                                             <a class="badge" style="color:#28084b;background-color:#e5e5e5;">Bill Converted</a>
+                                             <a class="badge" style="color:#fff;background-color:#212529;">Bill Converted</a>
                                         @endif
                                        </li>
+                                       
                                        <li>
-                                            <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}"
-                                            class="badge bg-info" style="color:#28084b;">Print</a>
+                                             <a href="#quotationdelete{{ $Quotationdata['unique_key'] }}" data-bs-toggle="modal"
+                                             data-bs-target=".quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  </td>
                               </tr>
+
+                              <div class="modal fade quotationview-modal-xl{{ $Quotationdata['unique_key'] }}"
+                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                    aria-labelledby="quotationviewLargeModalLabel{{ $Quotationdata['unique_key'] }}"
+                                    aria-hidden="true">
+                                    @include('page.backend.quotation.view')
+                              </div>
                               <div class="modal fade quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
                                     aria-labelledby="quotationdeleteLargeModalLabel{{$Quotationdata['unique_key'] }}"

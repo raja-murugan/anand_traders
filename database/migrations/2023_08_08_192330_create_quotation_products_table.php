@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('width')->nullable();
             $table->string('height')->nullable();
             $table->string('qty')->nullable();
-            $table->string('quantity')->nullable(); // Area-Sq.ft
-            $table->string('rateper_quantity')->nullable();
+            $table->string('areapersqft')->nullable(); // Area-Sq.ft
+            $table->string('rate')->nullable();
             $table->string('product_total')->nullable();
             $table->boolean('soft_delete')->default(0);
             $table->timestamps();

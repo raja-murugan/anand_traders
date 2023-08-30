@@ -15,8 +15,8 @@ class QuotationProduct extends Model
         'width',
         'height',
         'qty',
-        'quantity', // Area-Sq.ft
-        'rateper_quantity',
+        'areapersqft', // Area-Sq.ft
+        'rate',
         'product_total',
         'soft_delete'
     ];

@@ -20,6 +20,7 @@ class QuotationController extends Controller
     {
         $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', NULL)->orderBy('id', 'DESC')->get();
         $products = [];
+        $extracosts = [];
         $quotation_data = [];
         foreach ($data as $key => $datas) {
             $customer = Customer::findOrFail($datas->customer_id);
@@ -29,11 +30,25 @@ class QuotationController extends Controller
 
                 $product = Product::findOrFail($QuotationProducts_arr->product_id);
                 $products[] = array(
-                    'quantity' => $QuotationProducts_arr->quantity,
-                    'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                    'areapersqft' => $QuotationProducts_arr->areapersqft,
+                    'width' => $QuotationProducts_arr->width,
+                    'height' => $QuotationProducts_arr->height,
+                    'qty' => $QuotationProducts_arr->qty,
+                    'rate' => $QuotationProducts_arr->rate,
                     'product_total' => $QuotationProducts_arr->product_total,
                     'product_name' => $product->name,
                     'quotation_id' => $QuotationProducts_arr->quotation_id,
+
+                );
+            }
+
+
+            $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $datas->id)->get();
+            foreach ($QuotationExtracosts as $key => $QuotationExtracosts_arr) {
+                $extracosts[] = array(
+                    'extracost_note' => $QuotationExtracosts_arr->extracost_note,
+                    'extracost' => $QuotationExtracosts_arr->extracost,
+                    'quotation_id' => $QuotationExtracosts_arr->quotation_id,
 
                 );
             }
@@ -52,7 +67,12 @@ class QuotationController extends Controller
                     'extracost_amount' => $datas->extracost_amount,
                     'grand_total' => $datas->grand_total,
                     'products_data' => $products,
+                    'extracosts' => $extracosts,
                     'status' => $datas->status,
+                    'discount_type' => $datas->discount_type,
+                    'discount' => $datas->discount,
+                    'tax_percentage' => $datas->tax_percentage,
+                    'add_on_note' => $datas->add_on_note,
                 );
 
 
@@ -72,6 +92,7 @@ class QuotationController extends Controller
                 $data = Quotation::where('soft_delete', '!=', 1)->where('date', '=', $today)->get();
 
                 $products = [];
+                $extracosts = [];
                 $quotation_data = [];
                 foreach ($data as $key => $datas) {
                     $customer = Customer::findOrFail($datas->customer_id);
@@ -81,14 +102,30 @@ class QuotationController extends Controller
 
                         $product = Product::findOrFail($QuotationProducts_arr->product_id);
                         $products[] = array(
-                            'quantity' => $QuotationProducts_arr->quantity,
-                            'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                            'areapersqft' => $QuotationProducts_arr->areapersqft,
+                            'width' => $QuotationProducts_arr->width,
+                            'height' => $QuotationProducts_arr->height,
+                            'qty' => $QuotationProducts_arr->qty,
+                            'rate' => $QuotationProducts_arr->rate,
                             'product_total' => $QuotationProducts_arr->product_total,
                             'product_name' => $product->name,
                             'quotation_id' => $QuotationProducts_arr->quotation_id,
 
                         );
                     }
+
+
+                    $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $datas->id)->get();
+                    foreach ($QuotationExtracosts as $key => $QuotationExtracosts_arr) {
+                        $extracosts[] = array(
+                            'extracost_note' => $QuotationExtracosts_arr->extracost_note,
+                            'extracost' => $QuotationExtracosts_arr->extracost,
+                            'quotation_id' => $QuotationExtracosts_arr->quotation_id,
+
+                        );
+                    }
+
+
                         $quotation_data[] = array(
                             'unique_key' => $datas->unique_key,
                             'id' => $datas->id,
@@ -104,7 +141,12 @@ class QuotationController extends Controller
                             'extracost_amount' => $datas->extracost_amount,
                             'grand_total' => $datas->grand_total,
                             'products_data' => $products,
+                            'extracosts' => $extracosts,
                             'status' => $datas->status,
+                            'discount_type' => $datas->discount_type,
+                            'discount' => $datas->discount,
+                            'tax_percentage' => $datas->tax_percentage,
+                            'add_on_note' => $datas->add_on_note,
                         );
 
 
@@ -116,6 +158,7 @@ class QuotationController extends Controller
                 if($quotaiontype == 'converted Quotation'){
                     $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', 1)->get();
                     $products = [];
+                    $extracosts = [];
                     $quotation_data = [];
                     foreach ($data as $key => $datas) {
                         $customer = Customer::findOrFail($datas->customer_id);
@@ -125,14 +168,28 @@ class QuotationController extends Controller
 
                             $product = Product::findOrFail($QuotationProducts_arr->product_id);
                             $products[] = array(
-                                'quantity' => $QuotationProducts_arr->quantity,
-                                'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                                'areapersqft' => $QuotationProducts_arr->areapersqft,
+                                'width' => $QuotationProducts_arr->width,
+                                'height' => $QuotationProducts_arr->height,
+                                'qty' => $QuotationProducts_arr->qty,
+                                'rate' => $QuotationProducts_arr->rate,
                                 'product_total' => $QuotationProducts_arr->product_total,
                                 'product_name' => $product->name,
                                 'quotation_id' => $QuotationProducts_arr->quotation_id,
 
                             );
                         }
+
+                        $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $datas->id)->get();
+                        foreach ($QuotationExtracosts as $key => $QuotationExtracosts_arr) {
+                            $extracosts[] = array(
+                                'extracost_note' => $QuotationExtracosts_arr->extracost_note,
+                                'extracost' => $QuotationExtracosts_arr->extracost,
+                                'quotation_id' => $QuotationExtracosts_arr->quotation_id,
+
+                            );
+                        }
+
                             $quotation_data[] = array(
                                 'unique_key' => $datas->unique_key,
                                 'id' => $datas->id,
@@ -148,7 +205,12 @@ class QuotationController extends Controller
                                 'extracost_amount' => $datas->extracost_amount,
                                 'grand_total' => $datas->grand_total,
                                 'products_data' => $products,
+                                'extracosts' => $extracosts,
                                 'status' => $datas->status,
+                                'discount_type' => $datas->discount_type,
+                                'discount' => $datas->discount,
+                                'tax_percentage' => $datas->tax_percentage,
+                                'add_on_note' => $datas->add_on_note,
                             );
 
 
@@ -159,6 +221,7 @@ class QuotationController extends Controller
                 }else if($quotaiontype == 'Non converted Quotation'){
                     $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', NULL)->get();
                     $products = [];
+                    $extracosts = [];
                     $quotation_data = [];
                     foreach ($data as $key => $datas) {
                         $customer = Customer::findOrFail($datas->customer_id);
@@ -168,14 +231,30 @@ class QuotationController extends Controller
 
                             $product = Product::findOrFail($QuotationProducts_arr->product_id);
                             $products[] = array(
-                                'quantity' => $QuotationProducts_arr->quantity,
-                                'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                                'areapersqft' => $QuotationProducts_arr->areapersqft,
+                                'width' => $QuotationProducts_arr->width,
+                                'height' => $QuotationProducts_arr->height,
+                                'qty' => $QuotationProducts_arr->qty,
+                                'rate' => $QuotationProducts_arr->rate,
                                 'product_total' => $QuotationProducts_arr->product_total,
                                 'product_name' => $product->name,
                                 'quotation_id' => $QuotationProducts_arr->quotation_id,
 
                             );
                         }
+
+
+                        $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $datas->id)->get();
+                        foreach ($QuotationExtracosts as $key => $QuotationExtracosts_arr) {
+                            $extracosts[] = array(
+                                'extracost_note' => $QuotationExtracosts_arr->extracost_note,
+                                'extracost' => $QuotationExtracosts_arr->extracost,
+                                'quotation_id' => $QuotationExtracosts_arr->quotation_id,
+
+                            );
+                        }
+
+
                             $quotation_data[] = array(
                                 'unique_key' => $datas->unique_key,
                                 'id' => $datas->id,
@@ -191,7 +270,12 @@ class QuotationController extends Controller
                                 'extracost_amount' => $datas->extracost_amount,
                                 'grand_total' => $datas->grand_total,
                                 'products_data' => $products,
+                                'extracosts' => $extracosts,
                                 'status' => $datas->status,
+                                'discount_type' => $datas->discount_type,
+                                'discount' => $datas->discount,
+                                'tax_percentage' => $datas->tax_percentage,
+                                'add_on_note' => $datas->add_on_note,
                             );
 
 
@@ -207,6 +291,7 @@ class QuotationController extends Controller
             if($quotaiontype == 'converted Quotation'){
                 $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', 1)->where('date', '=', $today)->get();
                 $products = [];
+                $extracosts = [];
                 $quotation_data = [];
                 foreach ($data as $key => $datas) {
                     $customer = Customer::findOrFail($datas->customer_id);
@@ -216,14 +301,29 @@ class QuotationController extends Controller
 
                         $product = Product::findOrFail($QuotationProducts_arr->product_id);
                         $products[] = array(
-                            'quantity' => $QuotationProducts_arr->quantity,
-                            'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                            'areapersqft' => $QuotationProducts_arr->areapersqft,
+                            'width' => $QuotationProducts_arr->width,
+                            'height' => $QuotationProducts_arr->height,
+                            'qty' => $QuotationProducts_arr->qty,
+                            'rate' => $QuotationProducts_arr->rate,
                             'product_total' => $QuotationProducts_arr->product_total,
                             'product_name' => $product->name,
                             'quotation_id' => $QuotationProducts_arr->quotation_id,
 
                         );
                     }
+
+                        $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $datas->id)->get();
+                        foreach ($QuotationExtracosts as $key => $QuotationExtracosts_arr) {
+                            $extracosts[] = array(
+                                'extracost_note' => $QuotationExtracosts_arr->extracost_note,
+                                'extracost' => $QuotationExtracosts_arr->extracost,
+                                'quotation_id' => $QuotationExtracosts_arr->quotation_id,
+
+                            );
+                        }
+
+
                         $quotation_data[] = array(
                             'unique_key' => $datas->unique_key,
                             'id' => $datas->id,
@@ -239,7 +339,12 @@ class QuotationController extends Controller
                             'extracost_amount' => $datas->extracost_amount,
                             'grand_total' => $datas->grand_total,
                             'products_data' => $products,
+                            'extracosts' => $extracosts,
                             'status' => $datas->status,
+                            'discount_type' => $datas->discount_type,
+                            'discount' => $datas->discount,
+                            'tax_percentage' => $datas->tax_percentage,
+                            'add_on_note' => $datas->add_on_note,
                         );
 
 
@@ -247,6 +352,7 @@ class QuotationController extends Controller
             }else if($quotaiontype == 'Non converted Quotation'){
                 $data = Quotation::where('soft_delete', '!=', 1)->where('status', '=', NULL)->where('date', '=', $today)->get();
                 $products = [];
+                $extracosts = [];
                 $quotation_data = [];
                 foreach ($data as $key => $datas) {
                     $customer = Customer::findOrFail($datas->customer_id);
@@ -256,14 +362,29 @@ class QuotationController extends Controller
 
                         $product = Product::findOrFail($QuotationProducts_arr->product_id);
                         $products[] = array(
-                            'quantity' => $QuotationProducts_arr->quantity,
-                            'rateper_quantity' => $QuotationProducts_arr->rateper_quantity,
+                            'areapersqft' => $QuotationProducts_arr->areapersqft,
+                            'width' => $QuotationProducts_arr->width,
+                            'height' => $QuotationProducts_arr->height,
+                            'qty' => $QuotationProducts_arr->qty,
+                            'rate' => $QuotationProducts_arr->rate,
                             'product_total' => $QuotationProducts_arr->product_total,
                             'product_name' => $product->name,
                             'quotation_id' => $QuotationProducts_arr->quotation_id,
 
                         );
                     }
+
+                        $QuotationExtracosts = QuotationExtracost::where('quotation_id', '=', $datas->id)->get();
+                        foreach ($QuotationExtracosts as $key => $QuotationExtracosts_arr) {
+                            $extracosts[] = array(
+                                'extracost_note' => $QuotationExtracosts_arr->extracost_note,
+                                'extracost' => $QuotationExtracosts_arr->extracost,
+                                'quotation_id' => $QuotationExtracosts_arr->quotation_id,
+
+                            );
+                        }
+
+
                         $quotation_data[] = array(
                             'unique_key' => $datas->unique_key,
                             'id' => $datas->id,
@@ -279,7 +400,12 @@ class QuotationController extends Controller
                             'extracost_amount' => $datas->extracost_amount,
                             'grand_total' => $datas->grand_total,
                             'products_data' => $products,
+                            'extracosts' => $extracosts,
                             'status' => $datas->status,
+                            'discount_type' => $datas->discount_type,
+                            'discount' => $datas->discount,
+                            'tax_percentage' => $datas->tax_percentage,
+                            'add_on_note' => $datas->add_on_note,
                         );
 
 
@@ -351,8 +477,8 @@ class QuotationController extends Controller
             $QuotationProduct->width = $request->width[$key];
             $QuotationProduct->height = $request->height[$key];
             $QuotationProduct->qty = $request->qty[$key];
-            $QuotationProduct->quantity = $request->quantity[$key]; // Area-Sq.ft
-            $QuotationProduct->rateper_quantity = $request->rateper_quantity[$key];
+            $QuotationProduct->areapersqft = $request->areapersqft[$key]; // Area-Sq.ft
+            $QuotationProduct->rate = $request->rate[$key];
             $QuotationProduct->product_total = $request->product_total[$key];
             $QuotationProduct->save();
         }
@@ -443,12 +569,12 @@ class QuotationController extends Controller
                 $width = $request->width[$key];
                 $height = $request->height[$key];
                 $qty = $request->qty[$key];
-                $quantity = $request->quantity[$key];
-                $rateper_quantity = $request->rateper_quantity[$key];
+                $areapersqft = $request->areapersqft[$key];
+                $rate = $request->rate[$key];
                 $product_total = $request->product_total[$key];
 
                 DB::table('quotation_products')->where('id', $ids)->update([
-                    'quotation_id' => $quotation_id, 'product_id' => $product_id, 'width' => $width, 'height' => $height, 'qty' => $qty, 'quantity' => $quantity, 'rateper_quantity' => $rateper_quantity, 'product_total' => $product_total
+                    'quotation_id' => $quotation_id, 'product_id' => $product_id, 'width' => $width, 'height' => $height, 'qty' => $qty, 'areapersqft' => $areapersqft, 'rate' => $rate, 'product_total' => $product_total
                 ]);
 
             } else if ($quotation_detail_id == '') {
@@ -459,8 +585,8 @@ class QuotationController extends Controller
                 $QuotationProduct->width = $request->width[$key];
                 $QuotationProduct->height = $request->height[$key];
                 $QuotationProduct->qty = $request->qty[$key];
-                $QuotationProduct->quantity = $request->quantity[$key];
-                $QuotationProduct->rateper_quantity = $request->rateper_quantity[$key];
+                $QuotationProduct->areapersqft = $request->areapersqft[$key];
+                $QuotationProduct->rate = $request->rate[$key];
                 $QuotationProduct->product_total = $request->product_total[$key];
                 $QuotationProduct->save();
             }
@@ -534,6 +660,8 @@ class QuotationController extends Controller
         return redirect()->route('quotation.index')->with('warning', 'Deleted !');
     }
 
+
+  
 
 
 

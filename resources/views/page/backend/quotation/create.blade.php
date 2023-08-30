@@ -112,11 +112,11 @@
                                                             id="qty" name="qty[]" value="" required />
                                                         </td>
                                                         {{-- Area-Sq.ft --}}
-                                                        <td><input type="text" class="form-control quantity"
-                                                                id="quantity" name="quantity[]" value="" required />
+                                                        <td><input type="text" class="form-control areapersqft"
+                                                                id="areapersqft" name="areapersqft[]" value="" required />
                                                         </td>
-                                                        <td><input type="text" class="form-control rateper_quantity"
-                                                                id="rateper_quantity" name="rateper_quantity[]"
+                                                        <td><input type="text" class="form-control rate"
+                                                                id="rate" name="rate[]"
                                                                 value="" required /></td>
                                                         <td><input type="text" class="form-control product_total"
                                                                 readonly id="product_total"

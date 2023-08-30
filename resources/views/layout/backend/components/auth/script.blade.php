@@ -98,8 +98,8 @@
                     '<td><input type="text" class="form-control width" id="width" name="width[]" value="" required /></td>' +
                     '<td><input type="text" class="form-control height" id="height" name="height[]" value="" required /></td>' +
                     '<td><input type="text" class="form-control qty" id="qty" name="qty[]" value="" required /></td>' +
-                    '<td><input type="text" class="form-control quantity" id="quantity" name="quantity[]"  value="" required /></td>' +
-                    '<td><input type="text" class="form-control rateper_quantity" id="rateper_quantity" name="rateper_quantity[]"  value="" required /></td>' +
+                    '<td><input type="text" class="form-control areapersqft" id="areapersqft" name="areapersqft[]"  value="" required /></td>' +
+                    '<td><input type="text" class="form-control rate" id="rate" name="rate[]"  value="" required /></td>' +
                     '<td><input type="text" class="form-control product_total" readonly id="product_total"style="background-color: #e9ecef;" name="product_total[]" placeholder="Total" /></td>' +
                     '<td><button class="btn btn-danger form-plus-btn remove-tr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
                     '</tr>'
@@ -318,10 +318,10 @@
 
         });
 
-    $(document).on("blur", "input[name*=quantity]", function() {
-        var quantity = $(this).val();
-        var rateper_quantity = $(this).parents('tr').find('.rateper_quantity').val();
-        var total = quantity * rateper_quantity;
+    $(document).on("blur", "input[name*=areapersqft]", function() {
+        var areapersqft = $(this).val();
+        var rate = $(this).parents('tr').find('.rate').val();
+        var total = areapersqft * rate;
         $(this).parents('tr').find('.product_total').val(total);
 
                 
@@ -466,10 +466,10 @@
 
 
 
-    $(document).on("blur", "input[name*=rateper_quantity]", function() {
-        var rateper_quantity = $(this).val();
-        var quantity = $(this).parents('tr').find('.quantity').val();
-        var total = quantity * rateper_quantity;
+    $(document).on("blur", "input[name*=rate]", function() {
+        var rate = $(this).val();
+        var areapersqft = $(this).parents('tr').find('.areapersqft').val();
+        var total = areapersqft * rate;
         $(this).parents('tr').find('.product_total').val(total);
 
 

@@ -19,6 +19,11 @@ class CustomerController extends Controller
         foreach ($data as $key => $datas) {
 
             $PaymentBalanceAmount = PaymentBalance::where('customer_id', '=', $datas->id)->first();
+            if($PaymentBalanceAmount != ""){
+                $customer_bal = $PaymentBalanceAmount->customer_balance;
+            }else {
+                $customer_bal = '0';
+            }
 
             $Customer_data[] = array(
                 'name' => $datas->name,
@@ -27,7 +32,7 @@ class CustomerController extends Controller
                 'phone_number' => $datas->phone_number,
                 'email_id' => $datas->email_id,
                 'id' => $datas->id,
-                'customer_balance' => $PaymentBalanceAmount->customer_balance,
+                'customer_balance' => $customer_bal,
             );
 
         }

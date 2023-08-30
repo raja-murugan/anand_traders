@@ -117,12 +117,12 @@
                                                             id="qty" name="qty[]" value="{{ $QuotationProduct->qty }}" required />
                                                         </td>
                                                         {{-- Area-Sq.ft --}}
-                                                        <td><input type="text" class="form-control quantity"
-                                                                id="quantity" name="quantity[]" value="{{ $QuotationProduct->quantity }}" required />
+                                                        <td><input type="text" class="form-control areapersqft"
+                                                                id="areapersqft" name="areapersqft[]" value="{{ $QuotationProduct->areapersqft }}" required />
                                                         </td>
-                                                        <td><input type="text" class="form-control rateper_quantity"
-                                                                id="rateper_quantity" name="rateper_quantity[]"
-                                                                value="{{ $QuotationProduct->rateper_quantity }}" required /></td>
+                                                        <td><input type="text" class="form-control rate"
+                                                                id="rate" name="rate[]"
+                                                                value="{{ $QuotationProduct->rate }}" required /></td>
                                                         <td><input type="text" class="form-control product_total"
                                                                 readonly id="product_total"
                                                                 style="background-color: #e9ecef;" name="product_total[]"

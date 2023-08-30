@@ -45,7 +45,7 @@
                                  <td>{{ $customer_data['address'] }}</td>
                                  <td>{{ $customer_data['phone_number'] }}</td>
                                  <td>{{ $customer_data['email_id'] }}</td>
-                                 <td> ₹ {{ $customer_data['customer_balance'] }}</td>
+                                 <td> ₹ {{ $customer_data['customer_balance'] }}.00</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>

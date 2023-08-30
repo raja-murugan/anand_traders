@@ -47,7 +47,7 @@
                                  <td>{{ $vendor_data['phone_number'] }}</td>
                                  <td>{{ $vendor_data['email_id'] }}</td>
                                  <td>{{ $vendor_data['shop_name'] }}</td>
-                                 <td>{{ $vendor_data['vendor_balance'] }}</td>
+                                 <td> ₹ {{ $vendor_data['vendor_balance'] }}.00</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
