@@ -77,7 +77,7 @@
                                              <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}" 
                                              class="badge bg-primary-light" style="color:#28084b;">Convert to Bill</a>
                                        @else
-                                             <a class="badge" style="color:#fff;background-color:#212529;">Bill Converted</a>
+                                             <a class="badge" style="color:#fff;background-color:#212529;">Quotation Converted</a>
                                         @endif
                                        </li>
                                        
