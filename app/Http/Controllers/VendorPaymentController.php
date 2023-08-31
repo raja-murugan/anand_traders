@@ -16,7 +16,10 @@ class VendorPaymentController extends Controller
 {
     public function index()
     {
-        $data = VendorPayment::where('soft_delete', '!=', 1)->get();
+
+        $today = Carbon::now()->format('Y-m-d');
+
+        $data = VendorPayment::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $PaymentData = [];
         foreach ($data as $key => $datas) {
             $vendor = Vendor::findOrFail($datas->vendor_id);
@@ -43,7 +46,42 @@ class VendorPaymentController extends Controller
 
         $vendor = Vendor::where('soft_delete', '!=', 1)->get();
         $bank = Bank::where('soft_delete', '!=', 1)->get();
-        $today = Carbon::now()->format('Y-m-d');
+        
+        $timenow = Carbon::now()->format('H:i');
+        return view('page.backend.vendor_payment.index', compact('PaymentData','vendor', 'today', 'timenow', 'bank'));
+    }
+
+
+    public function datefilter(Request $request) {
+        $today = $request->get('from_date');
+        $data = VendorPayment::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $PaymentData = [];
+        foreach ($data as $key => $datas) {
+            $vendor = Vendor::findOrFail($datas->vendor_id);
+            $bank = Bank::findOrFail($datas->bank_id);
+
+            $PaymentData[] = array(
+                'unique_key' => $datas->unique_key,
+                'id' => $datas->id,
+                'vendor_id' => $datas->vendor_id,
+                'bank_id' => $datas->bank_id,
+                'date' => $datas->date,
+                'time' => $datas->time,
+                'oldblance' => $datas->oldblance,
+                'discount' => $datas->discount,
+                'totalamount' => $datas->totalamount,
+                'paid_amount' => $datas->paid_amount,
+                'payment_pending' => $datas->payment_pending,
+                'note' => $datas->note,
+                'vendor' => $vendor->name,
+                'bank' => $bank->name,
+            );
+
+        }
+
+        $vendor = Vendor::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
+        
         $timenow = Carbon::now()->format('H:i');
         return view('page.backend.vendor_payment.index', compact('PaymentData','vendor', 'today', 'timenow', 'bank'));
     }

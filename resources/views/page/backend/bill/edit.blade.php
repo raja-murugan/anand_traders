@@ -131,12 +131,12 @@
                                                         <td><input type="text" class="form-control bill_qty"
                                                             id="bill_qty" name="bill_qty[]" value="{{ $BillProduct->bill_qty }}" required />
                                                         </td>
-                                                        <td><input type="text" class="form-control bill_quantity"
-                                                                id="bill_quantity" name="bill_quantity[]" value="{{ $BillProduct->bill_quantity }}" required />
+                                                        <td><input type="text" class="form-control bill_areapersqft"
+                                                                id="bill_areapersqft" name="bill_areapersqft[]" value="{{ $BillProduct->bill_areapersqft }}" required />
                                                         </td>
-                                                        <td><input type="text" class="form-control bill_rateper_quantity"
-                                                                id="bill_rateper_quantity" name="bill_rateper_quantity[]"
-                                                                value="{{ $BillProduct->bill_rateper_quantity }}" required /></td>
+                                                        <td><input type="text" class="form-control bill_rate"
+                                                                id="bill_rate" name="bill_rate[]"
+                                                                value="{{ $BillProduct->bill_rate }}" required /></td>
                                                         <td><input type="text" class="form-control bill_product_total"
                                                                 readonly id="bill_product_total"
                                                                 style="background-color: #e9ecef;" name="bill_product_total[]"

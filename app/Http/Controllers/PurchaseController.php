@@ -19,9 +19,80 @@ class PurchaseController extends Controller
 {
     public function index()
     {
-        $data = Purchase::where('soft_delete', '!=', 1)->get();
+        $today = Carbon::now()->format('Y-m-d');
+        
+        $data = Purchase::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $products = [];
         $Purchasedata = [];
+        $extracosts = [];
+        foreach ($data as $key => $datas) {
+            $vendor = Vendor::findOrFail($datas->vendor_id);
+            $bank = Bank::findOrFail($datas->bank_id);
+
+            $PurchaseProducts = PurchaseProduct::where('purchase_id', '=', $datas->id)->orderBy('id', 'DESC')->get();
+            foreach ($PurchaseProducts as $key => $PurchaseProducts_arr) {
+
+                $product = Product::findOrFail($PurchaseProducts_arr->purchase_productid);
+                $products[] = array(
+                    'purchase_quantity' => $PurchaseProducts_arr->purchase_quantity,
+                    'purchase_rateperquantity' => $PurchaseProducts_arr->purchase_rateperquantity,
+                    'purchase_producttotal' => $PurchaseProducts_arr->purchase_producttotal,
+                    'product_name' => $product->name,
+                    'purchase_id' => $PurchaseProducts_arr->purchase_id,
+
+                );
+            }
+
+            $PurchaseExtracost = PurchaseExtracost::where('purchase_id', '=', $datas->id)->get();
+            foreach ($PurchaseExtracost as $key => $PurchaseExtracost_arr) {
+                $extracosts[] = array(
+                    'purchase_extracostnote' => $PurchaseExtracost_arr->purchase_extracostnote,
+                    'purchase_extracost' => $PurchaseExtracost_arr->purchase_extracost,
+                    'purchase_id' => $PurchaseExtracost_arr->purchase_id,
+
+                );
+            }
+
+                $Purchasedata[] = array(
+                    'unique_key' => $datas->unique_key,
+                    'id' => $datas->id,
+                    'purchase_number' => $datas->purchase_number,
+                    'vocher_number' => $datas->vocher_number,
+                    'date' => $datas->date,
+                    'time' => $datas->time,
+                    'vendor' => $vendor->name,
+                    'bank' => $bank->name,
+                    'purchase_subtotal' => $datas->purchase_subtotal,
+                    'purchase_discountprice' => $datas->purchase_discountprice,
+                    'purchase_totalamount' => $datas->purchase_totalamount,
+                    'purchase_taxamount' => $datas->purchase_taxamount,
+                    'purchase_taxpercentage' => $datas->purchase_taxpercentage,
+                    'purchase_extracostamount' => $datas->purchase_extracostamount,
+                    'purchase_grandtotal' => $datas->purchase_grandtotal,
+                    'purchase_paidamount' => $datas->purchase_paidamount,
+                    'purchase_balanceamount' => $datas->purchase_balanceamount,
+                    'products_data' => $products,
+                    'extracosts' => $extracosts,
+                    'purchase_discounttype' => $datas->purchase_discounttype,
+                    'purchase_discount' => $datas->purchase_discount,
+                    'purchase_addon_note' => $datas->purchase_addon_note,
+                );
+
+
+        }
+        
+        return view('page.backend.purchase.index', compact('Purchasedata', 'today'));
+    }
+
+
+
+    public function datefilter(Request $request) {
+        $today = $request->get('from_date');
+
+        $data = Purchase::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $products = [];
+        $Purchasedata = [];
+        $extracosts = [];
         foreach ($data as $key => $datas) {
             $vendor = Vendor::findOrFail($datas->vendor_id);
 
@@ -38,6 +109,17 @@ class PurchaseController extends Controller
 
                 );
             }
+
+            $PurchaseExtracost = PurchaseExtracost::where('purchase_id', '=', $datas->id)->get();
+            foreach ($PurchaseExtracost as $key => $PurchaseExtracost_arr) {
+                $extracosts[] = array(
+                    'purchase_extracostnote' => $PurchaseExtracost_arr->purchase_extracostnote,
+                    'purchase_extracost' => $PurchaseExtracost_arr->purchase_extracost,
+                    'purchase_id' => $PurchaseExtracost_arr->purchase_id,
+
+                );
+            }
+
                 $Purchasedata[] = array(
                     'unique_key' => $datas->unique_key,
                     'id' => $datas->id,
@@ -56,11 +138,16 @@ class PurchaseController extends Controller
                     'purchase_paidamount' => $datas->purchase_paidamount,
                     'purchase_balanceamount' => $datas->purchase_balanceamount,
                     'products_data' => $products,
+                    'extracosts' => $extracosts,
+                    'purchase_discounttype' => $datas->purchase_discounttype,
+                    'purchase_discount' => $datas->purchase_discount,
+                    'purchase_addon_note' => $datas->purchase_addon_note,
                 );
 
 
         }
-        return view('page.backend.purchase.index', compact('Purchasedata'));
+
+        return view('page.backend.purchase.index', compact('Purchasedata', 'today'));
     }
 
 

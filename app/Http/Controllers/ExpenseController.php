@@ -14,9 +14,18 @@ class ExpenseController extends Controller
 {
     public function index()
     {
-        $data = Expense::where('soft_delete', '!=', 1)->get();
+        $today = Carbon::now()->format('Y-m-d');
+        $data = Expense::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
 
-        return view('page.backend.expense.index', compact('data'));
+        return view('page.backend.expense.index', compact('data', 'today'));
+    }
+
+
+    public function datefilter(Request $request) {
+        $today = $request->get('from_date');
+        $data = Expense::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+
+        return view('page.backend.expense.index', compact('data', 'today'));
     }
 
 

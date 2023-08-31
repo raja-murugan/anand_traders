@@ -70,7 +70,7 @@
                                        
                                        <li>
                                           <a class="badge" href="#quotationview{{ $Quotationdata['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".quotationview-modal-xl{{ $Quotationdata['unique_key'] }}" style="color: #28084b;background: #aaa;">View</a>
+                                          data-bs-target=".quotationview-modal-xl{{ $Quotationdata['unique_key'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
                                        </li>
                                        <li>
                                        @if ($Quotationdata['status'] != 1)

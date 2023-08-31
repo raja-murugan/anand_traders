@@ -9,11 +9,23 @@
          <div class="content-page-header">
             <h6>Customer Payment</h6>
                <div class="list-btn">
-                  <ul class="filter-list">
-                     <li>
-                     <a class="btn btn-primary" href="{{ route('customer_payment.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer Payment</a>
-                     </li>
-                  </ul>
+                     <div style="display: flex;">
+                        <form autocomplete="off" method="POST" action="{{ route('customer_payment.datefilter') }}">
+                            @method('PUT')
+                            @csrf
+                            <div style="display: flex">
+                                 <div style="margin-right: 10px;"><input type="date" name="from_date"
+                                        class="form-control from_date" value="{{ $today }}"></div>
+                                <div style="margin-right: 10px;"><input type="submit" class="btn btn-success"
+                                        value="Search" /></div>
+                            </div>
+                        </form>
+                        <ul class="filter-list">
+                           <li>
+                           <a class="btn btn-primary" href="{{ route('customer_payment.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add CustomerPayment</a>
+                           </li>
+                        </ul>
+                    </div>
                </div>
          </div>
       </div>

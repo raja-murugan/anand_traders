@@ -9,12 +9,24 @@
          <div class="content-page-header">
             <h6>Purchase</h6>
             <div class="list-btn">
-                  <ul class="filter-list">
-                     <li>
-                     <a class="btn btn-primary" href="{{ route('purchase.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Purchase</a>
-                     </li>
-                  </ul>
-               </div>
+                     <div style="display: flex;">
+                        <form autocomplete="off" method="POST" action="{{ route('purchase.datefilter') }}">
+                            @method('PUT')
+                            @csrf
+                            <div style="display: flex">
+                                 <div style="margin-right: 10px;"><input type="date" name="from_date"
+                                        class="form-control from_date" value="{{ $today }}"></div>
+                                <div style="margin-right: 10px;"><input type="submit" class="btn btn-success"
+                                        value="Search" /></div>
+                            </div>
+                        </form>
+                        <ul class="filter-list">
+                           <li>
+                           <a class="btn btn-primary" href="{{ route('purchase.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Purchase</a>
+                           </li>
+                        </ul>
+                    </div>
+            </div>
          </div>
       </div>
 
@@ -52,12 +64,22 @@
                                                    class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
                                        <li>
+                                          <a class="badge" href="#purchaseview{{ $Purchasedatas['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".purchaseview-modal-xl{{ $Purchasedatas['unique_key'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                       </li>
+                                       <li>
                                              <a href="#purchasedelete{{ $Purchasedatas['unique_key'] }}" data-bs-toggle="modal"
                                              data-bs-target=".purchasedelete-modal-xl{{ $Purchasedatas['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  </td>
                               </tr>
+                              <div class="modal fade purchaseview-modal-xl{{ $Purchasedatas['unique_key'] }}"
+                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                    aria-labelledby="purchaseviewLargeModalLabel{{ $Purchasedatas['unique_key'] }}"
+                                    aria-hidden="true">
+                                    @include('page.backend.purchase.view')
+                              </div>
                               <div class="modal fade purchasedelete-modal-xl{{ $Purchasedatas['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
                                     aria-labelledby="purchasedeleteLargeModalLabel{{$Purchasedatas['unique_key'] }}"

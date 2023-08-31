@@ -8,12 +8,23 @@
                 <div class="content-page-header">
                     <h6>Expense</h6>
                     <div class="list-btn">
-                        <ul class="filter-list">
+                        <div style="display: flex;">
+                            <form autocomplete="off" method="POST" action="{{ route('expense.datefilter') }}">
+                                @method('PUT')
+                                @csrf
+                                <div style="display: flex">
+                                    <div style="margin-right: 10px;"><input type="date" name="from_date"
+                                            class="form-control from_date" value="{{ $today }}"></div>
+                                    <div style="margin-right: 10px;"><input type="submit" class="btn btn-success"
+                                            value="Search" /></div>
+                                </div>
+                            </form>
+                            <ul class="filter-list">
                             <li>
-                                <a class="btn btn-primary" href="{{ route('expense.create') }}"><i
-                                        class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Expense</a>
+                            <a class="btn btn-primary" href="{{ route('expense.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Expense</a>
                             </li>
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

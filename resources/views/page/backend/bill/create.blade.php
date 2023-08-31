@@ -126,11 +126,11 @@
                                                         <td><input type="text" class="form-control bill_qty"
                                                             id="bill_qty" name="bill_qty[]" value="" required />
                                                         </td>
-                                                        <td><input type="text" class="form-control bill_quantity"
-                                                                id="bill_quantity" name="bill_quantity[]" value="" required />
+                                                        <td><input type="text" class="form-control bill_areapersqft"
+                                                                id="bill_areapersqft" name="bill_areapersqft[]" value="" required />
                                                         </td>
-                                                        <td><input type="text" class="form-control bill_rateper_quantity"
-                                                                id="bill_rateper_quantity" name="bill_rateper_quantity[]"
+                                                        <td><input type="text" class="form-control bill_rate"
+                                                                id="bill_rate" name="bill_rate[]"
                                                                 value="" required /></td>
                                                         <td><input type="text" class="form-control bill_product_total"
                                                                 readonly id="bill_product_total"

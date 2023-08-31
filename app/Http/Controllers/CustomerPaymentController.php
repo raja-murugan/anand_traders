@@ -16,7 +16,8 @@ class CustomerPaymentController extends Controller
 {
     public function index()
     {
-        $data = CustomerPayment::where('soft_delete', '!=', 1)->get();
+        $today = Carbon::now()->format('Y-m-d');
+        $data = CustomerPayment::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $PaymentData = [];
         foreach ($data as $key => $datas) {
             $customer = Customer::findOrFail($datas->customer_id);
@@ -43,7 +44,42 @@ class CustomerPaymentController extends Controller
 
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $bank = Bank::where('soft_delete', '!=', 1)->get();
-        $today = Carbon::now()->format('Y-m-d');
+        
+        $timenow = Carbon::now()->format('H:i');
+        return view('page.backend.customer_payment.index', compact('PaymentData','customer', 'today', 'timenow', 'bank'));
+    }
+
+    public function datefilter(Request $request) {
+        
+        $today = $request->get('from_date');
+        $data = CustomerPayment::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $PaymentData = [];
+        foreach ($data as $key => $datas) {
+            $customer = Customer::findOrFail($datas->customer_id);
+            $bank = Bank::findOrFail($datas->bank_id);
+
+            $PaymentData[] = array(
+                'unique_key' => $datas->unique_key,
+                'id' => $datas->id,
+                'customer_id' => $datas->customer_id,
+                'bank_id' => $datas->bank_id,
+                'date' => $datas->date,
+                'time' => $datas->time,
+                'oldblance' => $datas->oldblance,
+                'discount' => $datas->discount,
+                'totalamount' => $datas->totalamount,
+                'paid_amount' => $datas->paid_amount,
+                'payment_pending' => $datas->payment_pending,
+                'note' => $datas->note,
+                'customer' => $customer->name,
+                'bank' => $bank->name,
+            );
+
+        }
+
+        $customer = Customer::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
+        
         $timenow = Carbon::now()->format('H:i');
         return view('page.backend.customer_payment.index', compact('PaymentData','customer', 'today', 'timenow', 'bank'));
     }

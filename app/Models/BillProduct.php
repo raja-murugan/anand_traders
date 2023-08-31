@@ -15,8 +15,8 @@ class BillProduct extends Model
         'bill_width',
         'bill_height',
         'bill_qty',
-        'bill_quantity',
-        'bill_rateper_quantity',
+        'bill_areapersqft',
+        'bill_rate',
         'bill_product_total',
         'soft_delete'
     ];

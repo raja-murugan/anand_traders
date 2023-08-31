@@ -53,6 +53,10 @@
                                           data-bs-target=".customeredit-modal-xl{{ $customer_data['unique_key'] }}" style="color: #28084b;">Edit</a>
                                        </li>
                                        <li>
+                                          <a href="{{ route('customer.view', ['unique_key' => $customer_data['unique_key']]) }}"
+                                                   class="badge" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                       </li>
+                                       <li>
                                           <a href="#delete{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
                                           data-bs-target=".customerdelete-modal-xl{{ $customer_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
