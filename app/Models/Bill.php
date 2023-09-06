@@ -26,6 +26,7 @@ class Bill extends Model
         'bill_total_amount',
         'bill_tax_amount',
         'bill_extracost_amount',
+        'overall',
         'bill_grand_total',
         'bill_paid_amount',
         'bill_balance_amount',

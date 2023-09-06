@@ -156,9 +156,14 @@
                                           <div class="invoice-total-box">
                                              <div class="invoice-total-inner">
                                                 <p>Gross Amount <span>₹ {{ $Quotationdata['sub_total'] }}.00</span></p>
-                                                <p>Discount<span>₹ {{ $Quotationdata['discount_price'] }}.00</span></p>
-                                                <p>Total <span>₹ {{ $Quotationdata['total_amount'] }}.00</span></p>
+                                                
                                                 <p>Tax Amount <span>₹ {{ $Quotationdata['tax_amount'] }}</span></p>
+
+                                                
+                                                <p>Total <span>₹ {{ $Quotationdata['total_amount'] }}.00</span></p>
+
+                                                <p>Discount<span>₹ {{ $Quotationdata['discount_price'] }}.00</span></p>
+                                                <p>Over All<span>₹ {{ $Quotationdata['overall'] }}.00</span></p>
                                                 <p>Extra Cost <span>₹ {{ $Quotationdata['extracost_amount'] }}.00</span></p>
                                              </div>
                                              <div class="invoice-total-footer">

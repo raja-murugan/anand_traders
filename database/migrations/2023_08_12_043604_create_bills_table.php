@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('bill_total_amount')->nullable();
             $table->string('bill_tax_amount')->nullable();
             $table->string('bill_extracost_amount')->nullable();
+            $table->string('overall')->nullable();
             $table->string('bill_grand_total')->nullable();
             $table->string('bill_paid_amount')->nullable();
             $table->string('bill_balance_amount')->nullable();

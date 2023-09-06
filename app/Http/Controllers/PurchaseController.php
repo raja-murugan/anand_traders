@@ -68,6 +68,7 @@ class PurchaseController extends Controller
                     'purchase_taxamount' => $datas->purchase_taxamount,
                     'purchase_taxpercentage' => $datas->purchase_taxpercentage,
                     'purchase_extracostamount' => $datas->purchase_extracostamount,
+                    'overall' => $datas->overall,
                     'purchase_grandtotal' => $datas->purchase_grandtotal,
                     'purchase_paidamount' => $datas->purchase_paidamount,
                     'purchase_balanceamount' => $datas->purchase_balanceamount,
@@ -134,6 +135,7 @@ class PurchaseController extends Controller
                     'purchase_taxamount' => $datas->purchase_taxamount,
                     'purchase_taxpercentage' => $datas->purchase_taxpercentage,
                     'purchase_extracostamount' => $datas->purchase_extracostamount,
+                    'overall' => $datas->overall,
                     'purchase_grandtotal' => $datas->purchase_grandtotal,
                     'purchase_paidamount' => $datas->purchase_paidamount,
                     'purchase_balanceamount' => $datas->purchase_balanceamount,
@@ -200,6 +202,7 @@ class PurchaseController extends Controller
         $data->purchase_totalamount = $request->get('purchase_totalamount');
         $data->purchase_taxamount = $request->get('purchase_taxamount');
         $data->purchase_extracostamount = $request->get('purchase_extracostamount');
+        $data->overall = $request->get('overall');
         $data->purchase_grandtotal = $request->get('purchase_grandtotal');
         $data->purchase_paidamount = $request->get('purchase_paidamount');
         $data->purchase_balanceamount = $request->get('purchase_balanceamount');
@@ -345,6 +348,7 @@ class PurchaseController extends Controller
         $PurchaseData->purchase_totalamount = $request->get('purchase_totalamount');
         $PurchaseData->purchase_taxamount = $request->get('purchase_taxamount');
         $PurchaseData->purchase_extracostamount = $request->get('purchase_extracostamount');
+        $PurchaseData->overall = $request->get('overall');
         $PurchaseData->purchase_grandtotal = $request->get('purchase_grandtotal');
         $PurchaseData->purchase_paidamount = $request->get('purchase_paidamount');
         $PurchaseData->purchase_balanceamount = $request->get('purchase_balanceamount');

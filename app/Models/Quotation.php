@@ -25,6 +25,7 @@ class Quotation extends Model
         'total_amount',
         'tax_amount',
         'extracost_amount',
+        'overall',
         'grand_total',
         'soft_delete'
     ];

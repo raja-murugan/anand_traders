@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('total_amount')->nullable();
             $table->string('tax_amount')->nullable();
             $table->string('extracost_amount')->nullable();
+            $table->string('overall')->nullable();
             $table->string('grand_total')->nullable();
             $table->string('status')->nullable();
 

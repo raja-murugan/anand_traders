@@ -148,9 +148,10 @@
                                           <div class="invoice-total-box">
                                              <div class="invoice-total-inner">
                                                 <p>Gross Amount <span>₹ {{ $Purchasedatas['purchase_subtotal'] }}.00</span></p>
-                                                <p>Discount<span>₹ {{ $Purchasedatas['purchase_discountprice'] }}.00</span></p>
-                                                <p>Total <span>₹ {{ $Purchasedatas['purchase_totalamount'] }}.00</span></p>
                                                 <p>Tax Amount <span>₹ {{ $Purchasedatas['purchase_taxamount'] }}</span></p>
+                                                <p>Total <span>₹ {{ $Purchasedatas['purchase_totalamount'] }}.00</span></p>
+                                                <p>Discount<span>₹ {{ $Purchasedatas['purchase_discountprice'] }}.00</span></p>
+                                                <p>Overall<span>₹ {{ $Purchasedatas['overall'] }}.00</span></p>
                                                 <p>Extra Cost <span>₹ {{ $Purchasedatas['purchase_extracostamount'] }}.00</span></p>
                                                 <p style="color: #0d6efd;">Grand Total <span style="color: #0d6efd;">₹ {{ $Purchasedatas['purchase_grandtotal'] }}</span></p>
                                                 <p style="color:green">Paid Amount <span style="color:green">₹ {{ $Purchasedatas['purchase_paidamount'] }}</span></p>

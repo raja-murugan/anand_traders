@@ -27,6 +27,7 @@ class Purchase extends Model
         'purchase_totalamount',
         'purchase_taxamount',
         'purchase_extracostamount',
+        'overall',
         'purchase_grandtotal',
         'purchase_paidamount',
         'purchase_balanceamount',

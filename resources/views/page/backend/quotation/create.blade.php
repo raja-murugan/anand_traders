@@ -203,15 +203,19 @@
                                                                 <p>Gross Amount <span class="sub_total">  </span></p>
                                                                 <input type="hidden" class="form-control subq_total" name="sub_total" id="sub_total">
 
-                                                                <p>Discount <span class="discount_price">  </span></p>
-                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price" value="0.00">
+                                                                <p>Tax Amount <span class="tax_amount">  </span></p>
+                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount" value="0.00">
+
 
                                                                 <p>Total <span class="total_amount">  </span></p>
                                                                 <input type="hidden" class="form-control totalq_amount"name="total_amount"id="total_amount">
 
-                                                                <p>Tax Amount <span class="tax_amount">  </span></p>
-                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount" value="0.00">
+                                                                <p>Discount <span class="discount_price">  </span></p>
+                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price" value="0.00">
 
+                                                                <input type="hidden" class="form-control overall"name="overall"id="overall" value="">
+
+                                                                
                                                                 <p>Extra Cost <span class="extracost_amount">  </span></p>
                                                                 <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount" value="0.00">
 

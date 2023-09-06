@@ -181,7 +181,7 @@
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
                                                             <select class="select" name="purchase_discounttype" id="purchase_discounttype" required>
-                                                                <option value="">Select</option>
+                                                                <option value="none">Select</option>
                                                                 <option value="percentage"@if ('percentage' === $PurchaseData->purchase_discounttype) selected='selected' @endif>Percentage(%)</option>
                                                                 <option value="fixed"@if ('fixed' === $PurchaseData->purchase_discounttype) selected='selected' @endif>Fixed</option>
                                                             </select>
@@ -199,7 +199,6 @@
                                                 <div class="form-group">
                                                     <label>Tax</label>
                                                     <select class="select purchase_taxpercentage" name="purchase_taxpercentage" id="purchase_taxpercentage">
-                                                        <option>No Tax</option>
                                                         <option value="0"@if ('0' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>No Tax</option>
                                                         <option value="3"@if ('3' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (3%)</option>
                                                         <option value="8"@if ('8' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (8%)</option>
@@ -229,14 +228,20 @@
                                                                 <p>Gross Amount <span class="purchasesubtotal">₹  {{ $PurchaseData->purchase_subtotal }} </span></p>
                                                                 <input type="hidden" class="form-control purchase_subtotal" name="purchase_subtotal" id="purchase_subtotal" value="{{ $PurchaseData->purchase_subtotal }}">
 
-                                                                <p>Discount <span class="purchasediscountprice">₹  {{ $PurchaseData->purchase_discountprice }} </span></p>
-                                                                <input type="hidden" class="form-control purchase_discountprice"name="purchase_discountprice"id="purchase_discountprice" value="{{ $PurchaseData->purchase_discountprice }}">
+                                                                <p>Tax Amount <span class="purchasetaxamount">₹  {{ $PurchaseData->purchase_taxamount }}  </span></p>
+                                                                <input type="hidden" class="form-control purchase_taxamount"name="purchase_taxamount"id="purchase_taxamount" value="{{ $PurchaseData->purchase_taxamount }}">
+
 
                                                                 <p>Total <span class="purchasetotalamount">₹  {{ $PurchaseData->purchase_totalamount }} </span></p>
                                                                 <input type="hidden" class="form-control purchase_totalamount"name="purchase_totalamount"id="purchase_totalamount" value="{{ $PurchaseData->purchase_totalamount }}">
 
-                                                                <p>Tax Amount <span class="purchasetaxamount">₹  {{ $PurchaseData->purchase_taxamount }}  </span></p>
-                                                                <input type="hidden" class="form-control purchase_taxamount"name="purchase_taxamount"id="purchase_taxamount" value="{{ $PurchaseData->purchase_taxamount }}">
+
+                                                                <p>Discount <span class="purchasediscountprice">₹  {{ $PurchaseData->purchase_discountprice }} </span></p>
+                                                                <input type="hidden" class="form-control purchase_discountprice"name="purchase_discountprice"id="purchase_discountprice" value="{{ $PurchaseData->purchase_discountprice }}">
+
+                                                               <input type="hidden" class="form-control overall"name="overall"id="overall" value="{{ $PurchaseData->overall }}">
+
+                                                                
                                                                 
                                                                 <p>Extra Cost <span class="purchaseextracostamount">₹  {{ $PurchaseData->purchase_extracostamount }} </span></p>
                                                                 <input type="hidden" class="form-control purchase_extracostamount" name="purchase_extracostamount" id="purchase_extracostamount" value="{{ $PurchaseData->purchase_extracostamount }}">

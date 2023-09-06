@@ -167,7 +167,7 @@
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
                                                             <select class="select" name="purchase_discounttype" id="purchase_discounttype" required>
-                                                                <option value="">Select</option>
+                                                                <option value="none">Select</option>
                                                                 <option value="percentage">Percentage(%)</option>
                                                                 <option value="fixed">Fixed</option>
                                                             </select>
@@ -214,14 +214,18 @@
                                                                 <p>Gross Amount <span class="purchasesubtotal">  </span></p>
                                                                 <input type="hidden" class="form-control purchase_subtotal" name="purchase_subtotal" id="purchase_subtotal">
 
-                                                                <p>Discount <span class="purchasediscountprice">  </span></p>
-                                                                <input type="hidden" class="form-control purchase_discountprice"name="purchase_discountprice"id="purchase_discountprice">
+                                                                <p>Tax Amount <span class="purchasetaxamount">  </span></p>
+                                                                <input type="hidden" class="form-control purchase_taxamount"name="purchase_taxamount"id="purchase_taxamount">
 
                                                                 <p>Total <span class="purchasetotalamount">  </span></p>
                                                                 <input type="hidden" class="form-control purchase_totalamount"name="purchase_totalamount"id="purchase_totalamount">
 
-                                                                <p>Tax Amount <span class="purchasetaxamount">  </span></p>
-                                                                <input type="hidden" class="form-control purchase_taxamount"name="purchase_taxamount"id="purchase_taxamount">
+                                                                <p>Discount <span class="purchasediscountprice">  </span></p>
+                                                                <input type="hidden" class="form-control purchase_discountprice"name="purchase_discountprice"id="purchase_discountprice">
+
+                                                                <input type="hidden" class="form-control overall"name="overall"id="overall">
+
+                                                                
                                                                 
                                                                 <p>Extra Cost <span class="purchaseextracostamount">  </span></p>
                                                                 <input type="hidden" class="form-control purchase_extracostamount" name="purchase_extracostamount" id="purchase_extracostamount">

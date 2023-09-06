@@ -170,7 +170,7 @@
                                                         <div class="form-group">
                                                             <label>Discount Type</label>
                                                             <select class="select" name="bill_discount_type" id="bill_discount_type" required>
-                                                                <option value="">Select</option>
+                                                                <option value="none">Select</option>
                                                                 <option value="percentage">Percentage(%)</option>
                                                                 <option value="fixed">Fixed</option>
                                                             </select>
@@ -217,14 +217,22 @@
                                                                 <p>Gross Amount <span class="billsub_total">  </span></p>
                                                                 <input type="hidden" class="form-control bill_sub_total" name="bill_sub_total" id="bill_sub_total">
 
-                                                                <p>Discount <span class="billdiscount_price">  </span></p>
-                                                                <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price">
+
+                                                                <p>Tax Amount <span class="billtax_amount">  </span></p>
+                                                                <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount">
+
+                                                                
 
                                                                 <p>Total <span class="billtotal_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_total_amount"name="bill_total_amount"id="bill_total_amount">
 
-                                                                <p>Tax Amount <span class="billtax_amount">  </span></p>
-                                                                <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount">
+                                                                <p>Discount <span class="billdiscount_price">  </span></p>
+                                                                <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price">
+
+                                                                
+
+                                                                <input type="hidden" class="form-control overall"name="overall"id="overall">
+
 
                                                                 <p>Extra Cost <span class="billextracost_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_extracost_amount" name="bill_extracost_amount" id="bill_extracost_amount">

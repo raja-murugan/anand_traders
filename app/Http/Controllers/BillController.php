@@ -72,6 +72,7 @@ class BillController extends Controller
                     'bill_tax_amount' => $datas->bill_tax_amount,
                     'bill_tax_percentage' => $datas->bill_tax_percentage,
                     'bill_extracost_amount' => $datas->bill_extracost_amount,
+                    'overall' => $datas->overall,
                     'bill_grand_total' => $datas->bill_grand_total,
                     'bill_paid_amount' => $datas->bill_paid_amount,
                     'bill_balance_amount' => $datas->bill_balance_amount,
@@ -144,6 +145,7 @@ class BillController extends Controller
                     'bill_tax_amount' => $datas->bill_tax_amount,
                     'bill_tax_percentage' => $datas->bill_tax_percentage,
                     'bill_extracost_amount' => $datas->bill_extracost_amount,
+                    'overall' => $datas->overall,
                     'bill_grand_total' => $datas->bill_grand_total,
                     'bill_paid_amount' => $datas->bill_paid_amount,
                     'bill_balance_amount' => $datas->bill_balance_amount,
@@ -209,6 +211,7 @@ class BillController extends Controller
         $data->bill_total_amount = $request->get('bill_total_amount');
         $data->bill_tax_amount = $request->get('bill_tax_amount');
         $data->bill_extracost_amount = $request->get('bill_extracost_amount');
+        $data->overall = $request->get('overall');
         $data->bill_grand_total = $request->get('bill_grand_total');
         $data->bill_paid_amount = $request->get('bill_paid_amount');
         $data->bill_balance_amount = $request->get('bill_balance_amount');
@@ -310,6 +313,7 @@ class BillController extends Controller
         $data->bill_total_amount = $request->get('bill_total_amount');
         $data->bill_tax_amount = $request->get('bill_tax_amount');
         $data->bill_extracost_amount = $request->get('bill_extracost_amount');
+        $data->overall = $request->get('overall');
         $data->bill_grand_total = $request->get('bill_grand_total');
         $data->bill_paid_amount = $request->get('bill_paid_amount');
         $data->bill_balance_amount = $request->get('bill_balance_amount');
@@ -457,6 +461,7 @@ class BillController extends Controller
         $BillData->bill_total_amount = $request->get('bill_total_amount');
         $BillData->bill_tax_amount = $request->get('bill_tax_amount');
         $BillData->bill_extracost_amount = $request->get('bill_extracost_amount');
+        $BillData->overall = $request->get('overall');
         $BillData->bill_grand_total = $request->get('bill_grand_total');
         $BillData->bill_paid_amount = $request->get('bill_paid_amount');
         $BillData->bill_balance_amount = $request->get('bill_balance_amount');
