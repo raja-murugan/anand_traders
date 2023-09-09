@@ -9,12 +9,27 @@
          <div class="content-page-header">
             <h6>Bill</h6>
             <div class="list-btn">
-                  <ul class="filter-list">
-                     <li>
-                     <a class="btn btn-primary" href="{{ route('bill.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Bill</a>
-                     </li>
-                  </ul>
-               </div>
+                  
+            
+                     <div style="display: flex;">
+                        <form autocomplete="off" method="POST" action="{{ route('bill.datefilter') }}">
+                            @method('PUT')
+                            @csrf
+                            <div style="display: flex">
+                                 <div style="margin-right: 10px;"><input type="date" name="from_date"
+                                        class="form-control from_date" value="{{ $today }}"></div>
+                                <div style="margin-right: 10px;"><input type="submit" class="btn btn-success"
+                                        value="Search" /></div>
+                            </div>
+                        </form>
+                        <ul class="filter-list">
+                           <li>
+                           <a class="btn btn-primary" href="{{ route('bill.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Bill</a>
+                           </li>
+                        </ul>
+                    </div>
+            </div>
+
          </div>
       </div>
 
@@ -50,12 +65,26 @@
                                                    class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
                                        <li>
+                                          <a class="badge" href="#billview{{ $Bill_datas['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".billview-modal-xl{{ $Bill_datas['unique_key'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                       </li>
+                                       <li>
                                              <a href="#billdelete{{ $Bill_datas['unique_key'] }}" data-bs-toggle="modal"
                                              data-bs-target=".billdelete-modal-xl{{ $Bill_datas['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                       </li>
+                                       <li>
+                                       <a href="{{ route('bill.print', ['unique_key' => $Bill_datas['unique_key']]) }}"
+                                                   class="badge bg-info" style="color:#28084b;">Print</a>
                                        </li>
                                     </ul>
                                  </td>
                               </tr>
+                              <div class="modal fade billview-modal-xl{{ $Bill_datas['unique_key'] }}"
+                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                    aria-labelledby="billviewLargeModalLabel{{ $Bill_datas['unique_key'] }}"
+                                    aria-hidden="true">
+                                    @include('page.backend.bill.view')
+                              </div>
                               <div class="modal fade billdelete-modal-xl{{ $Bill_datas['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
                                     aria-labelledby="billdeleteLargeModalLabel{{$Bill_datas['unique_key'] }}"

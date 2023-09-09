@@ -129,12 +129,12 @@
                                                         <td><input type="text" class="form-control bill_qty"
                                                             id="bill_qty" name="bill_qty[]" value="{{ $QuotationProduct->qty }}" required />
                                                         </td>
-                                                        <td><input type="text" class="form-control bill_quantity"
-                                                                id="bill_quantity" name="bill_quantity[]" value="{{ $QuotationProduct->quantity }}"  />
+                                                        <td><input type="text" class="form-control bill_areapersqft"
+                                                                id="bill_areapersqft" name="bill_areapersqft[]" value="{{ $QuotationProduct->areapersqft }}"  />
                                                         </td>
-                                                        <td><input type="text" class="form-control bill_rateper_quantity"
-                                                                id="bill_rateper_quantity" name="bill_rateper_quantity[]"
-                                                                value="{{ $QuotationProduct->rateper_quantity }}"  /></td>
+                                                        <td><input type="text" class="form-control bill_rate"
+                                                                id="bill_rate" name="bill_rate[]"
+                                                                value="{{ $QuotationProduct->rate }}"  /></td>
                                                         <td><input type="text" class="form-control bill_product_total"
                                                                 readonly id="bill_product_total"
                                                                 style="background-color: #e9ecef;" name="bill_product_total[]"
@@ -232,14 +232,22 @@
                                                                 <p>Gross Amount <span class="billsub_total">₹  {{ $QuotationData->sub_total }} </span></p>
                                                                 <input type="hidden" class="form-control bill_sub_total" name="bill_sub_total" id="bill_sub_total" value="{{ $QuotationData->sub_total }}">
 
-                                                                <p>Discount <span class="billdiscount_price">₹  {{ $QuotationData->discount_price }} </span></p>
-                                                                <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price" value="{{ $QuotationData->discount_price }}">
+                                                                <p>Tax Amount <span class="billtax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
+                                                                <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount" value="{{ $QuotationData->tax_amount }}">
+
 
                                                                 <p>Total <span class="billtotal_amount">₹  {{ $QuotationData->total_amount }} </span></p>
                                                                 <input type="hidden" class="form-control bill_total_amount"name="bill_total_amount"id="bill_total_amount" value="{{ $QuotationData->total_amount }}">
 
-                                                                <p>Tax Amount <span class="billtax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
-                                                                <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount" value="{{ $QuotationData->tax_amount }}">
+
+                                                                <p>Discount <span class="billdiscount_price">₹  {{ $QuotationData->discount_price }} </span></p>
+                                                                <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price" value="{{ $QuotationData->discount_price }}">
+
+                                                                
+
+
+                                                                <input type="hidden" class="form-control overall"name="overall"id="overall" value="{{ $QuotationData->overall }}">
+
 
                                                                 <p>Extra Cost <span class="billextracost_amount">₹  {{ $QuotationData->extracost_amount }} </span></p>
                                                                 <input type="hidden" class="form-control bill_extracost_amount" name="bill_extracost_amount" id="bill_extracost_amount" value="{{ $QuotationData->extracost_amount }}">

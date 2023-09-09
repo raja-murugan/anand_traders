@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $Productdata = Product::where('soft_delete', '!=', 1)->get();
+        $Productdata = Product::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
         return view('page.backend.product.index', compact('Productdata'));
     }
 

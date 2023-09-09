@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('purchase_totalamount')->nullable();
             $table->string('purchase_taxamount')->nullable();
             $table->string('purchase_extracostamount')->nullable();
+            $table->string('overall')->nullable();
             $table->string('purchase_grandtotal')->nullable();
             $table->string('purchase_paidamount')->nullable();
             $table->string('purchase_balanceamount')->nullable();

@@ -218,14 +218,24 @@
                                                                 <p>Gross Amount <span class="sub_total">₹  {{ $QuotationData->sub_total }} </span></p>
                                                                 <input type="hidden" class="form-control subq_total" name="sub_total" id="sub_total" value="{{ $QuotationData->sub_total }}">
 
-                                                                <p>Discount <span class="discount_price">₹  {{ $QuotationData->discount_price }} </span></p>
-                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price" value="{{ $QuotationData->discount_price }}">
+
+
+                                                                <p>Tax Amount <span class="tax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
+                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount" value="{{ $QuotationData->tax_amount }}">
+
+
 
                                                                 <p>Total <span class="total_amount">₹  {{ $QuotationData->total_amount }} </span></p>
                                                                 <input type="hidden" class="form-control totalq_amount"name="total_amount"id="total_amount" value="{{ $QuotationData->total_amount }}">
 
-                                                                <p>Tax Amount <span class="tax_amount">₹  {{ $QuotationData->tax_amount }}  </span></p>
-                                                                <input type="hidden" class="form-control taxq_amount"name="tax_amount"id="tax_amount" value="{{ $QuotationData->tax_amount }}">
+
+
+                                                                <p>Discount <span class="discount_price">₹  {{ $QuotationData->discount_price }} </span></p>
+                                                                <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price" value="{{ $QuotationData->discount_price }}">
+
+                                                                
+                                                                <input type="hidden" class="form-control overall"name="overall"id="overall" value="{{ $QuotationData->overall }}">
+                                                                
 
                                                                 <p>Extra Cost <span class="extracost_amount">₹  {{ $QuotationData->extracost_amount }} </span></p>
                                                                 <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount" value="{{ $QuotationData->extracost_amount }}">

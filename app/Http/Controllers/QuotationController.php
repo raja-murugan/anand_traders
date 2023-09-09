@@ -65,6 +65,7 @@ class QuotationController extends Controller
                     'tax_percentage' => $datas->tax_percentage,
                     'tax_amount' => $datas->tax_amount,
                     'extracost_amount' => $datas->extracost_amount,
+                    'overall' => $datas->overall,
                     'grand_total' => $datas->grand_total,
                     'products_data' => $products,
                     'extracosts' => $extracosts,
@@ -139,6 +140,7 @@ class QuotationController extends Controller
                             'tax_percentage' => $datas->tax_percentage,
                             'tax_amount' => $datas->tax_amount,
                             'extracost_amount' => $datas->extracost_amount,
+                            'overall' => $datas->overall,
                             'grand_total' => $datas->grand_total,
                             'products_data' => $products,
                             'extracosts' => $extracosts,
@@ -203,6 +205,7 @@ class QuotationController extends Controller
                                 'tax_percentage' => $datas->tax_percentage,
                                 'tax_amount' => $datas->tax_amount,
                                 'extracost_amount' => $datas->extracost_amount,
+                                'overall' => $datas->overall,
                                 'grand_total' => $datas->grand_total,
                                 'products_data' => $products,
                                 'extracosts' => $extracosts,
@@ -268,6 +271,7 @@ class QuotationController extends Controller
                                 'tax_percentage' => $datas->tax_percentage,
                                 'tax_amount' => $datas->tax_amount,
                                 'extracost_amount' => $datas->extracost_amount,
+                                'overall' => $datas->overall,
                                 'grand_total' => $datas->grand_total,
                                 'products_data' => $products,
                                 'extracosts' => $extracosts,
@@ -337,6 +341,7 @@ class QuotationController extends Controller
                             'tax_percentage' => $datas->tax_percentage,
                             'tax_amount' => $datas->tax_amount,
                             'extracost_amount' => $datas->extracost_amount,
+                            'overall' => $datas->overall,
                             'grand_total' => $datas->grand_total,
                             'products_data' => $products,
                             'extracosts' => $extracosts,
@@ -398,6 +403,7 @@ class QuotationController extends Controller
                             'tax_percentage' => $datas->tax_percentage,
                             'tax_amount' => $datas->tax_amount,
                             'extracost_amount' => $datas->extracost_amount,
+                            'overall' => $datas->overall,
                             'grand_total' => $datas->grand_total,
                             'products_data' => $products,
                             'extracosts' => $extracosts,
@@ -463,6 +469,7 @@ class QuotationController extends Controller
         $data->total_amount = $request->get('total_amount');
         $data->tax_amount = $request->get('tax_amount');
         $data->extracost_amount = $request->get('extracost_amount');
+        $data->overall = $request->get('overall');
         $data->grand_total = $request->get('grand_total');
 
         $data->save();
@@ -533,6 +540,7 @@ class QuotationController extends Controller
         $QuotationData->total_amount = $request->get('total_amount');
         $QuotationData->tax_amount = $request->get('tax_amount');
         $QuotationData->extracost_amount = $request->get('extracost_amount');
+        $QuotationData->overall = $request->get('overall');
         $QuotationData->grand_total = $request->get('grand_total');
 
         $QuotationData->update();

@@ -20,25 +20,44 @@ class BillController extends Controller
 {
     public function index()
     {
-        $data = Bill::where('soft_delete', '!=', 1)->get();
+        $today = Carbon::now()->format('Y-m-d');
+
+        $data = Bill::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $products = [];
+        $extracosts = [];
         $Bill_data = [];
         foreach ($data as $key => $datas) {
             $customer = Customer::findOrFail($datas->customer_id);
+            $bank = Bank::findOrFail($datas->bank_id);
 
-            $BillProducts = BillProduct::where('bill_id', '=', $datas->bill_id)->get();
+            $BillProducts = BillProduct::where('bill_id', '=', $datas->id)->get();
             foreach ($BillProducts as $key => $BillProducts_arr) {
 
-                $product = Product::findOrFail($BillProducts_arr->product_id);
+                $product = Product::findOrFail($BillProducts_arr->bill_product_id);
                 $products[] = array(
-                    'bill_quantity' => $BillProducts_arr->bill_quantity,
-                    'bill_rateper_quantity' => $BillProducts_arr->bill_rateper_quantity,
+                    'bill_width' => $BillProducts_arr->bill_width,
+                    'bill_height' => $BillProducts_arr->bill_height,
+                    'bill_qty' => $BillProducts_arr->bill_qty,
+                    'bill_areapersqft' => $BillProducts_arr->bill_areapersqft,
+                    'bill_rate' => $BillProducts_arr->bill_rate,
                     'bill_product_total' => $BillProducts_arr->bill_product_total,
                     'product_name' => $product->name,
                     'bill_id' => $BillProducts_arr->bill_id,
 
                 );
             }
+
+            $BillExtracosts = BillExtracost::where('bill_id', '=', $datas->id)->get();
+            foreach ($BillExtracosts as $key => $BillExtracosts_arr) {
+                $extracosts[] = array(
+                    'bill_extracost_note' => $BillExtracosts_arr->bill_extracost_note,
+                    'bill_extracost' => $BillExtracosts_arr->bill_extracost,
+                    'bill_id' => $BillExtracosts_arr->bill_id,
+
+                );
+            }
+
+
                 $Bill_data[] = array(
                     'unique_key' => $datas->unique_key,
                     'id' => $datas->id,
@@ -46,21 +65,101 @@ class BillController extends Controller
                     'date' => $datas->date,
                     'time' => $datas->time,
                     'customer' => $customer->name,
+                    'bank' => $bank->name,
                     'bill_sub_total' => $datas->bill_sub_total,
                     'bill_discount_price' => $datas->bill_discount_price,
                     'bill_total_amount' => $datas->bill_total_amount,
                     'bill_tax_amount' => $datas->bill_tax_amount,
                     'bill_tax_percentage' => $datas->bill_tax_percentage,
                     'bill_extracost_amount' => $datas->bill_extracost_amount,
+                    'overall' => $datas->overall,
                     'bill_grand_total' => $datas->bill_grand_total,
                     'bill_paid_amount' => $datas->bill_paid_amount,
                     'bill_balance_amount' => $datas->bill_balance_amount,
                     'products_data' => $products,
+                    'extracosts' => $extracosts,
+                    'bill_discount_type' => $datas->bill_discount_type,
+                    'bill_discount' => $datas->bill_discount,
+                    'bill_add_on_note' => $datas->bill_add_on_note,
                 );
 
 
         }
-        return view('page.backend.bill.index', compact('Bill_data'));
+        
+        return view('page.backend.bill.index', compact('Bill_data', 'today'));
+    }
+
+
+    public function datefilter(Request $request) {
+        $today = $request->get('from_date');
+
+        $data = Bill::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+
+        $products = [];
+        $Bill_data = [];
+        $extracosts = [];
+        foreach ($data as $key => $datas) {
+            $customer = Customer::findOrFail($datas->customer_id);
+            $bank = Bank::findOrFail($datas->bank_id);
+
+            $BillProducts = BillProduct::where('bill_id', '=', $datas->id)->get();
+            foreach ($BillProducts as $key => $BillProducts_arr) {
+
+                $product = Product::findOrFail($BillProducts_arr->bill_product_id);
+                $products[] = array(
+                    'bill_width' => $BillProducts_arr->bill_width,
+                    'bill_height' => $BillProducts_arr->bill_height,
+                    'bill_qty' => $BillProducts_arr->bill_qty,
+                    'bill_areapersqft' => $BillProducts_arr->bill_areapersqft,
+                    'bill_rate' => $BillProducts_arr->bill_rate,
+                    'bill_product_total' => $BillProducts_arr->bill_product_total,
+                    'product_name' => $product->name,
+                    'bill_id' => $BillProducts_arr->bill_id,
+
+                );
+            }
+
+
+            $BillExtracosts = BillExtracost::where('bill_id', '=', $datas->id)->get();
+            foreach ($BillExtracosts as $key => $BillExtracosts_arr) {
+                $extracosts[] = array(
+                    'bill_extracost_note' => $BillExtracosts_arr->bill_extracost_note,
+                    'bill_extracost' => $BillExtracosts_arr->bill_extracost,
+                    'bill_id' => $BillExtracosts_arr->bill_id,
+
+                );
+            }
+
+
+                $Bill_data[] = array(
+                    'unique_key' => $datas->unique_key,
+                    'id' => $datas->id,
+                    'billno' => $datas->billno,
+                    'date' => $datas->date,
+                    'time' => $datas->time,
+                    'customer' => $customer->name,
+                    'bank' => $bank->name,
+                    'bill_sub_total' => $datas->bill_sub_total,
+                    'bill_discount_price' => $datas->bill_discount_price,
+                    'bill_total_amount' => $datas->bill_total_amount,
+                    'bill_tax_amount' => $datas->bill_tax_amount,
+                    'bill_tax_percentage' => $datas->bill_tax_percentage,
+                    'bill_extracost_amount' => $datas->bill_extracost_amount,
+                    'overall' => $datas->overall,
+                    'bill_grand_total' => $datas->bill_grand_total,
+                    'bill_paid_amount' => $datas->bill_paid_amount,
+                    'bill_balance_amount' => $datas->bill_balance_amount,
+                    'products_data' => $products,
+                    'extracosts' => $extracosts,
+                    'bill_discount_type' => $datas->bill_discount_type,
+                    'bill_discount' => $datas->bill_discount,
+                    'bill_add_on_note' => $datas->bill_add_on_note,
+                );
+
+
+        }
+
+        return view('page.backend.bill.index', compact('Bill_data', 'today'));
     }
 
     public function create()
@@ -112,6 +211,7 @@ class BillController extends Controller
         $data->bill_total_amount = $request->get('bill_total_amount');
         $data->bill_tax_amount = $request->get('bill_tax_amount');
         $data->bill_extracost_amount = $request->get('bill_extracost_amount');
+        $data->overall = $request->get('overall');
         $data->bill_grand_total = $request->get('bill_grand_total');
         $data->bill_paid_amount = $request->get('bill_paid_amount');
         $data->bill_balance_amount = $request->get('bill_balance_amount');
@@ -129,8 +229,8 @@ class BillController extends Controller
             $BillProduct->bill_width = $request->bill_width[$key];
             $BillProduct->bill_height = $request->bill_height[$key];
             $BillProduct->bill_qty = $request->bill_qty[$key];
-            $BillProduct->bill_quantity = $request->bill_quantity[$key];
-            $BillProduct->bill_rateper_quantity = $request->bill_rateper_quantity[$key];
+            $BillProduct->bill_areapersqft = $request->bill_areapersqft[$key];
+            $BillProduct->bill_rate = $request->bill_rate[$key];
             $BillProduct->bill_product_total = $request->bill_product_total[$key];
             $BillProduct->save();
         }
@@ -213,6 +313,7 @@ class BillController extends Controller
         $data->bill_total_amount = $request->get('bill_total_amount');
         $data->bill_tax_amount = $request->get('bill_tax_amount');
         $data->bill_extracost_amount = $request->get('bill_extracost_amount');
+        $data->overall = $request->get('overall');
         $data->bill_grand_total = $request->get('bill_grand_total');
         $data->bill_paid_amount = $request->get('bill_paid_amount');
         $data->bill_balance_amount = $request->get('bill_balance_amount');
@@ -229,8 +330,8 @@ class BillController extends Controller
             $BillProduct->bill_width = $request->bill_width[$key];
             $BillProduct->bill_height = $request->bill_height[$key];
             $BillProduct->bill_qty = $request->bill_qty[$key];
-            $BillProduct->bill_quantity = $request->bill_quantity[$key];
-            $BillProduct->bill_rateper_quantity = $request->bill_rateper_quantity[$key];
+            $BillProduct->bill_areapersqft = $request->bill_areapersqft[$key];
+            $BillProduct->bill_rate = $request->bill_rate[$key];
             $BillProduct->bill_product_total = $request->bill_product_total[$key];
             $BillProduct->save();
         }
@@ -360,6 +461,7 @@ class BillController extends Controller
         $BillData->bill_total_amount = $request->get('bill_total_amount');
         $BillData->bill_tax_amount = $request->get('bill_tax_amount');
         $BillData->bill_extracost_amount = $request->get('bill_extracost_amount');
+        $BillData->overall = $request->get('overall');
         $BillData->bill_grand_total = $request->get('bill_grand_total');
         $BillData->bill_paid_amount = $request->get('bill_paid_amount');
         $BillData->bill_balance_amount = $request->get('bill_balance_amount');
@@ -398,12 +500,12 @@ class BillController extends Controller
                 $bill_width = $request->bill_width[$key];
                 $bill_height = $request->bill_height[$key];
                 $bill_qty = $request->bill_qty[$key];
-                $bill_quantity = $request->bill_quantity[$key];
-                $bill_rateper_quantity = $request->bill_rateper_quantity[$key];
+                $bill_areapersqft = $request->bill_areapersqft[$key];
+                $bill_rate = $request->bill_rate[$key];
                 $bill_product_total = $request->bill_product_total[$key];
 
                 DB::table('bill_products')->where('id', $ids)->update([
-                    'bill_id' => $bill_id, 'bill_product_id' => $bill_product_id, 'bill_width' => $bill_width, 'bill_height' => $bill_height, 'bill_qty' => $bill_qty, 'bill_quantity' => $bill_quantity, 'bill_rateper_quantity' => $bill_rateper_quantity, 'bill_product_total' => $bill_product_total
+                    'bill_id' => $bill_id, 'bill_product_id' => $bill_product_id, 'bill_width' => $bill_width, 'bill_height' => $bill_height, 'bill_qty' => $bill_qty, 'bill_areapersqft' => $bill_areapersqft, 'bill_rate' => $bill_rate, 'bill_product_total' => $bill_product_total
                 ]);
 
             } else if ($bill_detail_id == '') {
@@ -414,8 +516,8 @@ class BillController extends Controller
                 $BillProduct->bill_width = $request->bill_width[$key];
                 $BillProduct->bill_height = $request->bill_height[$key];
                 $BillProduct->bill_qty = $request->bill_qty[$key];
-                $BillProduct->bill_quantity = $request->bill_quantity[$key];
-                $BillProduct->bill_rateper_quantity = $request->bill_rateper_quantity[$key];
+                $BillProduct->bill_areapersqft = $request->bill_areapersqft[$key];
+                $BillProduct->bill_rate = $request->bill_rate[$key];
                 $BillProduct->bill_product_total = $request->bill_product_total[$key];
                 $BillProduct->save();
             }
@@ -477,6 +579,49 @@ class BillController extends Controller
         $data->update();
 
         return redirect()->route('bill.index')->with('warning', 'Deleted !');
+    }
+
+
+    public function print($unique_key)
+    {
+        $BillData = Bill::where('unique_key', '=', $unique_key)->first();
+
+        if($BillData->bill_discount_type == 'percentage'){
+            $tag = '%';
+        }else if($BillData->bill_discount_type == 'fixed'){
+            $tag = '';
+        }else {
+            $tag = '';
+        }
+
+        $customer = Customer::findOrFail($BillData->customer_id);
+
+        $product = Product::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
+
+
+        $productsdata = [];
+        $BillProducts = BillProduct::where('bill_id', '=', $BillData->id)->get();
+        foreach ($BillProducts as $key => $BillProducts_arr) {
+
+            $product = Product::findOrFail($BillProducts_arr->bill_product_id);
+            $productsdata[] = array(
+                'bill_width' => $BillProducts_arr->bill_width,
+                'bill_height' => $BillProducts_arr->bill_height,
+                'bill_qty' => $BillProducts_arr->bill_qty,
+                'bill_areapersqft' => $BillProducts_arr->bill_areapersqft,
+                'bill_rate' => $BillProducts_arr->bill_rate,
+                'bill_product_total' => $BillProducts_arr->bill_product_total,
+                'product_name' => $product->name,
+                'bill_id' => $BillProducts_arr->bill_id,
+
+            );
+        }
+
+
+        $BillExtracosts = BillExtracost::where('bill_id', '=', $BillData->id)->get();
+
+        return view('page.backend.bill.print', compact('BillData', 'customer', 'bank', 'product', 'productsdata', 'BillExtracosts', 'tag'));
     }
 
 

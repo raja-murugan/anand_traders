@@ -70,14 +70,14 @@
                                        
                                        <li>
                                           <a class="badge" href="#quotationview{{ $Quotationdata['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".quotationview-modal-xl{{ $Quotationdata['unique_key'] }}" style="color: #28084b;background: #aaa;">View</a>
+                                          data-bs-target=".quotationview-modal-xl{{ $Quotationdata['unique_key'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
                                        </li>
                                        <li>
                                        @if ($Quotationdata['status'] != 1)
                                              <a href="{{ route('quotation.convertbill', ['unique_key' => $Quotationdata['unique_key']]) }}" 
                                              class="badge bg-primary-light" style="color:#28084b;">Convert to Bill</a>
                                        @else
-                                             <a class="badge" style="color:#fff;background-color:#212529;">Bill Converted</a>
+                                             <a class="badge" style="color:#fff;background-color:#212529;">Quotation Converted</a>
                                         @endif
                                        </li>
                                        

@@ -54,6 +54,11 @@
                                           <a class="badge bg-warning-light" href="#edit{{ $vendor_data['unique_key'] }}" data-bs-toggle="modal"
                                           data-bs-target=".vendoredit-modal-xl{{ $vendor_data['unique_key'] }}" style="color: #28084b;">Edit</a>
                                        </li>
+                                       
+                                       <li>
+                                          <a href="{{ route('vendor.view', ['unique_key' => $vendor_data['unique_key']]) }}"
+                                                   class="badge" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                       </li>
                                        <li>
                                           <a href="#delete{{ $vendor_data['unique_key'] }}" data-bs-toggle="modal"
                                           data-bs-target=".vendordelete-modal-xl{{ $vendor_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>

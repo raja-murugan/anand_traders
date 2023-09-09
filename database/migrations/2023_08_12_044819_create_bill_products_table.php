@@ -20,9 +20,11 @@ return new class extends Migration
 
             $table->unsignedBigInteger('bill_product_id');
             $table->foreign('bill_product_id')->references('id')->on('products')->onDelete('cascade');
-
-            $table->string('bill_quantity')->nullable();
-            $table->string('bill_rateper_quantity')->nullable();
+            $table->string('bill_width')->nullable();
+            $table->string('bill_height')->nullable();
+            $table->string('bill_qty')->nullable();
+            $table->string('bill_areapersqft')->nullable();
+            $table->string('bill_rate')->nullable();
             $table->string('bill_product_total')->nullable();
             $table->boolean('soft_delete')->default(0);
             $table->timestamps();
