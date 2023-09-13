@@ -80,20 +80,20 @@
                                     <thead>
                                         <tr>
                                             <th class="tm_width_1 tm_semi_bold tm_accent_color">S.No</th>
-                                            <th class="tm_width_5 tm_semi_bold tm_accent_color">Descriptions</th>
+                                            <th class="tm_width_4 tm_semi_bold tm_accent_color">Descriptions</th>
                                             <th class="tm_width_1 tm_semi_bold tm_accent_color">Width</th>
                                             <th class="tm_width_1 tm_semi_bold tm_accent_color">Height</th>
                                             <th class="tm_width_1 tm_semi_bold tm_accent_color">Qty</th>
                                             <th class="tm_width_1 tm_semi_bold tm_accent_color">Area/Sq.Ft</th>
                                             <th class="tm_width_1 tm_semi_bold tm_accent_color">Rate</th>
-                                            <th class="tm_width_1 tm_semi_bold tm_accent_color tm_text_right">Cost</th>
+                                            <th class="tm_width_2 tm_semi_bold tm_accent_color tm_text_right">Cost</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($productsdata as $index => $productsdata_arr)
                                         <tr class="tm_gray_bg">
                                             <td class="tm_width_1">{{ ++$index }}</td>
-                                            <td class="tm_width_5">
+                                            <td class="tm_width_4">
                                                 <p class="tm_m0 tm_f16 tm_primary_color">{{$productsdata_arr['product_name']}}</p>
                                             </td>
                                             <td class="tm_width_1">{{$productsdata_arr['width']}}</td>
@@ -101,7 +101,7 @@
                                             <td class="tm_width_1">{{$productsdata_arr['qty']}}</td>
                                             <td class="tm_width_1">{{$productsdata_arr['areapersqft']}}</td>
                                             <td class="tm_width_1">{{$productsdata_arr['rate']}}</td>
-                                            <td class="tm_width_1 tm_text_right">₹ {{$productsdata_arr['product_total']}}</td>
+                                            <td class="tm_width_2 tm_text_right">₹ {{$productsdata_arr['product_total']}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -158,7 +158,8 @@
                             <div class="tm_left_footer"></div>
                             <div class="tm_right_footer">
                                 <div class="tm_sign tm_text_center">
-                                    <img src="assets/img/sign.svg" alt="Sign">
+                                    <br><br>
+                                    <br><br>
                                     <p class="tm_m0 tm_ternary_color">Anand</p>
                                     <p class="tm_m0 tm_f16 tm_primary_color">Accounts Manager</p>
                                 </div>
@@ -199,17 +200,6 @@
                     </span>
                     <span class="tm_btn_text">Print</span>
                 </a>
-                <button id="tm_download_btn" class="tm_invoice_btn tm_color2">
-                    <span class="tm_btn_icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                            <path
-                                d="M320 336h76c55 0 100-21.21 100-75.6s-53-73.47-96-75.6C391.11 99.74 329 48 256 48c-69 0-113.44 45.79-128 91.2-60 5.7-112 35.88-112 98.4S70 336 136 336h56M192 400.1l64 63.9 64-63.9M256 224v224.03"
-                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="32" />
-                        </svg>
-                    </span>
-                    <span class="tm_btn_text">Download</span>
-                </button>
             </div>
         </div>
     </div>
