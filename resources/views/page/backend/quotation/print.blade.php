@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/bill/css/style.css') }}">
 </head>
 
+
 <body>
     <div class="tm_container">
         <div class="tm_invoice_wrap">
