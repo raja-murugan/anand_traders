@@ -16,19 +16,19 @@
     <div class="tm_container">
         <div class="tm_invoice_wrap">
 
-        
+
             <div class="tm_invoice tm_style2" id="tm_download_section">
                 <div class="tm_invoice_in">
                     <div class="tm_invoice_head tm_top_head tm_mb20">
                         <div class="tm_invoice_left">
-                            <div class="tm_logo"><img src="assets/img/logo.svg" alt="Logo"></div>
+                            <div class="tm_logo"><img src="{{ asset('assets/bill/logo.png') }}" alt="Logo"></div>
                         </div>
                         <div class="tm_invoice_right">
                             <div class="tm_grid_row tm_col_3">
                                 <div>
                                     <b class="tm_primary_color">Email</b> <br>
-                                    info@anandtraders.com <br>
-                                    anandtraders@gmail.com
+                                    info@anandupvcwindow.com <br>
+                                    sales@anandupvcwindow.com
                                 </div>
                                 <div>
                                     <b class="tm_primary_color">Phone</b> <br>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="tm_invoice_info tm_mb10">
                         <div class="tm_invoice_info_left">
-                            <p class="tm_mb2"><b>Invoice To:</b></p>
+                            <p class="tm_mb2"><b>Bill To:</b></p>
                             <p>
                                 <b class="tm_f16 tm_primary_color">{{$customer->name}}</b> <br>
                                 {{$customer->address}}. <br>
@@ -55,18 +55,18 @@
                         <div class="tm_invoice_info_right">
                             <div
                                 class="tm_ternary_color tm_f50 tm_text_uppercase tm_text_center tm_invoice_title tm_mb15 tm_mobile_hide">
-                                Invoice</div>
+                                Bill</div>
                             <div class="tm_grid_row tm_col_3 tm_invoice_info_in tm_accent_bg">
                                 <div>
                                     <span class="tm_white_color_60">Grand Total:</span> <br>
                                     <b class="tm_f16 tm_white_color">₹ {{$BillData->bill_grand_total}}</b>
                                 </div>
                                 <div>
-                                    <span class="tm_white_color_60">Invoice Date:</span> <br>
+                                    <span class="tm_white_color_60">Bill Date:</span> <br>
                                     <b class="tm_f16 tm_white_color">{{ date('d M Y', strtotime($BillData->date)) }}</b>
                                 </div>
                                 <div>
-                                    <span class="tm_white_color_60">Invoice No:</span> <br>
+                                    <span class="tm_white_color_60">Bill No:</span> <br>
                                     <b class="tm_f16 tm_white_color"># {{$BillData->billno}}</b>
                                 </div>
                             </div>
@@ -109,8 +109,8 @@
                         </div>
                         <div class="tm_invoice_footer tm_mb15 tm_m0_md">
                             <div class="tm_left_footer">
-                                <div class="tm_card_note tm_ternary_bg tm_white_color"><b>In Words: </b>Credit Card
-                                    - 236***********928</div>
+                                {{-- <div class="tm_card_note tm_ternary_bg tm_white_color"><b>In Words: </b>Credit Card
+                                    - 236***********928</div> --}}
                                 <p class="tm_mb2"><b class="tm_primary_color">Important Note:</b></p>
                                 <p class="tm_m0">{{$BillData->bill_add_on_note}}</p>
                             </div>
@@ -124,17 +124,17 @@
                                                 ₹ {{$BillData->bill_sub_total}}.00</td>
                                         </tr>
                                         <tr>
+                                            <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Tax {{$BillData->bill_tax_percentage}}%</td>
+                                            <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">
+                                            ₹ {{$BillData->bill_tax_amount}}</td>
+                                        </tr>
+                                        <tr>
                                             <td class="tm_width_3 tm_danger_color tm_border_none tm_pt0">
-                                            
+
                                             Discount {{$BillData->bill_discount}}{{$tag}}
                                             </td>
                                             <td class="tm_width_3 tm_danger_color tm_text_right tm_border_none tm_pt0">
                                             ₹ {{$BillData->bill_discount_price}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Tax {{$BillData->bill_tax_percentage}}%</td>
-                                            <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">
-                                            ₹ {{$BillData->bill_tax_amount}}</td>
                                         </tr>
                                         <tr>
                                             <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Extracost </td>
