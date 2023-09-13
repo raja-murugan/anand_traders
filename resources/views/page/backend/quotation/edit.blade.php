@@ -118,7 +118,7 @@
                                                         </td>
                                                         {{-- Area-Sq.ft --}}
                                                         <td><input type="text" class="form-control areapersqft"
-                                                                id="areapersqft" name="areapersqft[]" value="{{ $QuotationProduct->areapersqft }}" required />
+                                                                id="areapersqft" name="areapersqft[]" value="{{ $QuotationProduct->areapersqft }}" readonly />
                                                         </td>
                                                         <td><input type="text" class="form-control rate"
                                                                 id="rate" name="rate[]"

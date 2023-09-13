@@ -127,7 +127,7 @@
                                                             id="bill_qty" name="bill_qty[]" value="" required />
                                                         </td>
                                                         <td><input type="text" class="form-control bill_areapersqft"
-                                                                id="bill_areapersqft" name="bill_areapersqft[]" value="" required />
+                                                                id="bill_areapersqft" name="bill_areapersqft[]" value="" readonly />
                                                         </td>
                                                         <td><input type="text" class="form-control bill_rate"
                                                                 id="bill_rate" name="bill_rate[]"

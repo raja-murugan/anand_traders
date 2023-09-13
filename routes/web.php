@@ -120,6 +120,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/quotation/convertbill/{unique_key}', [QuotationController::class, 'convertbill'])->name('quotation.convertbill');
     // DATAE FILTER
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/quotation/datefilter', [QuotationController::class, 'datefilter'])->name('quotation.datefilter');
+    // PRINT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/quotation/print/{unique_key}', [QuotationController::class, 'print'])->name('quotation.print');
 });
 // BILL CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {

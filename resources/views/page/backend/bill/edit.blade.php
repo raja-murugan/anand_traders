@@ -132,7 +132,7 @@
                                                             id="bill_qty" name="bill_qty[]" value="{{ $BillProduct->bill_qty }}" required />
                                                         </td>
                                                         <td><input type="text" class="form-control bill_areapersqft"
-                                                                id="bill_areapersqft" name="bill_areapersqft[]" value="{{ $BillProduct->bill_areapersqft }}" required />
+                                                                id="bill_areapersqft" name="bill_areapersqft[]" value="{{ $BillProduct->bill_areapersqft }}" readonly />
                                                         </td>
                                                         <td><input type="text" class="form-control bill_rate"
                                                                 id="bill_rate" name="bill_rate[]"

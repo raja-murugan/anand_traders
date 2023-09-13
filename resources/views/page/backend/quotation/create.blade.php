@@ -113,7 +113,7 @@
                                                         </td>
                                                         {{-- Area-Sq.ft --}}
                                                         <td><input type="text" class="form-control areapersqft"
-                                                                id="areapersqft" name="areapersqft[]" value="" required />
+                                                                id="areapersqft" name="areapersqft[]" value="" readonly />
                                                         </td>
                                                         <td><input type="text" class="form-control rate"
                                                                 id="rate" name="rate[]"

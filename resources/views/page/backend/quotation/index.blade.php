@@ -82,6 +82,11 @@
                                        </li>
                                        
                                        <li>
+                                       <a href="{{ route('quotation.print', ['unique_key' => $Quotationdata['unique_key']]) }}"
+                                                   class="badge bg-info" style="color:#28084b;">Print</a>
+                                       </li>
+                                       
+                                       <li>
                                              <a href="#quotationdelete{{ $Quotationdata['unique_key'] }}" data-bs-toggle="modal"
                                              data-bs-target=".quotationdelete-modal-xl{{ $Quotationdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>

@@ -183,9 +183,6 @@
    </div>
 </div>
 
-            <div class="modal-footer">
-               <button type="button" class="btn btn-cancel btn-danger" data-bs-dismiss="modal"
-                                 aria-label="Close">Cancel</button>
-            </div>
+            
    </div>
 </div>

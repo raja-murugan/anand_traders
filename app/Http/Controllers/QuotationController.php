@@ -691,4 +691,47 @@ class QuotationController extends Controller
 
         return view('page.backend.bill.convertbill', compact('QuotationData', 'customer', 'product', 'QuotationProducts', 'QuotationExtracosts', 'bank', 'billno'));
     }
+
+
+    public function print($unique_key)
+    {
+        $QuotationData = Quotation::where('unique_key', '=', $unique_key)->first();
+
+        if($QuotationData->discount_type == 'percentage'){
+            $tag = '%';
+        }else if($QuotationData->discount_type == 'fixed'){
+            $tag = '';
+        }else {
+            $tag = '';
+        }
+
+        $customer = Customer::findOrFail($QuotationData->customer_id);
+
+        $product = Product::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
+
+
+        $productsdata = [];
+        $QuotationProduct = QuotationProduct::where('quotation_id', '=', $QuotationData->id)->get();
+        foreach ($QuotationProduct as $key => $QuotationProducts) {
+
+            $product = Product::findOrFail($QuotationProducts->product_id);
+            $productsdata[] = array(
+                'width' => $QuotationProducts->width,
+                'height' => $QuotationProducts->height,
+                'qty' => $QuotationProducts->qty,
+                'areapersqft' => $QuotationProducts->areapersqft,
+                'rate' => $QuotationProducts->rate,
+                'product_total' => $QuotationProducts->product_total,
+                'product_name' => $product->name,
+                'quotation_id' => $QuotationProducts->quotation_id,
+
+            );
+        }
+
+
+        $QuotatioExtracosts = QuotationExtracost::where('quotation_id', '=', $QuotationData->id)->get();
+
+        return view('page.backend.quotation.print', compact('QuotationData', 'customer', 'bank', 'product', 'productsdata', 'QuotatioExtracosts', 'tag'));
+    }
 }
