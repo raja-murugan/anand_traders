@@ -79,7 +79,7 @@
                                           <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $products_data['purchase_rateperquantity'] }}</span>
                                     </div>
                                     <div class="col-md-3 border">
-                                          <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $products_data['purchase_producttotal'] }}.00</span>
+                                          <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $products_data['purchase_producttotal'] }}</span>
                                     </div>
                                     @endif
                                  @endforeach
@@ -105,7 +105,7 @@
                                                 <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $extracosts['purchase_extracostnote'] }}</span>
                                              </div>
                                              <div class="col-md-5 border">
-                                                <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $extracosts['purchase_extracost'] }}.00</span>
+                                                <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $extracosts['purchase_extracost'] }}</span>
                                              </div>
                                              <div class="col-md-1"></div>
                                              @endif
@@ -129,7 +129,7 @@
                                                 </p>
 
                                                 <p class="text-start invoice-details" style="color:#000;">
-                                                   Discount <span><strong> {{ $Purchasedatas['purchase_discount'] }}.00</strong> </span>
+                                                   Discount <span><strong> {{ $Purchasedatas['purchase_discount'] }}</strong> </span>
                                                 </p>
 
                                                 <p class="text-start invoice-details" style="color:#000;">
@@ -147,12 +147,12 @@
                                        <div class="invoice-total-card  form-group-bank">
                                           <div class="invoice-total-box">
                                              <div class="invoice-total-inner">
-                                                <p>Gross Amount <span>₹ {{ $Purchasedatas['purchase_subtotal'] }}.00</span></p>
+                                                <p>Gross Amount <span>₹ {{ $Purchasedatas['purchase_subtotal'] }}</span></p>
                                                 <p>Tax Amount <span>₹ {{ $Purchasedatas['purchase_taxamount'] }}</span></p>
-                                                <p>Total <span>₹ {{ $Purchasedatas['purchase_totalamount'] }}.00</span></p>
-                                                <p>Discount<span>₹ {{ $Purchasedatas['purchase_discountprice'] }}.00</span></p>
-                                                <p>Overall<span>₹ {{ $Purchasedatas['overall'] }}.00</span></p>
-                                                <p>Extra Cost <span>₹ {{ $Purchasedatas['purchase_extracostamount'] }}.00</span></p>
+                                                <p>Total <span>₹ {{ $Purchasedatas['purchase_totalamount'] }}</span></p>
+                                                <p>Discount<span>₹ {{ $Purchasedatas['purchase_discountprice'] }}</span></p>
+                                                <p>Overall<span>₹ {{ $Purchasedatas['overall'] }}</span></p>
+                                                <p>Extra Cost <span>₹ {{ $Purchasedatas['purchase_extracostamount'] }}</span></p>
                                                 <p style="color: #0d6efd;">Grand Total <span style="color: #0d6efd;">₹ {{ $Purchasedatas['purchase_grandtotal'] }}</span></p>
                                                 <p style="color:green">Paid Amount <span style="color:green">₹ {{ $Purchasedatas['purchase_paidamount'] }}</span></p>
                                                 <p style="color:red">Balance Amount <span style="color:red">₹ {{ $Purchasedatas['purchase_balanceamount'] }}</span></p>

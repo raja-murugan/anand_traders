@@ -25,7 +25,7 @@
                      <div class="dash-count">
                         <div class="dash-title" style="color:#e93131;font-size: 18px;text-transform: uppercase;">Total Amount</div>
                         <div class="dash-counts">
-                              <p> ₹ {{$totalbillamount}}.00</p>
+                              <p> ₹ {{$totalbillamount}}</p>
                         </div>
                      </div>
                   </div>
@@ -59,7 +59,7 @@
                      <div class="dash-count">
                         <div class="dash-title" style="color:white;font-size: 18px;text-transform: uppercase;">Balance</div>
                         <div class="dash-counts">
-                        <p> ₹ {{$total_balance}}.00</p>
+                        <p> ₹ {{$total_balance}}</p>
                      </div>
                   </div>
                </div>
@@ -110,7 +110,7 @@
                                           <tr>
                                              <td># {{$quotation_datas['quotation_number']}}</td>
                                              <td>{{ date('d-m-Y', strtotime($quotation_datas['date'])) }}</td>
-                                             <td>{{$quotation_datas['sub_total']}}.00</td>
+                                             <td>{{$quotation_datas['sub_total']}}</td>
                                              <td>{{$quotation_datas['discount_price']}}</td>
                                              <td>{{$quotation_datas['tax_amount']}}</td>
                                              <td>{{$quotation_datas['extracost_amount']}}</td>
@@ -155,7 +155,7 @@
                                           <tr>
                                              <td># {{$Bill_datas['billno']}}</td>
                                              <td>{{ date('d-m-Y', strtotime($Bill_datas['date'])) }}</td>
-                                             <td>{{$Bill_datas['bill_sub_total']}}.00</td>
+                                             <td>{{$Bill_datas['bill_sub_total']}}</td>
                                              <td>{{$Bill_datas['bill_discount_price']}}</td>
                                              <td>{{$Bill_datas['bill_tax_amount']}}</td>
                                              <td>{{$Bill_datas['bill_extracost_amount']}}</td>
@@ -192,8 +192,8 @@
                                              @foreach ($PaymentData as $keydata => $PaymentDatas)
                                                 <tr>
                                                    <td>{{ date('d-m-Y', strtotime($PaymentDatas['date'])) }}</td>
-                                                   <td>₹  {{$PaymentDatas['discount']}}.00</td>
-                                                   <td><span class="badge" style="background-color:#c3e12e;color:black;">₹  {{$PaymentDatas['paid_amount']}}.00</span></td>
+                                                   <td>₹  {{$PaymentDatas['discount']}}</td>
+                                                   <td><span class="badge" style="background-color:#c3e12e;color:black;">₹  {{$PaymentDatas['paid_amount']}}</span></td>
                                                    <td>{{$PaymentDatas['note']}}</td>
                                                 </tr>
                                                 @endforeach

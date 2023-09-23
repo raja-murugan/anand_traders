@@ -60,7 +60,7 @@
                                  <td># {{ $Quotationdata['quotation_number'] }}</td>
                                  <td>{{ date('d-m-Y', strtotime($Quotationdata['date'])) }}</td>
                                  <td>{{ $Quotationdata['customer'] }}</td>
-                                 <td>₹ {{$Quotationdata['grand_total'] }}.00</td>
+                                 <td>₹ {{$Quotationdata['grand_total'] }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>

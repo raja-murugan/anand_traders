@@ -122,7 +122,7 @@
                                             <td class="tm_width_3 tm_primary_color tm_border_none tm_bold">Subtoal</td>
                                             <td
                                                 class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_bold">
-                                                ₹ {{$QuotationData->sub_total}}.00</td>
+                                                ₹ {{$QuotationData->sub_total}}</td>
                                         </tr>
                                         <tr>
                                             <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Tax {{$QuotationData->tax_percentage}}%</td>
@@ -140,7 +140,7 @@
                                         <tr>
                                             <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Extracost </td>
                                             <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">
-                                            ₹ {{$QuotationData->extracost_amount}}.00</td>
+                                            ₹ {{$QuotationData->extracost_amount}}</td>
                                         </tr>
                                         <tr>
                                             <td

@@ -92,7 +92,7 @@
                                           <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $products_data['bill_rate'] }}</span>
                                     </div>
                                     <div class="col-md-2 border">
-                                          <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $products_data['bill_product_total'] }}.00</span>
+                                          <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $products_data['bill_product_total'] }}</span>
                                     </div>
                                     @endif
                                  @endforeach
@@ -118,7 +118,7 @@
                                                 <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $extracosts['bill_extracost_note'] }}</span>
                                              </div>
                                              <div class="col-md-5 border">
-                                                <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $extracosts['bill_extracost'] }}.00</span>
+                                                <span style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">₹ {{ $extracosts['bill_extracost'] }}</span>
                                              </div>
                                              <div class="col-md-1"></div>
                                              @endif
@@ -142,7 +142,7 @@
                                                 </p>
 
                                                 <p class="text-start invoice-details" style="color:#000;">
-                                                   Discount <span><strong> {{ $Bill_datas['bill_discount'] }}.00</strong> </span>
+                                                   Discount <span><strong> {{ $Bill_datas['bill_discount'] }}</strong> </span>
                                                 </p>
 
                                                 <p class="text-start invoice-details" style="color:#000;">
@@ -160,13 +160,13 @@
                                        <div class="invoice-total-card  form-group-bank">
                                           <div class="invoice-total-box">
                                              <div class="invoice-total-inner">
-                                                <p>Gross Amount <span>₹ {{ $Bill_datas['bill_sub_total'] }}.00</span></p>
+                                                <p>Gross Amount <span>₹ {{ $Bill_datas['bill_sub_total'] }}</span></p>
                                                 <p>Tax Amount <span>₹ {{ $Bill_datas['bill_tax_amount'] }}</span></p>
-                                                <p>Total <span>₹ {{ $Bill_datas['bill_total_amount'] }}.00</span></p>
-                                                <p>Discount<span>₹ {{ $Bill_datas['bill_discount_price'] }}.00</span></p>
+                                                <p>Total <span>₹ {{ $Bill_datas['bill_total_amount'] }}</span></p>
+                                                <p>Discount<span>₹ {{ $Bill_datas['bill_discount_price'] }}</span></p>
                                                 
-                                                <p>Over All <span>₹ {{ $Bill_datas['overall'] }}.00</span></p>
-                                                <p>Extra Cost <span>₹ {{ $Bill_datas['bill_extracost_amount'] }}.00</span></p>
+                                                <p>Over All <span>₹ {{ $Bill_datas['overall'] }}</span></p>
+                                                <p>Extra Cost <span>₹ {{ $Bill_datas['bill_extracost_amount'] }}</span></p>
                                                 <p style="color: #0d6efd;">Grand Total <span style="color: #0d6efd;">₹ {{ $Bill_datas['bill_grand_total'] }}</span></p>
                                                 <p style="color:green">Paid Amount <span style="color:green">₹ {{ $Bill_datas['bill_paid_amount'] }}</span></p>
                                                 <p style="color:red">Balance Amount <span style="color:red">₹ {{ $Bill_datas['bill_balance_amount'] }}</span></p>

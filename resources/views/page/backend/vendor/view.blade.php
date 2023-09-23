@@ -25,7 +25,7 @@
                      <div class="dash-count">
                         <div class="dash-title" style="color:#e93131;font-size: 18px;text-transform: uppercase;">Total Amount</div>
                         <div class="dash-counts">
-                              <p> ₹ {{$totpurchaseamount}}.00</p>
+                              <p> ₹ {{$totpurchaseamount}}</p>
                         </div>
                      </div>
                   </div>
@@ -59,7 +59,7 @@
                      <div class="dash-count">
                         <div class="dash-title" style="color:white;font-size: 18px;text-transform: uppercase;">Balance</div>
                         <div class="dash-counts">
-                        <p> ₹ {{$total_balance}}.00</p>
+                        <p> ₹ {{$total_balance}}</p>
                      </div>
                   </div>
                </div>
@@ -109,7 +109,7 @@
                                           <tr>
                                              <td># {{$Purchase_datas['purchase_number']}}</td>
                                              <td>{{ date('d-m-Y', strtotime($Purchase_datas['date'])) }}</td>
-                                             <td>{{$Purchase_datas['purchase_subtotal']}}.00</td>
+                                             <td>{{$Purchase_datas['purchase_subtotal']}}</td>
                                              <td>{{$Purchase_datas['purchase_discountprice']}}</td>
                                              <td>{{$Purchase_datas['purchase_taxamount']}}</td>
                                              <td>{{$Purchase_datas['purchase_extracostamount']}}</td>
@@ -142,8 +142,8 @@
                                              @foreach ($PaymentData as $keydata => $PaymentDatas)
                                                 <tr>
                                                    <td>{{ date('d-m-Y', strtotime($PaymentDatas['date'])) }}</td>
-                                                   <td>₹  {{$PaymentDatas['discount']}}.00</td>
-                                                   <td><span class="badge" style="background-color:#c3e12e;color:black;">₹  {{$PaymentDatas['paid_amount']}}.00</span></td>
+                                                   <td>₹  {{$PaymentDatas['discount']}}</td>
+                                                   <td><span class="badge" style="background-color:#c3e12e;color:black;">₹  {{$PaymentDatas['paid_amount']}}</span></td>
                                                    <td>{{$PaymentDatas['note']}}</td>
                                                 </tr>
                                                 @endforeach
