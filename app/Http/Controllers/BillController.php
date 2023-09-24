@@ -574,6 +574,34 @@ class BillController extends Controller
     {
         $data = Bill::where('unique_key', '=', $unique_key)->first();
 
+
+        $billcustomerid = $data->customer_id;
+
+
+        $PurchasebranchwiseData = PaymentBalance::where('customer_id', '=', $billcustomerid)->first();
+        if($PurchasebranchwiseData != ""){
+
+
+            $old_grossamount = $PurchasebranchwiseData->customer_amount;
+            $old_paid = $PurchasebranchwiseData->customer_paid;
+
+            $oldentry_grossamount = $data->bill_grand_total;
+            $oldentry_paid = $data->bill_paid_amount;
+
+         
+                $updated_gross = $old_grossamount - $oldentry_grossamount;
+                $updated_paid = $old_paid - $oldentry_paid;
+
+                $new_balance = $updated_gross - $updated_paid;
+
+            DB::table('payment_balances')->where('customer_id', $billcustomerid)->update([
+                'customer_amount' => $updated_gross,  'customer_paid' => $updated_paid, 'customer_balance' => $new_balance
+            ]);
+
+        }
+
+
+
         $data->soft_delete = 1;
 
         $data->update();

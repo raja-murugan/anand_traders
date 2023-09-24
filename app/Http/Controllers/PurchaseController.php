@@ -456,6 +456,31 @@ class PurchaseController extends Controller
     {
         $data = Purchase::where('unique_key', '=', $unique_key)->first();
 
+        $purchasevendorid = $data->vendor_id;
+
+
+        $PurchasebranchwiseData = PaymentBalance::where('vendor_id', '=', $purchasevendorid)->first();
+        if($PurchasebranchwiseData != ""){
+
+
+            $old_grossamount = $PurchasebranchwiseData->vendor_amount;
+            $old_paid = $PurchasebranchwiseData->vendor_paid;
+
+            $oldentry_grossamount = $data->purchase_grandtotal;
+            $oldentry_paid = $data->purchase_paidamount;
+
+         
+                $updated_gross = $old_grossamount - $oldentry_grossamount;
+                $updated_paid = $old_paid - $oldentry_paid;
+
+                $new_balance = $updated_gross - $updated_paid;
+
+            DB::table('payment_balances')->where('vendor_id', $purchasevendorid)->update([
+                'vendor_amount' => $updated_gross,  'vendor_paid' => $updated_paid, 'vendor_balance' => $new_balance
+            ]);
+
+        }
+
         $data->soft_delete = 1;
 
         $data->update();
