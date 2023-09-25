@@ -7,7 +7,7 @@
             <div class="clearfix">
 
                 <div class="pull-left logo-box">
-                    <div class="logo"><a href="index.html"><img src="{{ asset('assets/frontend/images/logo.png') }}" alt=""
+                    <div class="logo"><a href="{{ route('frontend.index') }}"><img src="{{ asset('assets/frontend/images/logo.png') }}" alt=""
                                 title=""></a></div>
                 </div>
 
@@ -18,7 +18,7 @@
                                 class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span><strong>Tel:</strong>
                             +32 89 4567 01</li>
                         <li><a href="appointment.html"><span
-                                    class="icon flaticon-calendar-2"></span><strong>Appointment</strong></a>
+                                    class="icon flaticon-sent-mail"></span><strong>Chat With Us</strong></a>
                         </li>
                     </ul>
                 </div>
@@ -39,76 +39,16 @@
 
                         <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="#">Home</a>
-                                    <ul>
-                                        <li><a href="index.html">Home Page 01</a></li>
-                                        <li><a href="index-2.html">Home Page 02</a></li>
-                                        <li class="dropdown"><a href="#">Header Styles</a>
-                                            <ul>
-                                                <li><a href="index.html">Header Style 01</a></li>
-                                                <li><a href="index-2.html">Header Style 02</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Windows</a>
-                                    <ul>
-                                        <li><a href="windows-instalation.html">Installation</a></li>
-                                        <li><a href="window-services.html">Service & Repair</a></li>
-                                        <li><a href="window-replacement.html">Replacement</a></li>
-                                        <li><a href="window-brands.html">Brands We Carry</a></li>
-                                        <li><a href="window-types.html">Window Types</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Doors</a>
-                                    <ul>
-                                        <li><a href="doors-instalation.html">Installation</a></li>
-                                        <li><a href="doors-repair.html">Service & Repair</a></li>
-                                        <li><a href="doors-replacement.html">Replacement</a></li>
-                                        <li><a href="doors-brands.html">Brands We Carry</a></li>
-                                        <li><a href="doors-type.html">Doors Types</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Shop</a>
-                                    <ul>
-                                        <li><a href="shop.html">Our Products</a></li>
-                                        <li><a href="shop-single.html">Product Single</a></li>
-                                        <li><a href="shoping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="account.html">Account</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Gallery</a>
-                                    <ul>
-                                        <li><a href="gallery.html">Gallery Style 01</a></li>
-                                        <li><a href="gallery-2.html">Gallery Style 02</a></li>
-                                        <li><a href="gallery-3.html">Gallery Style 03</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Pages</a>
-                                    <ul>
-                                        <li><a href="about.html">About Company</a></li>
-                                        <li><a href="appointment.html">Make an Appointment</a></li>
-                                        <li><a href="pricing.html">Pricing Plan</a></li>
-                                        <li><a href="faq.html">FAQ’s</a></li>
-                                        <li><a href="testimonial.html">Testimonials</a></li>
-                                        <li class="dropdown"><a href="#">Blog</a>
-                                            <ul>
-                                                <li><a href="blog.html">Our Blog</a></li>
-                                                <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                                <li><a href="blog-single.html">Blog Single</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact us</a></li>
-                            </ul>
-                        </div>
+                                <li class="{{ Route::is('frontend.index') ? 'current' : '' }}"><a href="{{ route('frontend.index') }}">Home</a></li>
 
-                        <div class="cart-box">
-                            <a href="shop-single.html"><span
-                                    class="icon flaticon-shopping-cart-of-checkered-design"></span><span
-                                    class="number">0</span></a>
+                                <li class="{{ Route::is('frontend.about') ? 'current' : '' }}"><a href="{{ route('frontend.about') }}">About Us</a></li>
+
+                                <li class="{{ Route::is('frontend.service') ? 'current' : '' }}"><a href="{{ route('frontend.service') }}">Service</a></li>
+
+                                <li class="{{ Route::is('frontend.project') ? 'current' : '' }}"><a href="{{ route('frontend.project') }}">Project</a></li>
+
+                                <li class="{{ Route::is('frontend.contactus') ? 'current' : '' }}"><a href="{{ route('frontend.contactus') }}">Contact us</a></li>
+                            </ul>
                         </div>
 
                     </nav>

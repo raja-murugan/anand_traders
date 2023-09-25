@@ -12,6 +12,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\CustomerPaymentController;
 use App\Http\Controllers\VendorPaymentController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,13 +26,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
-Route::get('/print', function () {
-    return view('page.backend.quotation.print');
-});
+Route::get('/about', [FrontendController::class, 'about'])->name('frontend.about');
+
+Route::get('/service', [FrontendController::class, 'service'])->name('frontend.service');
+
+Route::get('/project', [FrontendController::class, 'project'])->name('frontend.project');
+
+Route::get('/contactus', [FrontendController::class, 'contactus'])->name('frontend.contactus');
 
 Auth::routes();
 
