@@ -187,7 +187,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax %</label>
-                                                    <input type="text" class="form-control bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" placeholder="0" required>
+                                                    <input type="text" class="form-control bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" placeholder="0" value="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-4"></div>
