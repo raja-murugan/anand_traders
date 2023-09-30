@@ -172,15 +172,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Tax</label>
-                                                    <select class="select tax_percentage" name="tax_percentage" id="tax_percentage" required>
-                                                        <option value="0">No Tax</option>
-                                                        <option value="3">GST - (3%)</option>
-                                                        <option value="8">GST - (8%)</option>
-                                                        <option value="12">GST - (12%)</option>
-                                                        <option value="18">GST - (18%)</option>
-                                                        <option value="28">GST - (28%)</option>
-                                                    </select>
+                                                    <label>Tax %</label>
+                                                    <input type="text" class="form-control tax_percentage" name="tax_percentage" id="tax_percentage" placeholder="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-4"></div>
@@ -215,7 +208,7 @@
 
                                                                 <input type="hidden" class="form-control overall"name="overall"id="overall" value="">
 
-                                                                
+
                                                                 <p>Extra Cost <span class="extracost_amount">  </span></p>
                                                                 <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount" value="0.00">
 

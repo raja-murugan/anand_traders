@@ -16,169 +16,161 @@
 <body>
     <div class="tm_container">
         <div class="tm_invoice_wrap">
-
-
             <div class="tm_invoice tm_style2" id="tm_download_section">
-                <div class="tm_invoice_in">
-                    <div class="tm_invoice_head tm_top_head tm_mb20">
-                        <div class="tm_invoice_left">
-                            <div class="tm_logo"><img src="{{ asset('assets/bill/logo.png') }}" alt="Logo"></div>
-                        </div>
-                        <div class="tm_invoice_right">
-                            <div class="tm_grid_row tm_col_3">
-                                <div>
-                                    <b class="tm_primary_color">Email</b> <br>
-                                    info@anandupvcwindow.com <br>
-                                    sales@anandupvcwindow.com
-                                </div>
-                                <div>
-                                    <b class="tm_primary_color">Phone</b> <br>
-                                    +91 98426 56590 <br>
-                                    +91 86102 52177
-                                </div>
-                                <div>
-                                    <b class="tm_primary_color">Address</b> <br>
-                                    #14, Ganesh Complex, Kumaran Nagar, Trichy.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tm_invoice_info tm_mb10">
-                        <div class="tm_invoice_info_left">
-                            <p class="tm_mb2"><b>Invoice To:</b></p>
-                            <p>
-                                <b class="tm_f16 tm_primary_color">{{$customer->name}}</b> <br>
-                                {{$customer->address}}. <br>
-                                {{$customer->email_id}} <br>
-                                {{$customer->phone_number}}
-                            </p>
-                        </div>
-                        <div class="tm_invoice_info_right">
-                            <div
-                                class="tm_ternary_color tm_f50 tm_text_uppercase tm_text_center tm_invoice_title tm_mb15 tm_mobile_hide">
-                                Quotation</div>
-                            <div class="tm_grid_row tm_col_3 tm_invoice_info_in tm_accent_bg">
-                                <div>
-                                    <span class="tm_white_color_60">Grand Total:</span> <br>
-                                    <b class="tm_f16 tm_white_color">₹ {{$QuotationData->grand_total}}</b>
-                                </div>
-                                <div>
-                                    <span class="tm_white_color_60">Quotation Date:</span> <br>
-                                    <b class="tm_f16 tm_white_color">{{ date('d M Y', strtotime($QuotationData->date)) }}</b>
-                                </div>
-                                <div>
-                                    <span class="tm_white_color_60">Quotation No:</span> <br>
-                                    <b class="tm_f16 tm_white_color"># {{$QuotationData->quotation_number}}</b>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tm_table tm_style1">
-                        <div class="tm_round_border">
-                            <div class="tm_table_responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="tm_width_1 tm_semi_bold tm_accent_color">S.No</th>
-                                            <th class="tm_width_4 tm_semi_bold tm_accent_color">Descriptions</th>
-                                            <th class="tm_width_1 tm_semi_bold tm_accent_color">Width</th>
-                                            <th class="tm_width_1 tm_semi_bold tm_accent_color">Height</th>
-                                            <th class="tm_width_1 tm_semi_bold tm_accent_color">Qty</th>
-                                            <th class="tm_width_1 tm_semi_bold tm_accent_color">Area/Sq.Ft</th>
-                                            <th class="tm_width_1 tm_semi_bold tm_accent_color">Rate</th>
-                                            <th class="tm_width_2 tm_semi_bold tm_accent_color tm_text_right">Cost</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($productsdata as $index => $productsdata_arr)
-                                        <tr class="tm_gray_bg">
-                                            <td class="tm_width_1">{{ ++$index }}</td>
-                                            <td class="tm_width_4">
-                                                <p class="tm_m0 tm_f16 tm_primary_color">{{$productsdata_arr['product_name']}}</p>
-                                            </td>
-                                            <td class="tm_width_1">{{$productsdata_arr['width']}}</td>
-                                            <td class="tm_width_1">{{$productsdata_arr['height']}}</td>
-                                            <td class="tm_width_1">{{$productsdata_arr['qty']}}</td>
-                                            <td class="tm_width_1">{{$productsdata_arr['areapersqft']}}</td>
-                                            <td class="tm_width_1">{{$productsdata_arr['rate']}}</td>
-                                            <td class="tm_width_2 tm_text_right">₹ {{$productsdata_arr['product_total']}}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tm_invoice_footer tm_mb15 tm_m0_md">
-                            <div class="tm_left_footer">
-                                {{-- <div class="tm_card_note tm_ternary_bg tm_white_color"><b>In Words: </b>Credit Card
-                                    - 236***********928</div> --}}
-                                <p class="tm_mb2"><b class="tm_primary_color">Important Note:</b></p>
-                                <p class="tm_m0">{{$QuotationData->add_on_note}}</p>
-                            </div>
-                            <div class="tm_right_footer">
-                                <table class="tm_mb15">
-                                    <tbody>
-                                        <tr>
-                                            <td class="tm_width_3 tm_primary_color tm_border_none tm_bold">Subtoal</td>
-                                            <td
-                                                class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_bold">
-                                                ₹ {{$QuotationData->sub_total}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Tax {{$QuotationData->tax_percentage}}%</td>
-                                            <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">
-                                            ₹ {{$QuotationData->tax_amount}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tm_width_3 tm_danger_color tm_border_none tm_pt0">
-
-                                            Discount - {{$QuotationData->discount}}{{$tag}}
-                                            </td>
-                                            <td class="tm_width_3 tm_danger_color tm_text_right tm_border_none tm_pt0">
-                                            ₹ {{$QuotationData->discount_price}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Extracost </td>
-                                            <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">
-                                            ₹ {{$QuotationData->extracost_amount}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_accent_bg tm_radius_6_0_0_6">
-                                                Grand Total </td>
-                                            <td
-                                                class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_primary_color tm_text_right tm_white_color tm_accent_bg tm_radius_0_6_6_0">
-                                                ₹ {{$QuotationData->grand_total}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tm_invoice_footer tm_type1">
-                            <div class="tm_left_footer"></div>
-                            <div class="tm_right_footer">
-                                <div class="tm_sign tm_text_center">
-                                    <br><br>
-                                    <br><br>
-                                    <p class="tm_m0 tm_ternary_color">Anand</p>
-                                    <p class="tm_m0 tm_f16 tm_primary_color">Accounts Manager</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tm_note tm_font_style_normal tm_text_left">
-                        <hr class="tm_mb15">
-                        <p class="tm_mb2"><b class="tm_primary_color">Terms & Conditions:</b></p>
-                        <p class="tm_m0">1. Payment : 50% Advance along with purchase Order, 40 % before delivery the meterial, 10 % Completion works.<br>
-                            2. Delivery : Maximium 10 days from the date of purchase order. <br>
-                            3. Validity : This quotation validity 10 days.
-                        </p>
-                    </div><!-- .tm_note -->
-                    <div class="tm_note tm_font_style_normal tm_text_center">
-                        <hr class="tm_mb15">
-                        <p class="tm_mb2"><b class="tm_primary_color">Thanks you for your business!</b>
-                    </div><!-- .tm_note -->
+                <div class="tm_note tm_font_style_normal tm_text_center" style="margin-top: 0px">
+                    <p><b class="tm_primary_color">Estimate Bill</b>
                 </div>
+
+                <div style="display: flex; width: 100%;">
+                    <div style="width: 50%;">
+                        <div style="border: 1px #e6e9f0; border-style: solid solid solid solid;">
+                            <p style="margin-bottom: 45px; padding-right: 5px; padding-left: 5px;" class="tm_accent_color"><b>Anand Traders</b>
+                            </p>
+                            <p style="margin-bottom: 1px; padding-right: 5px; padding-left: 5px;">#14, Ganesh Complex,
+                                Vayalur Road, Kumaran Nager, Trichy -
+                                620 017.</p>
+                            {{-- <p style="margin-bottom: 1px; padding-right: 5px; padding-left: 5px;">GSTIN/UIN :</p>
+                            <p style="margin-bottom: 1px; padding-right: 5px; padding-left: 5px;">State Name : Tamil
+                                Nadu, Code : 33</p> --}}
+                            <p style="margin-bottom: 5px; padding-right: 5px; padding-left: 5px;">E-mail :
+                                sales@anandupvcwindow.com</p>
+                        </div>
+                    </div>
+                    <div style="width: 50%;">
+                        <div style="display: flex;">
+                            <div style="width: 50%;">
+                                <div style="border: 1px #e6e9f0; border-style: solid solid none none;">
+                                    <p style="margin-bottom: 1px; padding: 10px;" class="tm_primary_color"><b>Invoice
+                                            No : </b> <span>#{{$QuotationData->quotation_number}}</span></p>
+                                </div>
+                            </div>
+                            <div style="width: 50%;">
+                                <div style="border: 1px #e6e9f0; border-style: solid solid none none;">
+                                    <p style="margin-bottom: 1px; padding: 10px;" class="tm_primary_color"><b>Date : </b><span>{{ date('d M Y', strtotime($QuotationData->date)) }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border: 0.5px #e6e9f0;  border-style: solid solid solid none;">
+                            <p style="margin-bottom: 1px; padding-right: 5px; padding-left: 5px;" class="tm_primary_color"><b>Buyer ( Invoice to )</b></p>
+                            <p style="margin-bottom: 1px; padding-right: 5px; padding-left: 5px;">{{$customer->name}}
+                            </p>
+                            <p style="margin-bottom: 1px; padding-right: 5px; padding-left: 5px;">{{$customer->address}}</p>
+                            <p style="margin-bottom: 5px; padding-right: 5px; padding-left: 5px;">Phone No :
+                                {{$customer->phone_number}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tm_table tm_style1">
+                        <div class="tm_table_responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="tm_width_1 tm_semi_bold" style="border: 1px #e6e9f0; border-style: none solid solid solid;">S.No</th>
+                                        <th class="tm_width_4 tm_semi_bold" style="border: 1px #e6e9f0; border-style: none solid solid none;">Descriptions</th>
+                                        <th class="tm_width_1 tm_semi_bold" style="border: 1px #e6e9f0; border-style: none solid solid none;">Width</th>
+                                        <th class="tm_width_1 tm_semi_bold" style="border: 1px #e6e9f0; border-style: none solid solid none;">Height</th>
+                                        <th class="tm_width_1 tm_semi_bold" style="border: 1px #e6e9f0; border-style: none solid solid none;">Qty</th>
+                                        <th class="tm_width_1 tm_semi_bold" style="border: 1px #e6e9f0; border-style: none solid solid none;">Area/Sq.ft</th>
+                                        <th class="tm_width_1 tm_semi_bold" style="border: 1px #e6e9f0; border-style: none solid solid none;">Rate</th>
+                                        <th class="tm_width_2 tm_semi_bold tm_text_right" style="border: 1px #e6e9f0; border-style: none solid solid none;">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($productsdata as $index => $productsdata_arr)
+                                    <tr class="tm_gray_bg">
+                                        <td class="tm_width_1" style="border: 1px #e6e9f0; border-style: none solid solid solid;">{{ ++$index }}</td>
+                                        <td class="tm_width_4" style="border: 1px #e6e9f0; border-style: none solid solid none;">
+                                            <p class="tm_m0 tm_f16 tm_primary_color">{{$productsdata_arr['product_name']}}</p>
+                                        </td>
+                                        <td class="tm_width_1" style="border: 1px #e6e9f0; border-style: none solid solid none;">{{$productsdata_arr['width']}}</td>
+                                        <td class="tm_width_1" style="border: 1px #e6e9f0; border-style: none solid solid none;">{{$productsdata_arr['height']}}</td>
+                                        <td class="tm_width_1" style="border: 1px #e6e9f0; border-style: none solid solid none;">{{$productsdata_arr['qty']}}</td>
+                                        <td class="tm_width_1" style="border: 1px #e6e9f0; border-style: none solid solid none;">{{$productsdata_arr['areapersqft']}}</td>
+                                        <td class="tm_width_1" style="border: 1px #e6e9f0; border-style: none solid solid none;">{{$productsdata_arr['rate']}}</td>
+                                        <td class="tm_width_2 tm_text_right" style="border: 1px #e6e9f0; border-style: none solid solid none;">₹ {{$productsdata_arr['product_total']}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    <div class="tm_invoice_footer tm_mb15 tm_m0_md">
+                        <div class="tm_left_footer">
+                            {{-- <div class="tm_card_note tm_ternary_bg tm_white_color"><b>In Words: </b>Credit Card
+                                - 236***********928</div> --}}
+                            <p class="tm_mb2"><b class="tm_primary_color">Important Note:</b></p>
+                            <p class="tm_m0">{{$QuotationData->add_on_note}}</p>
+                        </div>
+                        <div class="tm_right_footer">
+                            <table class="tm_mb15">
+                                <tbody>
+                                    <tr>
+                                        <td class="tm_width_3 tm_primary_color tm_border_none tm_bold">Subtoal</td>
+                                        <td
+                                            class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_bold">
+                                            ₹ {{$QuotationData->sub_total}}</td>
+                                    </tr>
+                                    @if ($QuotationData->tax_amount == 0)
+
+                                    @else
+                                    <tr>
+                                        <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">GST {{$QuotationData->tax_percentage}}%</td>
+                                        <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">
+                                        ₹ {{$QuotationData->tax_amount}}</td>
+                                    </tr>
+                                    @endif
+                                    @if ($QuotationData->discount_price == 0)
+
+                                    @else
+                                    <tr>
+                                        <td class="tm_width_3 tm_danger_color tm_border_none tm_pt0">
+
+                                        Discount
+                                        </td>
+                                        <td class="tm_width_3 tm_danger_color tm_text_right tm_border_none tm_pt0">
+                                        ₹ {{$QuotationData->discount_price}}</td>
+                                    </tr>
+                                    @endif
+                                    <tr>
+                                        <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Extracost </td>
+                                        <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">
+                                        ₹ {{$QuotationData->extracost_amount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="tm_width_3 tm_border_top_0 tm_bold tm_f16" style="border: 1px #e6e9f0; border-style: solid none solid none;">
+                                            Grand Total </td>
+                                        <td
+                                            class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_primary_color tm_text_right" style="border: 1px #e6e9f0; border-style: solid none solid none;">
+                                            ₹ {{$QuotationData->grand_total}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tm_invoice_footer tm_type1">
+                        <div class="tm_left_footer"></div>
+                        <div class="tm_right_footer">
+                            <div class="tm_sign tm_text_center">
+                                <br><br>
+                                <br><br>
+                                <p class="tm_m0 tm_f16 tm_primary_color">Anand Traders</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tm_note tm_font_style_normal tm_text_left">
+                    <hr class="tm_mb15">
+                    <p class="tm_mb2"><b class="tm_primary_color">Terms & Conditions:</b></p>
+                    <p class="tm_m0">1. Payment : 50% Advance along with purchase Order, 40 % before delivery the meterial, 10 % Completion works.<br>
+                        2. Delivery : Maximium 10 days from the date of purchase order. <br>
+                        3. Validity : This quotation validity 10 days.
+                    </p>
+                </div><!-- .tm_note -->
+                <div class="tm_note tm_font_style_normal tm_text_center">
+                    <hr class="tm_mb15">
+                    <p class="tm_mb2"><b class="tm_primary_color">Thanks you for your business!</b>
+                </div><!-- .tm_note -->
             </div>
 
 

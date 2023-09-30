@@ -201,15 +201,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Tax</label>
-                                                    <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage">
-                                                        <option value="0" @if ('0' === $BillData->bill_tax_percentage) selected='selected' @endif>No Tax</option>
-                                                        <option value="3"@if ('3' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (3%)</option>
-                                                        <option value="8"@if ('8' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (8%)</option>
-                                                        <option value="12"@if ('12' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (12%)</option>
-                                                        <option value="18"@if ('18' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (18%)</option>
-                                                        <option value="28"@if ('28' === $BillData->bill_tax_percentage) selected='selected' @endif>GST - (28%)</option>
-                                                    </select>
+                                                    <label>Tax %</label>
+                                                    <input type="text" class="form-control bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" value="{{ $BillData->bill_tax_percentage }}" placeholder="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-4"></div>
@@ -246,7 +239,7 @@
                                                                 <p>Discount <span class="billdiscount_price">₹  {{ $BillData->bill_discount_price }} </span></p>
                                                                 <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price" value="{{ $BillData->bill_discount_price }}">
 
-                                                               
+
 
                                                                 <input type="hidden" class="form-control overall"name="overall"id="overall" value="{{ $BillData->overall }}">
 

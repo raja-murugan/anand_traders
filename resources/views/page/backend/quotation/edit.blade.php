@@ -188,14 +188,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax</label>
-                                                    <select class="select tax_percentage" name="tax_percentage" id="tax_percentage">
-                                                        <option value="0"@if ('0' === $QuotationData->tax_percentage) selected='selected' @endif>No Tax</option>
-                                                        <option value="3"@if ('3' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (3%)</option>
-                                                        <option value="8"@if ('8' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (8%)</option>
-                                                        <option value="12"@if ('12' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (12%)</option>
-                                                        <option value="18"@if ('18' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (18%)</option>
-                                                        <option value="28"@if ('28' === $QuotationData->tax_percentage) selected='selected' @endif>GST - (28%)</option>
-                                                    </select>
+                                                    <input type="text" class="form-control tax_percentage" name="tax_percentage" id="tax_percentage" placeholder="0" value="{{ $QuotationData->tax_percentage }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-4"></div>
@@ -233,9 +226,9 @@
                                                                 <p>Discount <span class="discount_price">₹  {{ $QuotationData->discount_price }} </span></p>
                                                                 <input type="hidden" class="form-control discountq_price"name="discount_price"id="discount_price" value="{{ $QuotationData->discount_price }}">
 
-                                                                
+
                                                                 <input type="hidden" class="form-control overall"name="overall"id="overall" value="{{ $QuotationData->overall }}">
-                                                                
+
 
                                                                 <p>Extra Cost <span class="extracost_amount">₹  {{ $QuotationData->extracost_amount }} </span></p>
                                                                 <input type="hidden" class="form-control extracostq_amount" name="extracost_amount" id="extracost_amount" value="{{ $QuotationData->extracost_amount }}">

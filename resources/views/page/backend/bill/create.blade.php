@@ -186,15 +186,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Tax</label>
-                                                    <select class="select bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" required>
-                                                        <option value="0">No Tax</option>
-                                                        <option value="3">GST - (3%)</option>
-                                                        <option value="8">GST - (8%)</option>
-                                                        <option value="12">GST - (12%)</option>
-                                                        <option value="18">GST - (18%)</option>
-                                                        <option value="28">GST - (28%)</option>
-                                                    </select>
+                                                    <label>Tax %</label>
+                                                    <input type="text" class="form-control bill_tax_percentage" name="bill_tax_percentage" id="bill_tax_percentage" placeholder="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-4"></div>
@@ -221,7 +214,7 @@
                                                                 <p>Tax Amount <span class="billtax_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_tax_amount"name="bill_tax_amount"id="bill_tax_amount">
 
-                                                                
+
 
                                                                 <p>Total <span class="billtotal_amount">  </span></p>
                                                                 <input type="hidden" class="form-control bill_total_amount"name="bill_total_amount"id="bill_total_amount">
@@ -229,7 +222,7 @@
                                                                 <p>Discount <span class="billdiscount_price">  </span></p>
                                                                 <input type="hidden" class="form-control bill_discount_price"name="bill_discount_price"id="bill_discount_price">
 
-                                                                
+
 
                                                                 <input type="hidden" class="form-control overall"name="overall"id="overall">
 
