@@ -33,10 +33,10 @@
                     <div class="subscription-menu">
                         <ul>
                             <li>
-                                <a class="dropdown-item" href="profile.html">Profile</a>
+                                <a class="dropdown-item" href="javascript::void(o);">Profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                <a class="dropdown-item" href="javascript::void(o);">Settings</a>
                             </li>
                         </ul>
                     </div>

@@ -6,7 +6,7 @@
         <div class="outer-container">
             <div class="clearfix">
 
-                <div class="pull-left logo-box">
+                <div class="pull-left" style="margin-top:15px; margin-right:15px;">
                     <div class="logo"><a href="{{ route('frontend.index') }}"><img src="{{ asset('assets/frontend/images/logo.png') }}" alt=""
                                 title=""></a></div>
                 </div>
@@ -15,9 +15,9 @@
                 <div class="outer-box clearfix">
                     <ul class="option-list">
                         <li><span
-                                class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span><strong>Tel:</strong>
-                            +32 89 4567 01</li>
-                        <li><a href="appointment.html"><span
+                                class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span><strong>call:</strong>
+                            +91 98426 56590</li>
+                        <li><a href="https://api.whatsapp.com/send/?phone=%2B919842656590"target="_blank"><span
                                     class="icon flaticon-sent-mail"></span><strong>Chat With Us</strong></a>
                         </li>
                     </ul>
@@ -65,7 +65,7 @@
         <div class="auto-container clearfix">
             <!--Logo-->
             <div class="logo pull-left">
-                <a href="index.html" class="img-responsive"><img src="{{ asset('assets/frontend/images/logo-small.png') }}" alt=""
+                <a href="{{ route('frontend.index') }}" class="img-responsive"><img src="{{ asset('assets/frontend/images/logo-small.png') }}" alt=""
                         title=""></a>
             </div>
 

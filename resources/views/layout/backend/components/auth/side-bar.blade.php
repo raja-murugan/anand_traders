@@ -1,10 +1,10 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-logo">
-            <a href="index.html">
+            <a href="javascript::void(o);">
                 <img src="{{ asset('assets/backend/img/logo.png') }}" class="img-fluid logo" alt="">
             </a>
-            <a href="index.html">
+            <a href="javascript::void(o);">
                 <img src="{{ asset('assets/backend/img/logo-small.png') }}" class="img-fluid logo-small" alt="">
             </a>
         </div>

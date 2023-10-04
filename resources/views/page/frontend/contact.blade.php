@@ -5,7 +5,7 @@
         <div class="auto-container">
             <h1>Get Touch With Us</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ route('frontend.index') }}">Home</a></li>
                 <li>Contact</li>
             </ul>
         </div>
@@ -23,41 +23,24 @@
                 <div class="row clearfix">
 
                     <!--Office Block-->
-                    <div class="office-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="office-block col-lg-6 col-md-6 col-sm-12">
                         <div class="inner-box">
                             <div class="icon-box">
                                 <span class="icon flaticon-place"></span>
                             </div>
                             <h3>Visit Our Place</h3>
-                            <div class="text">PO Box 37188 Millon Street, <br> Welmington 11226 United States.</div>
-                            <a class="link-btn" href="#"><span class="arrow flaticon-right-arrow-2"></span>&nbsp; View
-                                On Map</a>
+                            <div class="text">#14, Ganesh Complex, Vayalur Road, Kumaran Nagar, Tiruchirappalli, Tamil Nadu, Indioa - 620 017.</div>
                         </div>
                     </div>
 
                     <!--Office Block-->
-                    <div class="office-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="office-block col-lg-6 col-md-6 col-sm-12">
                         <div class="inner-box">
                             <div class="icon-box">
                                 <span class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span>
                             </div>
                             <h3>24/7 Quick Contact</h3>
-                            <div class="text">+32 89 4567 01 <br> support@example.com</div>
-                            <a class="link-btn" href="#"><span class="arrow flaticon-right-arrow-2"></span>&nbsp; Make
-                                Appointment</a>
-                        </div>
-                    </div>
-
-                    <!--Office Block-->
-                    <div class="office-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <span class="icon flaticon-question"></span>
-                            </div>
-                            <h3>FA Questions</h3>
-                            <div class="text">Here you to know all about uPVC <br> windows & Doors</div>
-                            <a class="link-btn" href="#"><span class="arrow flaticon-right-arrow-2"></span>&nbsp; Go
-                                to FAQ’s</a>
+                            <div class="text">+91 98426 56590<br> info@anandupvcwindow.com</div>
                         </div>
                     </div>
 

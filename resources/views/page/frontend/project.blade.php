@@ -6,9 +6,8 @@
     <div class="auto-container">
         <h1>See Our Works</h1>
         <ul class="page-breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li>Pages</li>
-            <li>Gallery 2</li>
+            <li><a href="{{ route('frontend.index') }}">Home</a></li>
+            <li>Project</li>
         </ul>
     </div>
 </section>
@@ -44,7 +43,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/17.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>
@@ -62,7 +61,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/18.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>
@@ -80,7 +79,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/19.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>
@@ -98,7 +97,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/21.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>
@@ -116,7 +115,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/20.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>
@@ -134,7 +133,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/24.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>
@@ -152,7 +151,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/22.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>
@@ -170,7 +169,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <a href="#" class="link"><span class="icon fa fa-link"></span></a>
+                                        <a href="javascript::void(o);" class="link"><span class="icon fa fa-link"></span></a>
                                         <a href="{{ asset('assets/frontend/images/gallery/23.jpg') }}" data-fancybox="gallery-images-2" data-caption="" class="link"><span class="icon fa fa-search"></span></a>
                                     </div>
                                 </div>

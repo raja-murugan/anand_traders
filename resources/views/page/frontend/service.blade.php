@@ -6,7 +6,7 @@
     <div class="auto-container">
         <h1>PVC, UPVC, & WPVC Manfacturing</h1>
         <ul class="page-breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{ route('frontend.index') }}">Home</a></li>
             <li>Service</li>
         </ul>
     </div>
@@ -19,7 +19,6 @@
         <!--Title Box-->
         <div class="title-box">
             <h2>Our Services</h2>
-            <div class="text">For a free estimate call us at <span class="theme_color">1800 208 5331</span> or <a href="contact.html">click here</a> to send us a message.</div>
         </div>
 
         <div class="row clearfix">
@@ -34,15 +33,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-4.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-4.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">PVC Door & Cupboard</a></h2>
-                                    <div class="text">Consequences that are extremely nor of us ever undertakes take a example, of us ever undertakes...</div>
+                                    <h2><a href="javascript::void(o);">PVC Door & Cupboard</a></h2>
+                                    <div class="text">Durable PVC solutions for doors and storage that enhance your space.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-1"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -51,15 +50,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-5.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-5.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">Mosquito etion</a></h2>
-                                    <div class="text">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because is pain circumstances...</div>
+                                    <h2><a href="javascript::void(o);">Mosquito etion</a></h2>
+                                    <div class="text">Keep pesky insects out with our expert mosquito netting solutions.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-3"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -68,15 +67,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-6.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-6.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">Glazing & ACp Work</a></h2>
-                                    <div class="text">Explain to you how this mistaken idea of denouncinga pleasure and praising pain account of the system...</div>
+                                    <h2><a href="javascript::void(o);">Glazing & ACp Work</a></h2>
+                                    <div class="text">Expert glass and aluminum composite panel work for modern aesthetics.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-2"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -85,15 +84,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-7.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-7.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">Aluminium Work</a></h2>
-                                    <div class="text">Which toil and pain procure him some great pleasure. To take a trivial example, which ever undertakes...</div>
+                                    <h2><a href="javascript::void(o);">Aluminium Work</a></h2>
+                                    <div class="text">High-quality aluminum products and installations for various applications.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-5"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -102,15 +101,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-8.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-8.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">Wooden Cupboard</a></h2>
-                                    <div class="text">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because is pain circumstances...</div>
+                                    <h2><a href="javascript::void(o);">Wooden Cupboard</a></h2>
+                                    <div class="text">Custom wooden cupboards designed to meet your storage needs.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-7"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -119,15 +118,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-9.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-9.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">Modular Kitchen</a></h2>
-                                    <div class="text">Consequences that are extremely nor of us ever undertakes take a example, of us ever undertakes...</div>
+                                    <h2><a href="javascript::void(o);">Modular Kitchen</a></h2>
+                                    <div class="text">Functional and stylish modular kitchens for your modern lifestyle.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-2"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -136,15 +135,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-8.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-8.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">Solid PVC & WPVC Door</a></h2>
-                                    <div class="text">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because is pain circumstances...</div>
+                                    <h2><a href="javascript::void(o);">Solid PVC & WPVC Door</a></h2>
+                                    <div class="text">Sturdy and secure doors for added safety and elegance.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-7"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -153,15 +152,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-9.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-9.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">Vinyl Floor & Wall Paper</a></h2>
-                                    <div class="text">Consequences that are extremely nor of us ever undertakes take a example, of us ever undertakes...</div>
+                                    <h2><a href="javascript::void(o);">Vinyl Floor & Wall Paper</a></h2>
+                                    <div class="text">Transform your space with durable vinyl flooring and wall coverings.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-2"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
@@ -170,15 +169,15 @@
                         <div class="services-block-three col-lg-6 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
-                                    <a href="blog-single.html"><img src="images/resource/service-8.jpg" alt="" /></a>
+                                    <a href="javascript::void(o);"><img src="images/resource/service-8.jpg" alt="" /></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="blog-single.html">UPVC Window & Door Manfacturing</a></h2>
-                                    <div class="text">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because is pain circumstances...</div>
+                                    <h2><a href="javascript::void(o);">UPVC Window & Door Manfacturing</a></h2>
+                                    <div class="text">Crafted UPVC windows and doors designed for energy efficiency and aesthetics.</div>
                                     <div class="icon-box">
                                         <span class="icon flaticon-door-7"></span>
                                     </div>
-                                    <a class="explore" href="blog-single.html">Explore More <span class="arrow flaticon-right-arrow-2"></span></a>
+
                                 </div>
                             </div>
                         </div>
