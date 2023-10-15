@@ -161,7 +161,7 @@
                                                                 value="{{ $PurchaseExtracostsarr->purchase_extracostnote }}" name="purchase_extracostnote[]" />
                                                         </td>
                                                         <td><input type="hidden" name="extracost_id[]" />
-                                                            <input type="text" class="form-control purchase_extracost"
+                                                            <input type="number" class="form-control purchase_extracost"
                                                                 id="purchase_extracost"placeholder="Extra Cost"
                                                                 name="purchase_extracost[]" value="{{ $PurchaseExtracostsarr->purchase_extracost }}" />
                                                         </td>
@@ -198,13 +198,29 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax</label>
+                                                    
                                                     <select class="select purchase_taxpercentage" name="purchase_taxpercentage" id="purchase_taxpercentage">
-                                                        <option value="0"@if ('0' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>No Tax</option>
-                                                        <option value="3"@if ('3' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (3%)</option>
-                                                        <option value="8"@if ('8' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (8%)</option>
-                                                        <option value="12"@if ('12' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (12%)</option>
-                                                        <option value="18"@if ('18' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (18%)</option>
-                                                        <option value="28"@if ('28' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (28%)</option>
+                                                            <option value="0"@if ('0' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>No Tax</option>
+                                                            <option value="1"@if ('1' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (1%)</option>
+                                                            <option value="2"@if ('2' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (2%)</option>
+                                                            <option value="3"@if ('3' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (3%)</option>
+                                                            <option value="4"@if ('4' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (4%)</option>
+                                                            <option value="5"@if ('5' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (5%)</option>
+                                                            <option value="6"@if ('6' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (6%)</option>
+                                                            <option value="7"@if ('7' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (7%)</option>
+                                                            <option value="8"@if ('8' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (8%)</option>
+                                                            <option value="9"@if ('9' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (9%)</option>
+                                                            <option value="10"@if ('10' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (10%)</option>
+                                                            <option value="11"@if ('11' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (11%)</option>
+                                                            <option value="12"@if ('12' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (12%)</option>
+                                                            <option value="13"@if ('13' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (13%)</option>
+                                                            <option value="14"@if ('14' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (14%)</option>
+                                                            <option value="15"@if ('15' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (15%)</option>
+                                                            <option value="16"@if ('16' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (16%)</option>
+                                                            <option value="17"@if ('17' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (17%)</option>
+                                                            <option value="18"@if ('18' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (18%)</option>
+                                                            <option value="19"@if ('19' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (19%)</option>
+                                                            <option value="20"@if ('20' === $PurchaseData->purchase_taxpercentage) selected='selected' @endif>GST - (20%)</option>
                                                     </select>
                                                 </div>
                                             </div>

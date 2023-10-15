@@ -148,7 +148,7 @@
                                                                 value=""name="purchase_extracostnote[]" />
                                                         </td>
                                                         <td><input type="hidden" name="purchaseextracost_detail_id[]" />
-                                                            <input type="text" class="form-control purchase_extracost"
+                                                            <input type="number" class="form-control purchase_extracost"
                                                                 id="purchase_extracost"placeholder="Extra Cost"
                                                                 name="purchase_extracost[]"value="" />
                                                         </td>
@@ -184,13 +184,28 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tax</label>
-                                                    <select class="select purchase_taxpercentage" name="purchase_taxpercentage" id="purchase_taxpercentage" required>
-                                                        <option value="0">No Tax</option>
-                                                        <option value="3">GST - (3%)</option>
-                                                        <option value="8">GST - (8%)</option>
-                                                        <option value="12">GST - (12%)</option>
-                                                        <option value="18">GST - (18%)</option>
-                                                        <option value="28">GST - (28%)</option>
+                                                    <select class="select purchase_taxpercentage" name="purchase_taxpercentage" id="purchase_taxpercentage">
+                                                            <option value="0">No Tax</option>
+                                                            <option value="1">GST - (1%)</option>
+                                                            <option value="2">GST - (2%)</option>
+                                                            <option value="3">GST - (3%)</option>
+                                                            <option value="4">GST - (4%)</option>
+                                                            <option value="5">GST - (5%)</option>
+                                                            <option value="6">GST - (6%)</option>
+                                                            <option value="7">GST - (7%)</option>
+                                                            <option value="8">GST - (8%)</option>
+                                                            <option value="9">GST - (9%)</option>
+                                                            <option value="10">GST - (10%)</option>
+                                                            <option value="11">GST - (11%)</option>
+                                                            <option value="12">GST - (12%)</option>
+                                                            <option value="13">GST - (13%)</option>
+                                                            <option value="14">GST - (14%)</option>
+                                                            <option value="15">GST - (15%)</option>
+                                                            <option value="16">GST - (16%)</option>
+                                                            <option value="17">GST - (17%)</option>
+                                                            <option value="18">GST - (18%)</option>
+                                                            <option value="19">GST - (19%)</option>
+                                                            <option value="20">GST - (20%)</option>
                                                     </select>
                                                 </div>
                                             </div>

@@ -236,7 +236,7 @@
                     '<tr>' +
                     '<td colspan="4"></td>' +
                     '<td colspan="3"><input type="text" class="form-control"id="extracost_note" placeholder="Note" value=""name="extracost_note[]" /></td>' +
-                    '<td><input type="hidden" name="extracost_id[]"/><input type="text" class="form-control extracost" id="extracost"placeholder="Extra Cost"  name="extracost[]"value="" /></td>' +
+                    '<td><input type="hidden" name="extracost_id[]"/><input type="number" class="form-control extracost" id="extracost"placeholder="Extra Cost"  name="extracost[]"value="" /></td>' +
                     '<td><button class="btn btn-danger form-plus-btn remove-extratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
                     '</tr>'
                 );
@@ -661,7 +661,7 @@
                     '<tr>' +
                     '<td colspan="4"></td>' +
                     '<td colspan="3"><input type="text" class="form-control"id="bill_extracost_note" placeholder="Note" value=""name="bill_extracost_note[]" /></td>' +
-                    '<td><input type="hidden" name="billextracost_detail_id[]"/><input type="text" class="form-control bill_extracost" id="bill_extracost"placeholder="Extra Cost"  name="bill_extracost[]"value="" /></td>' +
+                    '<td><input type="hidden" name="billextracost_detail_id[]"/><input type="number" class="form-control bill_extracost" id="bill_extracost"placeholder="Extra Cost"  name="bill_extracost[]"value="" /></td>' +
                     '<td><button class="btn btn-danger form-plus-btn remove-billextratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
                     '</tr>'
                 );
@@ -1250,7 +1250,7 @@
                     '<tr>' +
                     '<td colspan="2"></td>' +
                     '<td colspan="3"><input type="text" class="form-control"id="purchase_extracostnote" placeholder="Note" value=""name="purchase_extracostnote[]" /></td>' +
-                    '<td><input type="hidden" name="purchaseextracost_detail_id[]"/><input type="text" class="form-control purchase_extracost" id="purchase_extracost"placeholder="Extra Cost"  name="purchase_extracost[]"value="" /></td>' +
+                    '<td><input type="hidden" name="purchaseextracost_detail_id[]"/><input type="number" class="form-control purchase_extracost" id="purchase_extracost"placeholder="Extra Cost"  name="purchase_extracost[]"value="" /></td>' +
                     '<td><button class="btn btn-danger form-plus-btn remove-purchaseextratr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
                     '</tr>'
                 );
