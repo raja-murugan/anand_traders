@@ -85,15 +85,17 @@ class BillController extends Controller
 
 
         }
-        
-        return view('page.backend.bill.index', compact('Bill_data', 'today'));
+        $from_date = $today;
+        $to_date = $today;
+        return view('page.backend.bill.index', compact('Bill_data', 'today', 'from_date', 'to_date'));
     }
 
 
     public function datefilter(Request $request) {
-        $today = $request->get('from_date');
-
-        $data = Bill::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $fromdate = $request->get('from_date');
+        $todate = $request->get('todate');
+        $today = Carbon::now()->format('Y-m-d');
+        $data = Bill::whereBetween('date', [$fromdate, $todate])->where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
 
         $products = [];
         $Bill_data = [];
@@ -158,9 +160,73 @@ class BillController extends Controller
 
 
         }
-
-        return view('page.backend.bill.index', compact('Bill_data', 'today'));
+        $from_date = $fromdate;
+        $to_date = $todate;
+        return view('page.backend.bill.index', compact('Bill_data', 'today', 'from_date', 'to_date'));
     }
+
+
+
+    public function bill_pdfexport($from_date, $to_date) 
+    {
+        $bill_exportdate_arr = [];
+
+        $BillData = Bill::whereBetween('date', [$from_date, $to_date])->where('soft_delete', '!=', 1)->get();
+        if($BillData != ""){
+            foreach ($BillData as $key => $BillDatas) {
+                $bill_exportdate_arr[] = $BillDatas->date;
+            }
+        }
+
+           
+        usort($bill_exportdate_arr, function ($a, $b) {
+            $dateTimestamp1 = strtotime($a);
+            $dateTimestamp2 = strtotime($b);
+    
+            return $dateTimestamp1 < $dateTimestamp2 ? 1 : -1;
+        });
+
+        $Billarr_data = [];
+        foreach (array_unique($bill_exportdate_arr) as $key => $date_array) {
+            $Billdatearr = Bill::where('date', '=', $date_array)->where('soft_delete', '!=', 1)->get();
+            foreach ($Billdatearr as $key => $Billdatearray) {
+
+                $customer = Customer::findOrFail($Billdatearray->customer_id);
+               
+
+                    $Billarr_data[] = array(
+                        'date' => $date_array,
+                        'customer' => $customer->name,
+                        'billno' => $Billdatearray->billno,
+                        'gross_amount' => $Billdatearray->bill_sub_total,
+                        'tax_amount' => $Billdatearray->bill_tax_amount,
+                        'total_amount' => $Billdatearray->bill_total_amount,
+                        'discount_price' => $Billdatearray->bill_discount_price,
+                        'overall' => $Billdatearray->overall,
+                        'extracost_amount' => $Billdatearray->bill_extracost_amount,
+                        'grand_total' => $Billdatearray->bill_grand_total,
+                        'paid_amount' => $Billdatearray->bill_paid_amount,
+                    );
+                
+            }
+        }
+
+
+
+        $pdf = Pdf::loadView('page.backend.bill.billpdfexport_view', [
+            'Billarr_data' => $Billarr_data,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+            
+        ]);
+        $name = 'Bill' . $from_date . '-' . $to_date . '.' . 'pdf';
+        return $pdf->stream($name);
+
+        
+    }
+
+
+
 
     public function create()
     {

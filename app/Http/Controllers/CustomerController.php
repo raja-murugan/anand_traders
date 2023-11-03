@@ -255,7 +255,504 @@ class CustomerController extends Controller
 
             $total_balance = $totalbillamount - $total_amount_paid;
 
-        return view('page.backend.customer.view', compact('CustomerData', 'today', 'Bill_data', 'totalbillamount', 'total_amount_paid', 'total_balance', 'quotation_data', 'PaymentData'));
+
+            $fromdate = '';
+            $todate = '';
+
+        return view('page.backend.customer.view', compact('CustomerData', 'today', 'Bill_data', 'totalbillamount', 'total_amount_paid', 'total_balance', 'quotation_data', 'PaymentData', 'fromdate', 'todate'));
+    }
+
+
+
+
+    public function viewfilter(Request $request, $unique_key)
+    {
+        $fromdate = $request->get('fromdate');
+        $todate = $request->get('todate');
+        $unique_key = $request->get('uniquekey');
+        $today = Carbon::now()->format('Y-m-d');
+        $CustomerData = Customer::where('unique_key', '=', $unique_key)->first();
+
+        if($fromdate){
+
+
+            $data = Bill::where('date', '=', $fromdate)->where('customer_id', '=', $CustomerData->id)->where('soft_delete', '!=', 1)->get();
+                $Bill_data = [];
+                $products = [];
+                foreach ($data as $key => $datas) {
+
+                    $customer = Customer::findOrFail($datas->customer_id);
+                    $bank = Bank::findOrFail($datas->bank_id);
+
+                    $BillProducts = BillProduct::where('bill_id', '=', $datas->id)->get();
+                    foreach ($BillProducts as $key => $BillProductss_arr) {
+
+                        $product = Product::findOrFail($BillProductss_arr->bill_product_id);
+                        $products[] = array(
+                            'bill_width' => $BillProductss_arr->bill_width,
+                            'bill_height' => $BillProductss_arr->bill_height,
+                            'bill_qty' => $BillProductss_arr->bill_qty,
+                            'bill_areapersqft' => $BillProductss_arr->bill_areapersqft,
+                            'bill_rate' => $BillProductss_arr->bill_rate,
+                            'bill_product_total' => $BillProductss_arr->bill_product_total,
+                            'product_name' => $product->name,
+                            'bill_id' => $BillProductss_arr->bill_id,
+
+                        );
+                    }
+
+
+                    $Bill_data[] = array(
+                        'unique_key' => $datas->unique_key,
+                        'id' => $datas->id,
+                        'billno' => $datas->billno,
+                        'date' => $datas->date,
+                        'time' => $datas->time,
+                        'customer' => $customer->name,
+                        'bank' => $bank->name,
+                        'bill_sub_total' => $datas->bill_sub_total,
+                        'bill_discount_price' => $datas->bill_discount_price,
+                        'bill_total_amount' => $datas->bill_total_amount,
+                        'bill_tax_amount' => $datas->bill_tax_amount,
+                        'bill_tax_percentage' => $datas->bill_tax_percentage,
+                        'bill_extracost_amount' => $datas->bill_extracost_amount,
+                        'bill_grand_total' => $datas->bill_grand_total,
+                        'bill_paid_amount' => $datas->bill_paid_amount,
+                        'bill_balance_amount' => $datas->bill_balance_amount,
+                        'products_data' => $products,
+                        'bill_discount_type' => $datas->bill_discount_type,
+                        'bill_discount' => $datas->bill_discount,
+                        'bill_add_on_note' => $datas->bill_add_on_note,
+                    );
+                }
+
+
+
+                $quotationdata = Quotation::where('date', '=', $fromdate)->where('customer_id', '=', $CustomerData->id)->where('soft_delete', '!=', 1)->where('status', '=', NULL)->get();
+                if($quotationdata){
+                    $quotation_data = [];
+                    foreach ($quotationdata as $key => $quotationdatas) {
+                        $qcustomer = Customer::findOrFail($quotationdatas->customer_id);
+            
+            
+                            $quotation_data[] = array(
+                                'unique_key' => $quotationdatas->unique_key,
+                                'id' => $quotationdatas->id,
+                                'quotation_number' => $quotationdatas->quotation_number,
+                                'date' => $quotationdatas->date,
+                                'time' => $quotationdatas->time,
+                                'customer' => $qcustomer->name,
+                                'sub_total' => $quotationdatas->sub_total,
+                                'discount_price' => $quotationdatas->discount_price,
+                                'total_amount' => $quotationdatas->total_amount,
+                                'tax_percentage' => $quotationdatas->tax_percentage,
+                                'tax_amount' => $quotationdatas->tax_amount,
+                                'extracost_amount' => $quotationdatas->extracost_amount,
+                                'grand_total' => $quotationdatas->grand_total,
+                                'status' => $quotationdatas->status,
+                                'discount_type' => $quotationdatas->discount_type,
+                                'discount' => $quotationdatas->discount,
+                                'tax_percentage' => $quotationdatas->tax_percentage,
+                                'add_on_note' => $quotationdatas->add_on_note,
+                            );
+            
+            
+                    }
+                }else {
+                    $quotation_data = '';
+                }
+                
+
+                $paymentdata = CustomerPayment::where('date', '=', $fromdate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->orderBy('id', 'DESC')->get();
+                if($paymentdata){
+
+                    $PaymentData = [];
+                    foreach ($paymentdata as $key => $paymentdatas) {
+                        $customer = Customer::findOrFail($paymentdatas->customer_id);
+                        $bank = Bank::findOrFail($paymentdatas->bank_id);
+            
+                        $PaymentData[] = array(
+                            'unique_key' => $paymentdatas->unique_key,
+                            'id' => $paymentdatas->id,
+                            'customer_id' => $paymentdatas->customer_id,
+                            'bank_id' => $paymentdatas->bank_id,
+                            'date' => $paymentdatas->date,
+                            'time' => $paymentdatas->time,
+                            'oldblance' => $paymentdatas->oldblance,
+                            'discount' => $paymentdatas->discount,
+                            'totalamount' => $paymentdatas->totalamount,
+                            'paid_amount' => $paymentdatas->paid_amount,
+                            'payment_pending' => $paymentdatas->payment_pending,
+                            'note' => $paymentdatas->note,
+                            'customer' => $customer->name,
+                            'bank' => $bank->name,
+                        );
+            
+                    }
+                }else {
+                    $PaymentData = '';
+                }
+        
+
+
+
+                $total_billamount = Bill::where('date', '=', $fromdate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('bill_grand_total');
+                if($total_billamount != ""){
+                    $totalbillamount = $total_billamount;
+                }else {
+                    $totalbillamount = '0';
+                }
+
+
+                // Total Paid
+                $total_paid = Bill::where('date', '=', $fromdate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('bill_paid_amount');
+                if($total_paid != ""){
+                    $total_paid_Amount = $total_paid;
+                }else {
+                    $total_paid_Amount = '0';
+                }
+                $payment_total_paid = CustomerPayment::where('date', '=', $fromdate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('paid_amount');
+                if($payment_total_paid != ""){
+                    $total_payment_paid = $payment_total_paid;
+                }else {
+                    $total_payment_paid = '0';
+                }
+
+
+                $payment_discount = CustomerPayment::where('date', '=', $fromdate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('discount');
+                if($payment_discount != ""){
+                    $totpayment_discount = $payment_discount;
+                }else {
+                    $totpayment_discount = '0';
+                }
+                $total_amount_paid = $total_paid_Amount + $total_payment_paid + $totpayment_discount;
+
+                $total_balance = $totalbillamount - $total_amount_paid;
+        }
+
+
+
+        if($todate){
+
+
+            $data = Bill::where('date', '=', $todate)->where('customer_id', '=', $CustomerData->id)->where('soft_delete', '!=', 1)->get();
+                $Bill_data = [];
+                $products = [];
+                foreach ($data as $key => $datas) {
+
+                    $customer = Customer::findOrFail($datas->customer_id);
+                    $bank = Bank::findOrFail($datas->bank_id);
+
+                    $BillProducts = BillProduct::where('bill_id', '=', $datas->id)->get();
+                    foreach ($BillProducts as $key => $BillProductss_arr) {
+
+                        $product = Product::findOrFail($BillProductss_arr->bill_product_id);
+                        $products[] = array(
+                            'bill_width' => $BillProductss_arr->bill_width,
+                            'bill_height' => $BillProductss_arr->bill_height,
+                            'bill_qty' => $BillProductss_arr->bill_qty,
+                            'bill_areapersqft' => $BillProductss_arr->bill_areapersqft,
+                            'bill_rate' => $BillProductss_arr->bill_rate,
+                            'bill_product_total' => $BillProductss_arr->bill_product_total,
+                            'product_name' => $product->name,
+                            'bill_id' => $BillProductss_arr->bill_id,
+
+                        );
+                    }
+
+
+                    $Bill_data[] = array(
+                        'unique_key' => $datas->unique_key,
+                        'id' => $datas->id,
+                        'billno' => $datas->billno,
+                        'date' => $datas->date,
+                        'time' => $datas->time,
+                        'customer' => $customer->name,
+                        'bank' => $bank->name,
+                        'bill_sub_total' => $datas->bill_sub_total,
+                        'bill_discount_price' => $datas->bill_discount_price,
+                        'bill_total_amount' => $datas->bill_total_amount,
+                        'bill_tax_amount' => $datas->bill_tax_amount,
+                        'bill_tax_percentage' => $datas->bill_tax_percentage,
+                        'bill_extracost_amount' => $datas->bill_extracost_amount,
+                        'bill_grand_total' => $datas->bill_grand_total,
+                        'bill_paid_amount' => $datas->bill_paid_amount,
+                        'bill_balance_amount' => $datas->bill_balance_amount,
+                        'products_data' => $products,
+                        'bill_discount_type' => $datas->bill_discount_type,
+                        'bill_discount' => $datas->bill_discount,
+                        'bill_add_on_note' => $datas->bill_add_on_note,
+                    );
+                }
+
+
+
+                $quotationdata = Quotation::where('date', '=', $todate)->where('customer_id', '=', $CustomerData->id)->where('soft_delete', '!=', 1)->where('status', '=', NULL)->get();
+                if($quotationdata){
+                    $quotation_data = [];
+                    foreach ($quotationdata as $key => $quotationdatas) {
+                        $qcustomer = Customer::findOrFail($quotationdatas->customer_id);
+            
+            
+                            $quotation_data[] = array(
+                                'unique_key' => $quotationdatas->unique_key,
+                                'id' => $quotationdatas->id,
+                                'quotation_number' => $quotationdatas->quotation_number,
+                                'date' => $quotationdatas->date,
+                                'time' => $quotationdatas->time,
+                                'customer' => $qcustomer->name,
+                                'sub_total' => $quotationdatas->sub_total,
+                                'discount_price' => $quotationdatas->discount_price,
+                                'total_amount' => $quotationdatas->total_amount,
+                                'tax_percentage' => $quotationdatas->tax_percentage,
+                                'tax_amount' => $quotationdatas->tax_amount,
+                                'extracost_amount' => $quotationdatas->extracost_amount,
+                                'grand_total' => $quotationdatas->grand_total,
+                                'status' => $quotationdatas->status,
+                                'discount_type' => $quotationdatas->discount_type,
+                                'discount' => $quotationdatas->discount,
+                                'tax_percentage' => $quotationdatas->tax_percentage,
+                                'add_on_note' => $quotationdatas->add_on_note,
+                            );
+            
+            
+                    }
+                }else {
+                    $quotation_data = '';
+                }
+                
+
+                $paymentdata = CustomerPayment::where('date', '=', $todate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->orderBy('id', 'DESC')->get();
+                if($paymentdata){
+
+                    $PaymentData = [];
+                    foreach ($paymentdata as $key => $paymentdatas) {
+                        $customer = Customer::findOrFail($paymentdatas->customer_id);
+                        $bank = Bank::findOrFail($paymentdatas->bank_id);
+            
+                        $PaymentData[] = array(
+                            'unique_key' => $paymentdatas->unique_key,
+                            'id' => $paymentdatas->id,
+                            'customer_id' => $paymentdatas->customer_id,
+                            'bank_id' => $paymentdatas->bank_id,
+                            'date' => $paymentdatas->date,
+                            'time' => $paymentdatas->time,
+                            'oldblance' => $paymentdatas->oldblance,
+                            'discount' => $paymentdatas->discount,
+                            'totalamount' => $paymentdatas->totalamount,
+                            'paid_amount' => $paymentdatas->paid_amount,
+                            'payment_pending' => $paymentdatas->payment_pending,
+                            'note' => $paymentdatas->note,
+                            'customer' => $customer->name,
+                            'bank' => $bank->name,
+                        );
+            
+                    }
+                }else {
+                    $PaymentData = '';
+                }
+        
+
+
+
+                $total_billamount = Bill::where('date', '=', $todate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('bill_grand_total');
+                if($total_billamount != ""){
+                    $totalbillamount = $total_billamount;
+                }else {
+                    $totalbillamount = '0';
+                }
+
+
+                // Total Paid
+                $total_paid = Bill::where('date', '=', $todate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('bill_paid_amount');
+                if($total_paid != ""){
+                    $total_paid_Amount = $total_paid;
+                }else {
+                    $total_paid_Amount = '0';
+                }
+                $payment_total_paid = CustomerPayment::where('date', '=', $todate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('paid_amount');
+                if($payment_total_paid != ""){
+                    $total_payment_paid = $payment_total_paid;
+                }else {
+                    $total_payment_paid = '0';
+                }
+
+
+                $payment_discount = CustomerPayment::where('date', '=', $todate)->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('discount');
+                if($payment_discount != ""){
+                    $totpayment_discount = $payment_discount;
+                }else {
+                    $totpayment_discount = '0';
+                }
+                $total_amount_paid = $total_paid_Amount + $total_payment_paid + $totpayment_discount;
+
+                $total_balance = $totalbillamount - $total_amount_paid;
+        }
+
+
+        if($fromdate && $todate){
+
+
+                $data = Bill::whereBetween('date', [$fromdate, $todate])->where('customer_id', '=', $CustomerData->id)->where('soft_delete', '!=', 1)->get();
+                $Bill_data = [];
+                $products = [];
+                foreach ($data as $key => $datas) {
+
+                    $customer = Customer::findOrFail($datas->customer_id);
+                    $bank = Bank::findOrFail($datas->bank_id);
+
+                    $BillProducts = BillProduct::where('bill_id', '=', $datas->id)->get();
+                    foreach ($BillProducts as $key => $BillProductss_arr) {
+
+                        $product = Product::findOrFail($BillProductss_arr->bill_product_id);
+                        $products[] = array(
+                            'bill_width' => $BillProductss_arr->bill_width,
+                            'bill_height' => $BillProductss_arr->bill_height,
+                            'bill_qty' => $BillProductss_arr->bill_qty,
+                            'bill_areapersqft' => $BillProductss_arr->bill_areapersqft,
+                            'bill_rate' => $BillProductss_arr->bill_rate,
+                            'bill_product_total' => $BillProductss_arr->bill_product_total,
+                            'product_name' => $product->name,
+                            'bill_id' => $BillProductss_arr->bill_id,
+
+                        );
+                    }
+
+
+                    $Bill_data[] = array(
+                        'unique_key' => $datas->unique_key,
+                        'id' => $datas->id,
+                        'billno' => $datas->billno,
+                        'date' => $datas->date,
+                        'time' => $datas->time,
+                        'customer' => $customer->name,
+                        'bank' => $bank->name,
+                        'bill_sub_total' => $datas->bill_sub_total,
+                        'bill_discount_price' => $datas->bill_discount_price,
+                        'bill_total_amount' => $datas->bill_total_amount,
+                        'bill_tax_amount' => $datas->bill_tax_amount,
+                        'bill_tax_percentage' => $datas->bill_tax_percentage,
+                        'bill_extracost_amount' => $datas->bill_extracost_amount,
+                        'bill_grand_total' => $datas->bill_grand_total,
+                        'bill_paid_amount' => $datas->bill_paid_amount,
+                        'bill_balance_amount' => $datas->bill_balance_amount,
+                        'products_data' => $products,
+                        'bill_discount_type' => $datas->bill_discount_type,
+                        'bill_discount' => $datas->bill_discount,
+                        'bill_add_on_note' => $datas->bill_add_on_note,
+                    );
+                }
+
+
+
+                $quotationdata = Quotation::whereBetween('date', [$fromdate, $todate])->where('customer_id', '=', $CustomerData->id)->where('soft_delete', '!=', 1)->where('status', '=', NULL)->get();
+                if($quotationdata){
+                    $quotation_data = [];
+                    foreach ($quotationdata as $key => $quotationdatas) {
+                        $qcustomer = Customer::findOrFail($quotationdatas->customer_id);
+            
+            
+                            $quotation_data[] = array(
+                                'unique_key' => $quotationdatas->unique_key,
+                                'id' => $quotationdatas->id,
+                                'quotation_number' => $quotationdatas->quotation_number,
+                                'date' => $quotationdatas->date,
+                                'time' => $quotationdatas->time,
+                                'customer' => $qcustomer->name,
+                                'sub_total' => $quotationdatas->sub_total,
+                                'discount_price' => $quotationdatas->discount_price,
+                                'total_amount' => $quotationdatas->total_amount,
+                                'tax_percentage' => $quotationdatas->tax_percentage,
+                                'tax_amount' => $quotationdatas->tax_amount,
+                                'extracost_amount' => $quotationdatas->extracost_amount,
+                                'grand_total' => $quotationdatas->grand_total,
+                                'status' => $quotationdatas->status,
+                                'discount_type' => $quotationdatas->discount_type,
+                                'discount' => $quotationdatas->discount,
+                                'tax_percentage' => $quotationdatas->tax_percentage,
+                                'add_on_note' => $quotationdatas->add_on_note,
+                            );
+            
+            
+                    }
+                }else {
+                    $quotation_data = '';
+                }
+                
+
+                $paymentdata = CustomerPayment::whereBetween('date', [$fromdate, $todate])->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->orderBy('id', 'DESC')->get();
+                if($paymentdata){
+
+                    $PaymentData = [];
+                    foreach ($paymentdata as $key => $paymentdatas) {
+                        $customer = Customer::findOrFail($paymentdatas->customer_id);
+                        $bank = Bank::findOrFail($paymentdatas->bank_id);
+            
+                        $PaymentData[] = array(
+                            'unique_key' => $paymentdatas->unique_key,
+                            'id' => $paymentdatas->id,
+                            'customer_id' => $paymentdatas->customer_id,
+                            'bank_id' => $paymentdatas->bank_id,
+                            'date' => $paymentdatas->date,
+                            'time' => $paymentdatas->time,
+                            'oldblance' => $paymentdatas->oldblance,
+                            'discount' => $paymentdatas->discount,
+                            'totalamount' => $paymentdatas->totalamount,
+                            'paid_amount' => $paymentdatas->paid_amount,
+                            'payment_pending' => $paymentdatas->payment_pending,
+                            'note' => $paymentdatas->note,
+                            'customer' => $customer->name,
+                            'bank' => $bank->name,
+                        );
+            
+                    }
+                }else {
+                    $PaymentData = '';
+                }
+        
+
+
+
+                $total_billamount = Bill::whereBetween('date', [$fromdate, $todate])->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('bill_grand_total');
+                if($total_billamount != ""){
+                    $totalbillamount = $total_billamount;
+                }else {
+                    $totalbillamount = '0';
+                }
+
+
+                // Total Paid
+                $total_paid = Bill::whereBetween('date', [$fromdate, $todate])->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('bill_paid_amount');
+                if($total_paid != ""){
+                    $total_paid_Amount = $total_paid;
+                }else {
+                    $total_paid_Amount = '0';
+                }
+                $payment_total_paid = CustomerPayment::whereBetween('date', [$fromdate, $todate])->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('paid_amount');
+                if($payment_total_paid != ""){
+                    $total_payment_paid = $payment_total_paid;
+                }else {
+                    $total_payment_paid = '0';
+                }
+
+
+                $payment_discount = CustomerPayment::whereBetween('date', [$fromdate, $todate])->where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('discount');
+                if($payment_discount != ""){
+                    $totpayment_discount = $payment_discount;
+                }else {
+                    $totpayment_discount = '0';
+                }
+                $total_amount_paid = $total_paid_Amount + $total_payment_paid + $totpayment_discount;
+
+                $total_balance = $totalbillamount - $total_amount_paid;
+        }
+
+
+
+        
+
+        return view('page.backend.customer.view', compact('CustomerData', 'today', 'Bill_data', 'totalbillamount', 'total_amount_paid', 'total_balance', 'quotation_data', 'PaymentData', 'fromdate', 'todate'));
+    
     }
 
 
@@ -280,5 +777,130 @@ class CustomerController extends Controller
             $userData['data'] = $customerdata;
             echo json_encode($userData);
         }
+    }
+
+
+
+
+    public function allcustomer_pdfexport() 
+    {
+        $data = Customer::where('soft_delete', '!=', 1)->get();
+        $customerarr_data = [];
+        foreach ($data as $key => $datas) {
+
+            $billamount = Bill::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->sum('bill_grand_total');
+            if($billamount != ""){
+                $bill_totalamount = $billamount;
+            }else {
+                $bill_totalamount = '0';
+            }
+
+
+
+            $customerarr_data[] = array(
+                'unique_key' => $datas->unique_key,
+                'name' => $datas->name,
+                'address' => $datas->address,
+                'phone_number' => $datas->phone_number,
+                'email_id' => $datas->email_id,
+                'id' => $datas->id,
+                'bill_totalamount' => $bill_totalamount,
+            );
+        }
+
+
+
+        $pdf = Pdf::loadView('page.backend.customer.allcustomerpdfexport_view', [
+            'customerarr_data' => $customerarr_data,
+        ]);
+        $name = 'Customers.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+
+
+    public function customerview_pdfexport($unique_key, $fromdate, $todate) 
+    {
+        $GetCustomer = Customer::where('unique_key', '=', $unique_key)->first();
+
+
+        if($fromdate && $todate){
+            
+            $customerarr_data = [];
+            $billexportdate_arr = [];
+
+            $Billdata = Bill::whereBetween('date', [$fromdate, $todate])->where('customer_id', '=', $GetCustomer->id)->where('soft_delete', '!=', 1)->get();
+            if($Billdata != ""){
+                foreach ($Billdata as $key => $Billdata_arr) {
+                    $billexportdate_arr[] = $Billdata_arr->date;
+                }
+            }
+
+            $paymentexportdate_arr = [];
+            $CustomerPaymentdata = CustomerPayment::whereBetween('date', [$fromdate, $todate])->where('customer_id', '=', $GetCustomer->id)->where('soft_delete', '!=', 1)->get();
+            if($CustomerPaymentdata != ""){
+                foreach ($CustomerPaymentdata as $key => $CustomerPaymentdatas) {
+                    $paymentexportdate_arr[] = $CustomerPaymentdatas->date;
+                }
+            }
+
+
+            $date_arr = array_merge($billexportdate_arr, $paymentexportdate_arr);
+            usort($date_arr, function ($a, $b) {
+                $dateTimestamp1 = strtotime($a);
+                $dateTimestamp2 = strtotime($b);
+    
+                return $dateTimestamp1 < $dateTimestamp2 ? 1 : -1;
+            });
+            $customerbillarr_data = [];
+            foreach (array_unique($date_arr) as $key => $date_array) {
+
+                $Billdatearr = Bill::where('date', '=', $date_array)->where('customer_id', '=', $GetCustomer->id)->where('soft_delete', '!=', 1)->get();
+
+                $CustomerPaymentdatearr = CustomerPayment::where('date', '=', $date_array)->where('customer_id', '=', $GetCustomer->id)->where('soft_delete', '!=', 1)->get();
+
+                $merged = $CustomerPaymentdatearr->merge($Billdatearr);
+
+                $result = $merged->all();
+
+                foreach ($result as $key => $mergearrays) {
+
+                   if($mergearrays->billno != ""){
+                        $bill_no = $mergearrays->billno;
+                        $Vouchertype = 'BILL';
+                        $debit = $mergearrays->bill_grand_total;
+                        $credit = $mergearrays->bill_paid_amount;
+                   }else {
+                        $bill_no = '';
+                        $Vouchertype = 'Receipts';
+                        $debit = '';
+                        $credit = $mergearrays->paid_amount;
+                   }
+
+                    $customerarr_data[] = array(
+                        'billno' => $bill_no,
+                        'Vouchertype' => $Vouchertype,
+                        'debit' => $debit,
+                        'credit' => $credit,
+                        'date_array' => $date_array,
+                    );
+                }
+            }
+
+
+
+            $pdf = Pdf::loadView('page.backend.customer.customerpdfexport_view', [
+                'customerarr_data' => $customerarr_data,
+                'Customer' => $GetCustomer->name,
+                'fromdate' => $fromdate,
+                'todate' => $todate,
+                
+            ]);
+            $name = 'Customers.' . 'pdf';
+            return $pdf->stream($name);
+        }
+
+
+
     }
 }

@@ -8,6 +8,52 @@
       <div class="page-header">
          <div class="content-page-header">
             <h6>CUSTOMER - <span style="color:green;text-transform: uppercase;">{{ $CustomerData->name }}</span></h6>
+
+
+               <div class="list-btn">
+                  <div style="display:flex;">
+                     <ul class="filter-list">
+                        <li>
+                        <form autocomplete="off" method="POST" action="{{ route('customer.viewfilter', ['unique_key' => $CustomerData->unique_key]) }}" enctype="multipart/form-data">
+                           @method('PUT')
+                           @csrf
+                           <div class="page-btn" style="display: flex">
+                              
+
+                              <div class="col-lg-3 col-sm-3 col-12" style="margin: 0px 3px;">
+                                    <div class="form-group">
+                                       <label>From</label>
+                                       <input type="date" class="form-control" name="fromdate" id="fromdate" value="{{$fromdate}}" style="color:black">
+                                    </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-3 col-12" style="margin: 0px 3px;">
+                                    <div class="form-group">
+                                       <label>To</label>
+                                       <input type="date" name="todate" class="form-control" id="todate" value="{{$todate}}" style="color:black">
+                                    </div>
+                              </div>
+                              <input type="hidden" name="customerid" id="customerid" value="{{$todate}}" />
+                              <input type="hidden" name="uniquekey" id="uniquekey" value="{{$CustomerData->unique_key}}" />
+                              <div class="col-lg-2 col-sm-2 col-12" style="margin: 0px 3px;">
+                                    <div class="form-group">
+                                       <label style="opacity: 0%;">Action</label>
+                                       <input type="submit" class="btn btn-primary" name="submit" value="Search" />
+                                    </div>
+                              </div>
+
+                              <div class="col-lg-4 col-sm-4 col-12" style="margin-top:28px;">
+                                 <div class="form-group">
+                                    <label style="opacity: 0%;"></label>
+                                    <a href="/customerview_pdfexport/{{$CustomerData->unique_key}}/{{$fromdate}}/{{$todate}}" class="badges bg-lightgrey btn btn-success">Pdf Export</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </form>
+                        </li>
+                     </ul>
+                  </div>
+                  
+               </div>
          </div>
       </div>
 

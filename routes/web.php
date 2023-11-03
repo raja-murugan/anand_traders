@@ -41,6 +41,9 @@ Auth::routes();
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // DASHBOARD
     Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home');
+
+    // DASHBOARD FILTER
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/home/datefilter', [App\Http\Controllers\HomeController::class, 'datefilter'])->name('home.datefilter');
 });
 // BANK CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -89,6 +92,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/customer/checkduplicate', [CustomerController::class, 'checkduplicate'])->name('customer.checkduplicate');
     // VIEW
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/customer/view/{unique_key}', [CustomerController::class, 'view'])->name('customer.view');
+    // REPORT VIEW
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/customer/viewfilter/{unique_key}', [CustomerController::class, 'viewfilter'])->name('customer.viewfilter');
 });
 // VENDOR CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -104,6 +109,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-anandtraders/vendor/checkduplicate', [VendorController::class, 'checkduplicate'])->name('vendor.checkduplicate');
     // VIEW
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-anandtraders/vendor/view/{unique_key}', [VendorController::class, 'view'])->name('vendor.view');
+    // REPORT VIEW
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-anandtraders/vendor/viewfilter/{unique_key}', [VendorController::class, 'viewfilter'])->name('vendor.viewfilter');
 });
 // QUOTATION CONTROLLER
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -220,3 +227,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('getProducts/', [ProductController::class, 'getProducts']);
 Route::get('/oldbalanceforCustomerPayment', [BillController::class, 'oldbalanceforCustomerPayment']);
 Route::get('/oldbalanceforvendorPayment', [PurchaseController::class, 'oldbalanceforvendorPayment']);
+Route::get('/allcustomer_pdfexport', [CustomerController::class, 'allcustomer_pdfexport']);
+Route::get('/customerview_pdfexport/{unique_key}/{fromdate}/{todate}', [CustomerController::class, 'customerview_pdfexport']);
+Route::get('/vendorview_pdfexport/{unique_key}/{fromdate}/{todate}', [VendorController::class, 'vendorview_pdfexport']);
+Route::get('/expense_pdfexport/{from_date}/{to_date}', [ExpenseController::class, 'expense_pdfexport']);
+Route::get('/allvendor_pdfexport', [VendorController::class, 'allvendor_pdfexport']);
+Route::get('/quotation_pdfexport/{from_date}/{to_date}', [QuotationController::class, 'quotation_pdfexport']);
+Route::get('/bill_pdfexport/{from_date}/{to_date}', [BillController::class, 'bill_pdfexport']);

@@ -14,7 +14,9 @@
                                 @csrf
                                 <div style="display: flex">
                                     <div style="margin-right: 10px;"><input type="date" name="from_date"
-                                            class="form-control from_date" value="{{ $today }}"></div>
+                                            class="form-control from_date" value="{{ $from_date }}"></div>
+                                    <div style="margin-right: 10px;"><input type="date" name="todate"
+                                            class="form-control todate" value="{{ $to_date }}"></div>
                                     <div style="margin-right: 10px;"><input type="submit" class="btn btn-success"
                                             value="Search" /></div>
                                 </div>
@@ -23,6 +25,7 @@
                             <li>
                             <a class="btn btn-primary" href="{{ route('expense.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Expense</a>
                             </li>
+                            <li><a href="/expense_pdfexport/{{$from_date}}/{{$to_date}}" class="badges bg-lightgrey btn btn-success">Pdf Export</a></li>
                             </ul>
                         </div>
                     </div>

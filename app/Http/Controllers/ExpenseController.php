@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use PDF;
 
 class ExpenseController extends Controller
 {
@@ -16,18 +17,83 @@ class ExpenseController extends Controller
     {
         $today = Carbon::now()->format('Y-m-d');
         $data = Expense::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $from_date = $today;
+        $to_date = $today;
 
-        return view('page.backend.expense.index', compact('data', 'today'));
+        return view('page.backend.expense.index', compact('data', 'from_date', 'to_date', 'today'));
     }
 
 
     public function datefilter(Request $request) {
-        $today = $request->get('from_date');
-        $data = Expense::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $fromdate = $request->get('from_date');
+        $todate = $request->get('todate');
+        $today = Carbon::now()->format('Y-m-d');
+        $data = Expense::whereBetween('date', [$fromdate, $todate])->where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
 
-        return view('page.backend.expense.index', compact('data', 'today'));
+        
+            $from_date = $fromdate;
+            $to_date = $todate;
+        
+
+        return view('page.backend.expense.index', compact('data', 'from_date', 'to_date', 'today'));
     }
 
+
+
+    public function expense_pdfexport($from_date, $to_date) 
+    {
+        $expesen_exportdate_arr = [];
+
+        $ExpenseData = Expense::whereBetween('date', [$from_date, $to_date])->where('soft_delete', '!=', 1)->get();
+        if($ExpenseData != ""){
+            foreach ($ExpenseData as $key => $ExpenseDatas) {
+                $expesen_exportdate_arr[] = $ExpenseDatas->date;
+            }
+        }
+
+           
+        usort($expesen_exportdate_arr, function ($a, $b) {
+            $dateTimestamp1 = strtotime($a);
+            $dateTimestamp2 = strtotime($b);
+    
+            return $dateTimestamp1 < $dateTimestamp2 ? 1 : -1;
+        });
+
+        $Expensearr_data = [];
+        foreach (array_unique($expesen_exportdate_arr) as $key => $date_array) {
+            $Expensedatearr = Expense::where('date', '=', $date_array)->where('soft_delete', '!=', 1)->get();
+            foreach ($Expensedatearr as $key => $Expensedatearray) {
+
+                $bank_id = Bank::findOrFail($Expensedatearray->bank_id);
+
+                $Expensedetaildatearr = Expense_note_cost::where('expenses_id', '=', $Expensedatearray->id)->where('soft_delete', '!=', 1)->get();
+                foreach ($Expensedetaildatearr as $key => $Expensedetails_datearr) {
+
+                    $Expensearr_data[] = array(
+                        'date' => $date_array,
+                        'bank' => $bank_id->name,
+                        'price' => $Expensedetails_datearr->price,
+                        'note' => $Expensedetails_datearr->note,
+                    );
+                }
+
+                
+            }
+        }
+
+
+
+        $pdf = Pdf::loadView('page.backend.expense.expensepdfexport_view', [
+            'Expensearr_data' => $Expensearr_data,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+            
+        ]);
+        $name = 'Expense' . $from_date . '-' . $to_date . '.' . 'pdf';
+        return $pdf->stream($name);
+
+        
+    }
 
     public function create()
     {

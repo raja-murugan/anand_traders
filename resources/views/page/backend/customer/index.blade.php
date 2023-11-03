@@ -9,12 +9,17 @@
          <div class="content-page-header">
             <h6>Customer</h6>
                <div class="list-btn">
-                  <ul class="filter-list">
-                     <li>
-                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".customer-modal-xl">
-                           <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer</a>
-                     </li>
-                  </ul>
+                  <div style="display:flex;">
+                     <ul class="filter-list">
+                        <li>
+                           <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".customer-modal-xl">
+                              <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer</a>
+
+                              <a href="/allcustomer_pdfexport" class="badges bg-lightgrey btn btn-success">Pdf Export</a>
+                        </li>
+                     </ul>
+                  </div>
+                  
                </div>
          </div>
       </div>

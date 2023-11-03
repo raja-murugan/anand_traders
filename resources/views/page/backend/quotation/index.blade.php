@@ -15,17 +15,21 @@
                             @method('PUT')
                             @csrf
                             <div style="display: flex">
+                                    <div style="margin-right: 10px;"><input type="date" name="from_date"
+                                            class="form-control from_date" value="{{ $from_date }}"></div>
+                                    <div style="margin-right: 10px;"><input type="date" name="todate"
+                                            class="form-control todate" value="{{ $to_date }}"></div>
+                                
                                  <div style="margin-right: 10px;">
                                        <select class="form-control" name="quotaiontype" id="quotaiontype">
                                           <option value="none">Status</option>
-                                          <option value="converted Quotation">converted Quotation</option>
-                                          <option value="Non converted Quotation">Non converted Quotation</option>
+                                          <option value="1"@if ('1' === $quotaion_type) selected='selected' @endif>Bill converted </option>
+                                          <option value="2"@if ('2' === $quotaion_type) selected='selected' @endif>Non converted</option>
                                        </select>
                                  </div>
-                                 <div style="margin-right: 10px;"><input type="date" name="from_date"
-                                        class="form-control from_date" value="{{ $today }}"></div>
                                 <div style="margin-right: 10px;"><input type="submit" class="btn btn-success"
                                         value="Search" /></div>
+                              <a href="/quotation_pdfexport/{{$from_date}}/{{$to_date}}" class="badges bg-lightgrey btn btn-warning">Pdf Export</a>
                             </div>
                         </form>
                         

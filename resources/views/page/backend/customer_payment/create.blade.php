@@ -83,7 +83,7 @@
                                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                       <label >Discount</label>
-                                                         <input type="text" name="discount" id="discount" placeholder="Enter Discount Amount" class="form-control  customerpayment_discount" style="color:black">
+                                                         <input type="text" name="discount" id="discount" placeholder="Enter Discount Amount" class="form-control  customerpayment_discount" required style="color:black">
                                                     </div>
                                                 </div>
 
@@ -97,7 +97,7 @@
                                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                       <label >Payable Amount </label>
-                                                         <input type="text" name="paid_amount" id="paid_amount" placeholder="Enter paid amount" class="form-control  customerpayment_paidamount" style="color:black">
+                                                         <input type="text" name="paid_amount" id="paid_amount" placeholder="Enter paid amount" required class="form-control  customerpayment_paidamount" style="color:black">
                                                     </div>
                                                 </div>
 
@@ -111,7 +111,7 @@
                                                 <div class="col-lg-9 col-md-9 col-sm-12">
                                                     <div class="form-group">
                                                       <label >Note</label>
-                                                         <input type="text" name="note" id="note"  class="form-control  note" >
+                                                         <input type="text" name="note" id="note"  class="form-control  note" required>
                                                     </div>
                                                 </div>
 
