@@ -144,11 +144,11 @@
                 $(".product_total").each(function(){
                     sum += +$(this).val();
                 });
-                $(".subq_total").val(sum);
-                $('.sub_total').text('₹ ' + sum);
+                $(".subq_total").val(sum.toFixed(2));
+                $('.sub_total').text('₹ ' + sum.toFixed(2));
 
-                $('.totalq_amount').val(sum);
-                $('.total_amount').text('₹ ' + sum);
+                $('.totalq_amount').val(sum.toFixed(2));
+                $('.total_amount').text('₹ ' + sum).toFixed(2);
 
 
                 var tax_percentage = $( "#tax_percentage option:selected" ).val();
@@ -384,11 +384,11 @@
                 $(".product_total").each(function(){
                     sum += +$(this).val();
                 });
-                $(".subq_total").val(sum);
-                $('.sub_total').text('₹ ' + sum);
+                $(".subq_total").val(sum.toFixed(2));
+                $('.sub_total').text('₹ ' + sum.toFixed(2));
 
-                $('.totalq_amount').val(sum);
-                $('.total_amount').text('₹ ' + sum);
+                $('.totalq_amount').val(sum.toFixed(2));
+                $('.total_amount').text('₹ ' + sum.toFixed(2));
 
 
 
@@ -680,11 +680,11 @@
                 $(".bill_product_total").each(function(){
                     sum += +$(this).val();
                 });
-                $(".bill_sub_total").val(sum);
-                $('.billsub_total').text('₹ ' + sum);
+                $(".bill_sub_total").val(sum.toFixed(2));
+                $('.billsub_total').text('₹ ' + sum.toFixed(2));
 
-                $('.bill_total_amount').val(sum);
-                $('.billtotal_amount').text('₹ ' + sum);
+                $('.bill_total_amount').val(sum.toFixed(2));
+                $('.billtotal_amount').text('₹ ' + sum.toFixed(2));
 
 
 
@@ -1065,11 +1065,11 @@
                 $(".bill_product_total").each(function(){
                     sum += +$(this).val();
                 });
-                $(".bill_sub_total").val(sum);
-                $('.billsub_total').text('₹ ' + sum);
+                $(".bill_sub_total").val(sum.toFixed(2));
+                $('.billsub_total').text('₹ ' + sum.toFixed(2));
 
-                $('.bill_total_amount').val(sum);
-                $('.billtotal_amount').text('₹ ' + sum);
+                $('.bill_total_amount').val(sum.toFixed(2));
+                $('.billtotal_amount').text('₹ ' + sum.toFixed(2));
 
 
       
